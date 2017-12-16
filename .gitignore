@@ -7,3 +7,6 @@ VisualStudio/**/*.suo
 ##VisualStudio/**/*.vcxproj
 ##VisualStudio/**/*.filters
 ##VisualStudio/**/*.user
+
+Unity/**/Library
+Unity/**/.vs
