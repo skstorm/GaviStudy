@@ -4,6 +4,6 @@ VisualStudio/**/ipch
 VisualStudio/**/.svn
 VisualStudio/**/*.sdf
 VisualStudio/**/*.suo
-VisualStudio/**/*.vcxproj
-VisualStudio/**/*.filters
-VisualStudio/**/*.user
+##VisualStudio/**/*.vcxproj
+##VisualStudio/**/*.filters
+##VisualStudio/**/*.user
