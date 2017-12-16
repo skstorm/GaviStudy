@@ -1,0 +1,8 @@
+VisualStudio/**/Debug
+VisualStudio/**/Release
+VisualStudio/**/.svn
+VisualStudio/**/*.sdf
+VisualStudio/**/*.suo
+VisualStudio/**/*.vcxproj
+VisualStudio/**/*.filters
+VisualStudio/**/*.user
