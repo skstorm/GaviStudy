@@ -30,8 +30,8 @@
 			fixed4 d = tex2D (_MainTex2,  float2(IN.uv_MainTex2.x, IN.uv_MainTex2.y - _Time.y) );
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex + d.r);
 			o.Emission = c.rgb;
-			float aaa = _Time.y - round(_Time.y);
-			o.Emission = aaa;
+			//float aaa = _Time.y - round(_Time.y);
+			//o.Emission = aaa;
 			o.Alpha = c.a;
 		}
 		ENDCG
