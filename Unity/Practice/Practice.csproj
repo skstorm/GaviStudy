@@ -98,6 +98,7 @@
     <None Include="Assets\Shader\CustomRimLight.shader" />
     <None Include="Assets\Shader\Fire.shader" />
     <None Include="Assets\Shader\NewSurfaceShader.shader" />
+    <None Include="Assets\Shader\Reflection.shader" />
     <None Include="Assets\Shader\SimplaShader.shader" />
     <None Include="Assets\Shader\Surface.shader" />
     <None Include="Assets\Shader\VertexColor.shader" />
