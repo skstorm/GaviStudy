@@ -96,6 +96,7 @@
     <None Include="Assets\Shader\CustomHolo.shader" />
     <None Include="Assets\Shader\CustomLambertLight.shader" />
     <None Include="Assets\Shader\CustomRimLight.shader" />
+    <None Include="Assets\Shader\Dissolve.shader" />
     <None Include="Assets\Shader\Fire.shader" />
     <None Include="Assets\Shader\NewSurfaceShader.shader" />
     <None Include="Assets\Shader\Reflection.shader" />
