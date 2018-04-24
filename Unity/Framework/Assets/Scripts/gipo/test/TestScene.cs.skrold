@@ -1,0 +1,64 @@
+﻿using gipo.core;
+using gipo.util;
+
+public class DbgObj {
+	public int debugNum;
+}
+
+public class TestScene : GearHolder {
+
+	public DbgObj dbgObj;
+
+	[Diffuse]
+	private TestLogic logic;
+
+	[Diffuse]
+	private TestView view;
+
+	private void prepare() {
+		UnityEngine.Debug.Log("TestScene : prepare");
+		if (!_auto_diffuse) {
+			gear.diffuse(logic, typeof(TestLogic));
+			gear.diffuse(view, typeof(TestView));
+		}
+	}
+
+	private void run() {
+		UnityEngine.Debug.Log("TestScene : run");
+	}
+
+	private void bubble() {
+		UnityEngine.Debug.Log("TestScene : bubble");
+	}
+
+	private void disposeTask() {
+		UnityEngine.Debug.Log("TestScene : disposeTask");
+	}
+
+	public TestScene() : base(true) {
+		dbgObj = new DbgObj();
+
+		//（Gearのセットアップ後）初期化時に行いたいこと（Action）を追加
+		// Attribute属性を用いていない場合はここでdiffuse/absorbをAction化しておくといい感じ？
+		gear.addPreparationHandler(prepare, new PosInfos());
+
+		// prepare後に行いたいこと（Action）を追加
+		gear.addRunHandler(run, new PosInfos());
+
+		// run後に行いたいこと（Action）を追加
+		gear.addBubbleHandler(bubble, new PosInfos());
+
+		// dispose時に行いたいこと（Action）を追加
+		gear.disposeTask(disposeTask, new PosInfos());
+	}
+
+	protected override void fieldSetup() {
+		logic = new TestLogic();
+		view = new TestView();
+	}
+
+	// ==== test method ====
+	public void debugAbsorb() {
+		view.debugAbsorb();
+	}
+}

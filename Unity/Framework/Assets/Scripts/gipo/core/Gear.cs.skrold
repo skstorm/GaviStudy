@@ -1,0 +1,277 @@
+﻿using System;
+using System.Collections.Generic;
+
+using gipo.util;
+using gipo.core.handler;
+
+namespace gipo.core
+{
+	public enum GearPhase {
+		Create,
+		Preparation,
+		Fulfill,
+		Middle,
+		Dispose,
+		Invalid,
+	};
+
+	public enum GearNeedTask {
+		Core,
+	}
+
+	/// diffuserを楽に扱えるようにするためのクラス
+	/// こちらも循環参照からのメモリ管理を厳しくするためにIDisposableを持つ
+	public class Gear : IDisposable {
+
+		/// このGearインスタンスを保持しているクラス（要IGearHolder）
+		private IGearHolder holder;
+		/// 子Gearリスト
+		private List<Gear> childGearList;
+		/// このギアを保持するインスタンス用のdiffuser
+		public Diffuser diffuser;
+
+		/// handler
+		private CancelKey removeCancelKey;
+		private GearPhase phase;
+
+		private GearDispatcher preparationHandlerList;
+		private GearDispatcher runDispatcher;
+		private GearDispatcher bubbleHandlerList;
+		private GearDispatcher disposeTaskStack;
+
+		private Action needTaskCore;
+		private List<Action> needTasks;
+
+		/// IDispose用フラグ
+		private bool disposed = false;
+
+		/// コンストラクタ
+		public Gear(IGearHolder holder) {
+			this.holder = holder;
+			childGearList = new List<Gear>();
+			diffuser = new Diffuser(this);
+
+			phase = GearPhase.Create;
+
+			preparationHandlerList = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
+			runDispatcher = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
+			bubbleHandlerList = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
+			disposeTaskStack = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
+
+			needTasks = new List<Action>();
+			needTaskCore = () => {};
+			addNeedTask(needTaskCore, new PosInfos());
+		}
+
+		// ==== 以下、diffuse/absorb ====
+
+		/// 自身の子Gearを設定しつつ、子Diffuserの親に自身のDiffuserを設定させる
+		public void setChildGear(Gear gear) {
+			childGearList.Add(gear); // 子Gearに追加
+			gear.diffuser.setParent(diffuser); // 子のdiffuserの親を自分に
+		}
+
+		// 子のDiffuserの親を空に設定したうえで、子Gearをリストからを削除
+		public void removeChildGear(Gear gear) {
+			gear.diffuser.setParent(null); // 子のdiffuserの親を空に
+			childGearList.Remove(gear);
+		}
+
+		/// Gearの取得（Dispose後に使えないインスタンスを返さないようにしている）
+		public Gear getImplement() {
+			if (holder == null) return null;
+			return this;
+		}
+
+		/// diffuse。Diffuserにインスタンスを登録
+		public void diffuse(object diffuseInstance, Type clazz) {
+			diffuser.add(diffuseInstance, clazz);
+		}
+
+		/// absorb。Diffuserから該当クラスのインスタンスを取得
+		public T absorb<T>(PosInfos pos) {
+			if (holder == null) return default(T);
+			return diffuser.get<T>(pos);
+		}
+
+		// for Debug
+		public string DILog() {
+			if (holder == null) return "";
+			string ret = "== " + holder.GetType().FullName + "\n";
+			ret += diffuser.DILog();
+			foreach (var childGear in childGearList) {
+				ret += childGear.DILog() + "\n";
+			}
+			return ret;
+		}
+
+		// ==== 以下、フェーズチェック ====
+		public bool checkPhaseCreate() {
+			switch (phase) {
+			case GearPhase.Create:
+				return true;
+			case GearPhase.Preparation:
+			case GearPhase.Fulfill:
+			case GearPhase.Middle:
+			case GearPhase.Dispose:
+			case GearPhase.Invalid:
+				return false;
+			}
+			throw new Exception("存在しないGearPhaseにいます");
+		}
+
+		public bool checkPhaseCanPreparationTool() {
+			switch (phase) {
+			case GearPhase.Preparation:
+				return true;
+			case GearPhase.Create:
+			case GearPhase.Fulfill:
+			case GearPhase.Middle:
+			case GearPhase.Dispose:
+			case GearPhase.Invalid:
+				return false;
+			}
+			throw new Exception("存在しないGearPhaseにいます");
+		}
+
+		public bool checkPhaseCanAbsorb() {
+			switch (phase) {
+			case GearPhase.Preparation:
+			case GearPhase.Fulfill:
+			case GearPhase.Middle:
+				return true;
+			case GearPhase.Create:
+			case GearPhase.Dispose:
+			case GearPhase.Invalid:
+				return false;
+			}
+			throw new Exception("存在しないGearPhaseにいます");
+		}
+
+		public bool checkPhaseCanMiddleTool() {
+			switch (phase) {
+			case GearPhase.Fulfill:
+			case GearPhase.Middle:
+				return true;
+			case GearPhase.Create:
+			case GearPhase.Preparation:
+			case GearPhase.Dispose:
+			case GearPhase.Invalid:
+				return false;
+			}
+			throw new Exception("存在しないGearPhaseにいます");
+		}
+
+		public bool checkPhaseBeforeDispose() {
+			switch (phase) {
+			case GearPhase.Create:
+			case GearPhase.Preparation:
+			case GearPhase.Fulfill:
+			case GearPhase.Middle:
+				return true;
+			case GearPhase.Dispose:
+			case GearPhase.Invalid:
+				return false;
+			}
+			throw new Exception("存在しないGearPhaseにいます");
+		}
+
+		// ==== 以下、handlerへの追加処理 ====
+		public void addPreparationHandler(Action func, PosInfos pos) {
+			preparationHandlerList.add(func, pos);
+		}
+
+		public void addRunHandler(Action func, PosInfos pos) {
+			runDispatcher.add(func, pos);
+		}
+
+		public void addBubbleHandler(Action func, PosInfos pos) {
+			bubbleHandlerList.add(func, pos);
+		}
+
+		public CancelKey disposeTask(Action func, PosInfos pos) {
+			if (!checkPhaseBeforeDispose()) {
+				throw new Exception("既に消去処理が開始されているため、消去時のハンドラを登録できません" + phase);
+			}
+			return disposeTaskStack.add(func, pos);
+		}
+
+		// ==== 以下、初期化処理 ====
+		public void addNeedTask(Action key, PosInfos pos) {
+			foreach (var needTask in needTasks) {
+				if (needTask == key) {
+					throw new Exception("初期化タスクに２重登録されました");
+				}
+			}
+			if (!checkPhaseCreate()) {
+				throw new Exception("initializeTaskの追加はコンストラクタで行なって下さい");
+			}
+			needTasks.Add(key);
+		}
+
+		public void endNeedTask(Action key, PosInfos pos) {
+			needTasks.Remove(key);
+			if (needTasks.Count != 0) return;
+
+			// タスクが無くなったらrun実行
+			runDispatcher.execute(pos);
+			runDispatcher = null;
+
+			// run後にbubble実行
+			bubbleHandlerList.execute(pos);
+			bubbleHandlerList = null;
+		}
+
+		public void initialize() {
+			//DebugPrint("initialize");
+
+			if (!checkPhaseCreate()) return;
+
+			phase = GearPhase.Preparation;
+
+			preparationHandlerList.execute(new PosInfos());
+
+			phase = GearPhase.Fulfill;
+
+			phase = GearPhase.Middle;
+
+			endNeedTask(needTaskCore, new PosInfos());
+
+			foreach (var childGear in childGearList) {
+				childGear.initialize();
+			}
+		}
+
+		// ==== 以下、IDispose ====
+		~Gear() {
+			this.Dispose(false);
+		}
+
+		public void Dispose() {
+			this.Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		private void Dispose(bool isDisposing) {
+			if (!this.disposed) {
+				if (isDisposing) {
+					disposeTaskStack.execute(new PosInfos());// 逆順で実行する
+					disposeTaskStack = null;
+					//
+					holder = null;
+					foreach (var childGear in childGearList) {
+						childGear.Dispose();
+					}
+					childGearList.Clear();
+					diffuser.Dispose();
+				}
+				this.disposed = true;
+			}
+		}
+
+		// for debug
+		public void DebugPrint(string str) {
+			UnityEngine.Debug.Log("[" + str + "]:" + this.holder + "(" + phase + ")");
+		}
+	}
+}
