@@ -19,7 +19,7 @@ namespace Core
 
 		public GameLoop(ISetting setting, GameView gameView) : base(true)
 		{
-			_frameManager = new FrameManager();
+			_frameManager = new FrameManager(setting.Fps);
 			_gameLogic = new GameLogic(setting);
 			_gameView = gameView;
 			_gameView.InitDI(false);
