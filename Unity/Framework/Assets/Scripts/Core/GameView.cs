@@ -61,6 +61,7 @@ namespace Core
 		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
 		{
 			// シーンを親から外す
+			_currentSceneView.GearDispose();
 			_gear.RemoveChildGear(_currentSceneView.GetGear());
 			Destroy(_currentSceneView.gameObject);
 			
