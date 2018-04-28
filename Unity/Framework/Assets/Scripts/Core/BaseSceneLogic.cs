@@ -15,7 +15,7 @@ namespace Core
 
 	public class BaseSceneLogic<TView> : GearHolder, IBaseSceneLogic where TView : class, IBaseSceneViewOrder
 	{
-		protected IGameLogicForSceneLogic _gameLogic = null;
+		protected IGameLogic_ForSceneLogic _gameLogic = null;
 		protected TView _sceneView = default(TView);
 
 		public BaseSceneLogic() : base(false)

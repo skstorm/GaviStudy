@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using gipo.core;
+﻿using gipo.core;
 using gipo.util;
+using UnityEngine;
 
 namespace Core
 {
@@ -9,14 +9,14 @@ namespace Core
 
 	}
 
-	public interface IBaseSceneViewForUIEventRegister
+	public interface IBaseSceneView_ForUIEventRegister
 	{
 		void NotifyCommand(ICommand command);
 	}
 
-	public class BaseSceneView : GearHolderBehavior, IBaseSceneViewOrder, IBaseSceneViewForUIEventRegister
+	public class BaseSceneView : GearHolderBehavior, IBaseSceneViewOrder, IBaseSceneView_ForUIEventRegister
 	{
-		private ILogicStateChnagerForView _logicStateChanger = null;
+		private ILogicStateChnager_ForView _logicStateChanger = null;
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数

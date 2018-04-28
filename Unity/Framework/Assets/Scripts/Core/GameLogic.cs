@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace Core
 {
-	public interface IGameLogicForLogicStateChanger
+	public interface IGameLogic_ForLogicStateChanger
 	{
 		void NotifyCommand(ICommand command);
 	}
 
-	public interface IGameLogicForSceneLogic
+	public interface IGameLogic_ForSceneLogic
 	{
 		void ChangeScene(IBaseSceneLogic nextScene);
 	}
 
-	public class GameLogic : GearHolder, IGameLogicForLogicStateChanger, IGameLogicForSceneLogic
+	public class GameLogic : GearHolder, IGameLogic_ForLogicStateChanger, IGameLogic_ForSceneLogic
 	{
 		// GameView
 		private IGameViewOrder _gameView = null;

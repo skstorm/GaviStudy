@@ -55,7 +55,7 @@ namespace Core
 			// GameMainObjectの取得
 			GameObject go = GameObject.FindWithTag("MainGameObject");
 			MainGameObject mainGameObject = go.GetComponent<MainGameObject>();
-			IBaseSceneViewForUIEventRegister sceneView =  mainGameObject.GetCurrentSceneView();
+			IBaseSceneView_ForUIEventRegister sceneView =  mainGameObject.GetCurrentSceneView();
 			// Buttonにイベントセット
 			button = this.GetComponent<Button>();
 

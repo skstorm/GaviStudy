@@ -2,13 +2,13 @@
 
 namespace Core
 {
-	public interface IMainGameObjectForButton
+	public interface IMainGameObject_ForButton
 	{
 
 	}
 
 
-	abstract public class MainGameObject : MonoBehaviour, IMainGameObjectForButton
+	abstract public class MainGameObject : MonoBehaviour, IMainGameObject_ForButton
 	{
 		private GameLoop _gameLoop = null;
 

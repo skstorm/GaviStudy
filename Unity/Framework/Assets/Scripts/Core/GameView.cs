@@ -13,7 +13,7 @@ namespace Core
 	abstract public class GameView : GearHolderBehavior, IGameViewOrder
 	{
 		private BaseSceneView _currentSceneView = null;
-		private ILogicStateChnagerForView _logicStateChanger = null;
+		private ILogicStateChnager_ForView _logicStateChanger = null;
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
