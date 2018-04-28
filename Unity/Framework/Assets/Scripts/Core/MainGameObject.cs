@@ -8,7 +8,7 @@ namespace Core
 	}
 
 
-	public class MainGameObject : MonoBehaviour, IMainGameObjectForButton
+	abstract public class MainGameObject : MonoBehaviour, IMainGameObjectForButton
 	{
 		private GameLoop _gameLoop = null;
 
@@ -16,9 +16,7 @@ namespace Core
 		protected GameView _gameView;
 
 		// Use this for initialization
-		void Start()
-		{
-		}
+		abstract protected void Start();
 
 		protected void Initialize (ISetting setting) 
 		{
@@ -36,7 +34,7 @@ namespace Core
 		{
 			_gameLoop.GearDispose();	
 		}
-
+		
 		public BaseSceneView GetCurrentSceneView()
 		{
 			return _gameLoop.GetCurrentSceneView();
