@@ -2,7 +2,7 @@
 using gipo.core;
 using gipo.util;
 
-namespace Core
+namespace Ark.Core
 {
 	public class GameLoop : GearHolder
 	{

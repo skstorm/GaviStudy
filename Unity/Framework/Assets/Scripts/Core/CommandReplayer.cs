@@ -1,6 +1,6 @@
 ﻿using gipo.core;
 
-namespace Core
+namespace Ark.Core
 {
 	public class CommandReplayer : GearHolder
 	{

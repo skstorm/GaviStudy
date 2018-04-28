@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Core;
-using System;
+﻿using UnityEngine;
+using Ark.Core;
 
 namespace Example
 {

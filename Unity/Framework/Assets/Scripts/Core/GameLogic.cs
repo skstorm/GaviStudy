@@ -2,7 +2,7 @@
 using gipo.util;
 using UnityEngine;
 
-namespace Core
+namespace Ark.Core
 {
 	public interface IGameLogic_ForLogicStateChanger
 	{

@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Core;
-using Example;
+﻿using Ark.Core;
 
-public class MySetting : ISetting
+namespace Example
 {
-	public IBaseSceneLogic StartScene
+	public class MySetting : ISetting
 	{
-		get
+		public IBaseSceneLogic StartScene
 		{
-			return new MenuSceneLogic ();
+			get
+			{
+				return new MenuSceneLogic();
+			}
+		}
+
+		public int Fps
+		{
+			get
+			{
+				return 60;
+			}
 		}
 	}
 
-	public int Fps
-	{
-		get
-		{
-			return 60;
-		}
-	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Core
+namespace Ark.Core
 {
 	public class UIEventRegister : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 	{

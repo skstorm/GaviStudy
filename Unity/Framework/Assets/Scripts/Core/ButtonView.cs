@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core
+namespace Ark.Core
 {
 	public class ButtonView : MonoBehaviour
 	{
