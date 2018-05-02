@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using gipo.util;
-using Core;
+using Ark.Core;
 
 namespace Example
 {

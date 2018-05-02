@@ -1,16 +1,16 @@
 ﻿using gipo.core;
 using gipo.util;
 
-namespace Core
+namespace Ark.Core
 {
-	public interface ILogicStateChnagerForView
+	public interface ILogicStateChnager_ForView
 	{
 		void NotifyCommand(ICommand command);
 	}
 
-	public class LogicStateChanger : GearHolder, ILogicStateChnagerForView
+	public class LogicStateChanger : GearHolder, ILogicStateChnager_ForView
 	{
-		private IGameLogicForLogicStateChanger _gameLogic = null;
+		private IGameLogic_ForLogicStateChanger _gameLogic = null;
 
 		public LogicStateChanger() : base(false)
 		{

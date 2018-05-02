@@ -1,11 +1,11 @@
-﻿using Core;
+﻿using Ark.Core;
 
 namespace Example
 {
 	public class MyMainGameObject : MainGameObject
 	{
 		// Use this for initialization
-		void Start()
+		protected override void Start()
 		{
 			Initialize(new MySetting());
 		}

@@ -2,7 +2,7 @@
 using gipo.util;
 using UnityEngine;
 
-namespace Core
+namespace Ark.Core
 {
 	public interface IGameViewOrder
 	{
@@ -13,7 +13,7 @@ namespace Core
 	abstract public class GameView : GearHolderBehavior, IGameViewOrder
 	{
 		private BaseSceneView _currentSceneView = null;
-		private ILogicStateChnagerForView _logicStateChanger = null;
+		private ILogicStateChnager_ForView _logicStateChanger = null;
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
@@ -61,6 +61,7 @@ namespace Core
 		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
 		{
 			// シーンを親から外す
+			_currentSceneView.GearDispose();
 			_gear.RemoveChildGear(_currentSceneView.GetGear());
 			Destroy(_currentSceneView.gameObject);
 			
