@@ -17,8 +17,8 @@ namespace Example
 		protected override void Run()
 		{
 			base.Run();
-
-			Debug.Log("BattleSceneLogic Run");
+			
+			ArkLog.Debug("BattleSceneLogic Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -27,7 +27,7 @@ namespace Example
 		{
 			base.DisposeProcess();
 
-			Debug.Log("BattleSceneLogic DisposeProcess");
+			ArkLog.Debug("BattleSceneLogic DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

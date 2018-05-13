@@ -76,7 +76,7 @@ namespace gipo.core
 		/// </summary>
 		protected virtual void GearDiffuse()
 		{
-			//UnityEngine.Debug.Log("ProcessBase(" + this + ")::prepare");
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::prepare");
 		}
 
 		/// <summary>
@@ -92,7 +92,7 @@ namespace gipo.core
 		/// </summary>
 		protected virtual void DisposeProcess()
 		{
-			//UnityEngine.Debug.Log("ProcessBase(" + this + ")::disposeProcess");
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::disposeProcess");
 		}
 
 		/// gearの親子関係を自動で設定する

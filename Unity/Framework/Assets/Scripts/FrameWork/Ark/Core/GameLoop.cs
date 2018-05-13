@@ -55,7 +55,7 @@ namespace Ark.Core
 		protected override void Run()
 		{
 			base.Run();
-			Debug.Log("Game Loop Run");
+			ArkLog.Debug("Game Loop Run");
 
 			// FrameManagerの時間初期化
 			_frameManager.RecordLastUpdateSeconds();
@@ -66,7 +66,7 @@ namespace Ark.Core
 		protected override void DisposeProcess()
 		{
 			base.DisposeProcess();
-			Debug.Log("Game Loop DisposeProcess");
+			ArkLog.Debug("Game Loop DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -81,7 +81,7 @@ namespace Ark.Core
 			_debugDeltaFrame += (Time.time - _debugLastUpdateSeconds);
 			if(_debugDeltaFrame >= 1.0f)
 			{
-				//Debug.Log("count : "+ _debugCount);
+				//ArkLog.Debug("count : "+ _debugCount);
 				_debugDeltaFrame = 0.0f;
 				_debugCount = 0;
 			}

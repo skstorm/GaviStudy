@@ -73,7 +73,7 @@ namespace gipo.core
 		/// </summary>
 		protected virtual void GearDiffuse()
 		{
-			//UnityEngine.Debug.Log("ProcessBase(" + this + ")::prepare");
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::prepare");
 		}
 
 		/// <summary>
@@ -89,7 +89,7 @@ namespace gipo.core
 		/// </summary>
 		protected virtual void DisposeProcess()
 		{
-			//UnityEngine.Debug.Log("ProcessBase(" + this + ")::disposeProcess");
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::disposeProcess");
 		}
 
 		/// attributeにてdiffuseされるメンバ変数はautoGearSetup前にインスタンスが生成されている必要があるので
@@ -179,7 +179,7 @@ namespace gipo.core
 						{
 							MethodInfo gmi = typeof(Gear).GetMethod("absorb", BindingFlags.Public | BindingFlags.Instance).MakeGenericMethod(fi.FieldType);
 							fi.SetValue(this, gmi.Invoke(_gear, new object[] { new PosInfos() }));
-							UnityEngine.Debug.Log("autoAbsorb : " + fi.FieldType + " of " + this);
+							Debug.Log("autoAbsorb : " + fi.FieldType + " of " + this);
 						}
 					}
 					else if (at is DiffuseAttribute)

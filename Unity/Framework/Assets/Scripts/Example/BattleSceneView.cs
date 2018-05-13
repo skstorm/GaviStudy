@@ -14,7 +14,7 @@ namespace Example
 		{
 			base.Run();
 
-			Debug.Log("BattleSceneView Run");
+			ArkLog.Debug("BattleSceneView Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -23,7 +23,7 @@ namespace Example
 		{
 			base.DisposeProcess();
 
-			Debug.Log("BattleSceneView DisposeProcess");
+			ArkLog.Debug("BattleSceneView DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

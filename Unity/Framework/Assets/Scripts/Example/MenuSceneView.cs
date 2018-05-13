@@ -16,7 +16,7 @@ namespace Example
 		{
 			base.Run();
 
-			Debug.Log("MenuSceneView Run");
+			ArkLog.Debug("MenuSceneView Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -25,7 +25,7 @@ namespace Example
 		{
 			base.DisposeProcess();
 
-			Debug.Log("MenuSceneView DisposeProcess");
+			ArkLog.Debug("MenuSceneView DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -33,7 +33,7 @@ namespace Example
 		public override void Render(int deltaFrame)
 		{
 			base.Render(deltaFrame);
-			//Debug.Log("MenuScene Render");
+			//ArkLog.Debug("MenuScene Render");
 		}
 	}
 }

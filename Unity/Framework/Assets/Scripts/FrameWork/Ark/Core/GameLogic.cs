@@ -39,7 +39,7 @@ namespace Ark.Core
 			IBaseSceneViewOrder sceneView = _gameView.StartUpSceneView(_currentSceneLogic);
 			_currentSceneLogic.SetSceneViewOrder(sceneView);
 
-			Debug.Log("Game Logic Run");
+			ArkLog.Debug("Game Logic Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -47,7 +47,7 @@ namespace Ark.Core
 		protected override void DisposeProcess()
 		{
 			base.DisposeProcess();
-			Debug.Log("Game Logic DisposeProcess");
+			ArkLog.Debug("Game Logic DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

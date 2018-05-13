@@ -17,7 +17,7 @@ namespace Example
 		{
 			base.Run();
 
-			Debug.Log("MenuSceneLogic Run");
+			ArkLog.Debug("MenuSceneLogic Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -26,7 +26,7 @@ namespace Example
 		{
 			base.DisposeProcess();
 
-			Debug.Log("MenuSceneLogic DisposeProcess");
+			ArkLog.Debug("MenuSceneLogic DisposeProcess");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
