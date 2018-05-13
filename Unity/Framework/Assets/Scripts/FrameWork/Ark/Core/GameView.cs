@@ -21,7 +21,7 @@ namespace Ark.Core
 		{
 			base.Run();
 			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
-
+			
 			Debug.Log("GameView Run");
 		}
 

@@ -1,4 +1,5 @@
-﻿namespace Ark.Core
+﻿
+namespace Ark.Core
 {
 	public interface ISetting
 	{
@@ -6,6 +7,7 @@
 		IBaseSceneLogic StartScene { get; }
 		// Frame per sencod (1秒に回るFrame数)
 		int Fps { get; }
+		// 表示するログレベル
+		uint DisplayLogLevel { get; }
 	}
-
 }

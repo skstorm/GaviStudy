@@ -12,7 +12,7 @@ namespace Example
 
 		protected override BaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic)
 		{
-			if(sceneLogic.GetType() == typeof(MenuSceneLogic))
+			if (sceneLogic.GetType() == typeof(MenuSceneLogic))
 			{
 				//return Instantiate<MenuSceneView>()
 				return Instantiate(_menuSceneView, transform);

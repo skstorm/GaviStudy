@@ -20,6 +20,7 @@ namespace Ark.Core
 
 		protected void Initialize (ISetting setting) 
 		{
+			ArkLog.Init(setting);
 			_gameLoop = new GameLoop(setting, _gameView);
 			_gameLoop.GearInit();
 		}
@@ -32,7 +33,8 @@ namespace Ark.Core
 
 		void OnApplicationQuit()
 		{
-			_gameLoop.GearDispose();	
+			_gameLoop.GearDispose();
+			ArkLog.Release();
 		}
 		
 		public BaseSceneView GetCurrentSceneView()
