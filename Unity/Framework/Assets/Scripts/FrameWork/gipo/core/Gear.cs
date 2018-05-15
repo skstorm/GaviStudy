@@ -9,16 +9,9 @@ namespace gipo.core
 	{
 		Create,
 		Preparation,
-		Fulfill,
 		Middle,
 		Dispose,
-		Invalid,
 	};
-
-	public enum GearNeedProcess 
-	{
-		Core,
-	}
 
 	/// diffuserを楽に扱えるようにするためのクラス
 	/// こちらも循環参照からのメモリ管理を厳しくするためにIDisposableを持つ
@@ -37,14 +30,7 @@ namespace gipo.core
 
 		private GearDispatcher _preparationHandlerList;
 		private GearDispatcher _runDispatcher;
-		private GearDispatcher _bubbleHandlerList;
 		private GearDispatcher _disposeProcessStack;
-
-		private Action _needProcessCore;
-		private List<Action> _needProcesss;
-
-		/// IDispose用フラグ
-		private bool _disposed = false;
 
 		/// コンストラクタ
 		public Gear(IGearHolder holder) 
@@ -57,12 +43,7 @@ namespace gipo.core
 
 			_preparationHandlerList = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
 			_runDispatcher = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
-			_bubbleHandlerList = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
 			_disposeProcessStack = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
-
-			_needProcesss = new List<Action>();
-			_needProcessCore = () => {};
-			AddNeedProcess(_needProcessCore, new PosInfos());
 		}
 
 		// ==== 以下、diffuse/absorb ====
@@ -121,10 +102,8 @@ namespace gipo.core
 			case GearPhase.Create:
 				return true;
 			case GearPhase.Preparation:
-			case GearPhase.Fulfill:
 			case GearPhase.Middle:
 			case GearPhase.Dispose:
-			case GearPhase.Invalid:
 				return false;
 			}
 			throw new Exception("存在しないGearPhaseにいます");
@@ -137,10 +116,8 @@ namespace gipo.core
 			case GearPhase.Preparation:
 				return true;
 			case GearPhase.Create:
-			case GearPhase.Fulfill:
 			case GearPhase.Middle:
 			case GearPhase.Dispose:
-			case GearPhase.Invalid:
 				return false;
 			}
 			throw new Exception("存在しないGearPhaseにいます");
@@ -151,12 +128,10 @@ namespace gipo.core
 			switch (_phase) 
 			{
 			case GearPhase.Preparation:
-			case GearPhase.Fulfill:
 			case GearPhase.Middle:
 				return true;
 			case GearPhase.Create:
 			case GearPhase.Dispose:
-			case GearPhase.Invalid:
 				return false;
 			}
 			throw new Exception("存在しないGearPhaseにいます");
@@ -166,13 +141,11 @@ namespace gipo.core
 		{
 			switch (_phase) 
 			{
-			case GearPhase.Fulfill:
 			case GearPhase.Middle:
 				return true;
 			case GearPhase.Create:
 			case GearPhase.Preparation:
 			case GearPhase.Dispose:
-			case GearPhase.Invalid:
 				return false;
 			}
 			throw new Exception("存在しないGearPhaseにいます");
@@ -184,11 +157,9 @@ namespace gipo.core
 			{
 			case GearPhase.Create:
 			case GearPhase.Preparation:
-			case GearPhase.Fulfill:
 			case GearPhase.Middle:
 				return true;
 			case GearPhase.Dispose:
-			case GearPhase.Invalid:
 				return false;
 			}
 			throw new Exception("存在しないGearPhaseにいます");
@@ -205,11 +176,6 @@ namespace gipo.core
 			_runDispatcher.add(func, pos);
 		}
 
-		public void AddBubbleHandler(Action func, PosInfos pos) 
-		{
-			_bubbleHandlerList.add(func, pos);
-		}
-
 		public CancelKey AddDisposeProcess(Action func, PosInfos pos) 
 		{
 			if (!CheckPhaseBeforeDispose()) 
@@ -219,54 +185,17 @@ namespace gipo.core
 			return _disposeProcessStack.add(func, pos);
 		}
 
-		// ==== 以下、初期化処理 ====
-		public void AddNeedProcess(Action key, PosInfos pos) 
-		{
-			foreach (var needProcess in _needProcesss) 
-			{
-				if (needProcess == key) 
-				{
-					throw new Exception("初期化タスクに２重登録されました");
-				}
-			}
-
-			if (!CheckPhaseCreate()) 
-			{
-				throw new Exception("initializeProcessの追加はコンストラクタで行なって下さい");
-			}
-
-			_needProcesss.Add(key);
-		}
-
-		public void EndNeedProcess(Action key, PosInfos pos) 
-		{
-			_needProcesss.Remove(key);
-			if (_needProcesss.Count != 0) return;
-
-			// タスクが無くなったらrun実行
-			_runDispatcher.execute(pos);
-			_runDispatcher = null;
-
-			// run後にbubble実行
-			_bubbleHandlerList.execute(pos);
-			_bubbleHandlerList = null;
-		}
-
 		public void Initialize() 
 		{
-			//DebugPrint("initialize");
-
 			if (!CheckPhaseCreate()) return;
 
 			_phase = GearPhase.Preparation;
-
 			_preparationHandlerList.execute(new PosInfos());
 
-			_phase = GearPhase.Fulfill;
-
 			_phase = GearPhase.Middle;
-
-			EndNeedProcess(_needProcessCore, new PosInfos());
+			// タスクが無くなったらrun実行
+			_runDispatcher.execute(new PosInfos());
+			_runDispatcher = null;
 
 			foreach (var childGear in _childGearList) 
 			{
@@ -288,7 +217,7 @@ namespace gipo.core
 
 		private void Dispose(bool isDisposing) 
 		{
-			if (!_disposed) 
+			if (_phase != GearPhase.Dispose) 
 			{
 				if (isDisposing) 
 				{
@@ -305,7 +234,7 @@ namespace gipo.core
 					_childGearList.Clear();
 					_diffuser.Dispose();
 				}
-				_disposed = true;
+				_phase = GearPhase.Dispose;
 			}
 		}
 
