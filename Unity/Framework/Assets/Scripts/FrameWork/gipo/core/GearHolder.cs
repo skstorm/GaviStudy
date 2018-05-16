@@ -39,7 +39,6 @@ namespace gipo.core
 		}
 
 		/// インスタンスが一通り揃い、Gearの親子関係ができた後の最初の処理
-		/// diffuse/absorbを主導で行う場合は、addPreparationHandlerのActionに追加しておく
 		public virtual void InitGear() 
 		{
 			_gear.Initialize();
@@ -62,15 +61,15 @@ namespace gipo.core
 		}
 
 		/// <summary>
-		/// prepare後に行いたいこと（Action）を追加
-		/// processSchedulerへの参照は必ずabsorbされる
+		/// 開始処理
+		/// absorb可能
 		/// </summary>
 		protected virtual void StartGearProcess()
 		{
 		}
 
 		/// <summary>
-		/// dispose時に行いたいこと（Action）を追加
+		/// 修了処理
 		/// </summary>
 		protected virtual void EndGearProcess()
 		{

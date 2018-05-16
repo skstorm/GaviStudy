@@ -30,50 +30,17 @@ namespace gipo.core
 			_isRoot = isRoot;
 
 			//（Gearのセットアップ後）初期化時に行いたいこと（Action）を追加
-			// Attribute属性を用いていない場合はここでdiffuse/absorbをAction化しておくといい感じ？
-			_gear.AddPreparationProcess(GearDiffuse, new PosInfos());
+			// Diffuseをする
+			_gear.AddPreparationProcess(DiffuseGearProcess, new PosInfos());
 
 			// prepare後に行いたいこと（Action）を追加
-			_gear.AddStartProcess(Run, new PosInfos());
-
-			// run後に行いたいこと（Action）を追加
-			// 利用されない前提なのでコメントアウト
-			// gear.addBubbleHandler(bubble, new PosInfos());
+			// 開始処理
+			// absorb可能
+			_gear.AddStartProcess(StartGearProcess, new PosInfos());
 
 			// dispose時に行いたいこと（Action）を追加
-			_gear.AddEndProcess(DisposeProcess, new PosInfos());
-		}
-
-
-		/// <summary>
-		/// コンストラクタ直後に行いたいこと（Action）を追加
-		/// </summary>
-		protected virtual void GearDiffuse()
-		{
-			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::prepare");
-		}
-
-		/// <summary>
-		/// prepare後に行いたいこと（Action）を追加
-		/// processSchedulerへの参照は必ずabsorbされる
-		/// </summary>
-		protected virtual void Run()
-		{
-		}
-
-		/// <summary>
-		/// dispose時に行いたいこと（Action）を追加
-		/// </summary>
-		protected virtual void DisposeProcess()
-		{
-			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::disposeProcess");
-		}
-
-		/// インスタンスが一通り揃い、Gearの親子関係ができた後の最初の処理
-		/// diffuse/absorbを主導で行う場合は、addPreparationHandlerのActionに追加しておく
-		public virtual void InitGear()
-		{
-			_gear.Initialize();
+			// 修了処理
+			_gear.AddEndProcess(EndGearProcess, new PosInfos());
 		}
 
 		/// Gearの外部出し用（子が親のGearを見るために必要）
@@ -82,12 +49,42 @@ namespace gipo.core
 			return _gear;
 		}
 
+		/// インスタンスが一通り揃い、Gearの親子関係ができた後の最初の処理
+		public virtual void InitGear()
+		{
+			_gear.Initialize();
+		}
+
 		/// GearおよびDiffuseはIDisposableなので、明示的に破棄が必要
 		/// このクラスのインスタンスを破棄する場合は必ず呼ぶこと
 		/// 親→子に向けて一斉にDisposeされるので注意（大親だけ呼べばいいということ）
 		public void AllDisposeGear()
 		{
 			_gear.Dispose();
+		}
+
+		/// <summary>
+		/// コンストラクタ直後に行いたいこと（Action）を追加
+		/// </summary>
+		protected virtual void DiffuseGearProcess()
+		{
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::prepare");
+		}
+
+		/// <summary>
+		/// 開始処理
+		/// absorb可能
+		/// </summary>
+		protected virtual void StartGearProcess()
+		{
+		}
+
+		/// <summary>
+		/// 修了処理
+		/// </summary>
+		protected virtual void EndGearProcess()
+		{
+			//UnityEngine.ArkLog.Debug("ProcessBase(" + this + ")::disposeProcess");
 		}
 
 		/// DIコンテナのデバッグ用

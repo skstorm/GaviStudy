@@ -17,9 +17,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
 			
 			ArkLog.Debug("GameView Run");

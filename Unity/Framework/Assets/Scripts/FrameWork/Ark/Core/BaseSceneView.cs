@@ -20,9 +20,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
 
 			ArkLog.Debug("BaseSceneView Run");
@@ -30,9 +30,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除処理
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 
 			ArkLog.Debug("BaseSceneView DisposeProcess");
 		}
