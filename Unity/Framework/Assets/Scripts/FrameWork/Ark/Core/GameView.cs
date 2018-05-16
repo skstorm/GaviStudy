@@ -61,7 +61,7 @@ namespace Ark.Core
 		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
 		{
 			// シーンを親から外す
-			_currentSceneView.GearDispose();
+			_currentSceneView.AllDisposeGear();
 			_gear.RemoveChildGear(_currentSceneView.GetGear());
 			Destroy(_currentSceneView.gameObject);
 			

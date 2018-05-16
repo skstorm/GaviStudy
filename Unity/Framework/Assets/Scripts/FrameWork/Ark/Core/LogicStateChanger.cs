@@ -16,9 +16,9 @@ namespace Ark.Core
 		{
 		}
 
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 
 			_gameLogic = _gear.Absorb<GameLogic>(new PosInfos());
 		}

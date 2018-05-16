@@ -32,9 +32,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 			_gameView = _gear.Absorb<GameView>(new PosInfos());
 			IBaseSceneViewOrder sceneView = _gameView.StartUpSceneView(_currentSceneLogic);
 			_currentSceneLogic.SetSceneViewOrder(sceneView);
@@ -44,9 +44,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 			ArkLog.Debug("Game Logic DisposeProcess");
 		}
 
@@ -64,7 +64,7 @@ namespace Ark.Core
 			// 現在のSceneLogicが抜ける時の処理
 			_currentSceneLogic.Exit();
 			// ギアを解除
-			_currentSceneLogic.GearDispose();
+			_currentSceneLogic.AllDisposeGear();
 			// 現在のSceneLogicを前のSceneLogicに格納する
 			_prevSceneLogic = _currentSceneLogic;
 			// ギアの親子関係から外す
@@ -78,9 +78,9 @@ namespace Ark.Core
 			// 新しいSceneLogicを子供として追加
 			_gear.AddChildGear(_currentSceneLogic.GetGear());
 			// 現在のSceneLogicのギアの初期化
-			_currentSceneLogic.GearInit();
+			_currentSceneLogic.InitGear();
 			// 現在のSceneViewのギアの初期化
-			sceneView.GearInit();
+			sceneView.InitGear();
 			// 現在のSceneLogicに入る時の処理
 			_currentSceneLogic.Enter();
 		}

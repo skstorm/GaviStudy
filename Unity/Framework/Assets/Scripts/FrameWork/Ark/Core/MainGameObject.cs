@@ -22,7 +22,7 @@ namespace Ark.Core
 		{
 			ArkLog.Init(setting);
 			_gameLoop = new GameLoop(setting, _gameView);
-			_gameLoop.GearInit();
+			_gameLoop.InitGear();
 		}
 
 		// Update is called once per frame
@@ -33,7 +33,7 @@ namespace Ark.Core
 
 		void OnApplicationQuit()
 		{
-			_gameLoop.GearDispose();
+			_gameLoop.AllDisposeGear();
 			ArkLog.Release();
 		}
 		

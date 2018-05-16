@@ -14,18 +14,18 @@ namespace Example
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 			
 			ArkLog.Debug("BattleSceneLogic Run");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 
 			ArkLog.Debug("BattleSceneLogic DisposeProcess");
 		}

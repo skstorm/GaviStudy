@@ -28,9 +28,9 @@ namespace gipo.core
 		/// handler
 		private GearPhase _phase;
 
-		private GearDispatcher _preparationHandlerList;
-		private GearDispatcher _runDispatcher;
-		private GearDispatcher _disposeProcessStack;
+		private GearDispatcher _preparationDispatcher;
+		private GearDispatcher _startDispatcher;
+		private GearDispatcher _endDispatcher;
 
 		/// コンストラクタ
 		public Gear(IGearHolder holder) 
@@ -41,9 +41,9 @@ namespace gipo.core
 
 			_phase = GearPhase.Create;
 
-			_preparationHandlerList = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
-			_runDispatcher = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
-			_disposeProcessStack = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
+			_preparationDispatcher = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
+			_startDispatcher = new GearDispatcher(AddBehavior.MethodType.addTail, true, new PosInfos());
+			_endDispatcher = new GearDispatcher(AddBehavior.MethodType.addHead, true, new PosInfos());
 		}
 
 		// ==== 以下、diffuse/absorb ====
@@ -60,13 +60,6 @@ namespace gipo.core
 		{
 			gear._diffuser.setParent(null); // 子のdiffuserの親を空に
 			_childGearList.Remove(gear);
-		}
-
-		/// Gearの取得（Dispose後に使えないインスタンスを返さないようにしている）
-		public Gear GetImplement() 
-		{
-			if (_holder == null) return null;
-			return this;
 		}
 
 		/// diffuse。Diffuserにインスタンスを登録
@@ -166,23 +159,23 @@ namespace gipo.core
 		}
 
 		// ==== 以下、handlerへの追加処理 ====
-		public void AddPreparationHandler(Action func, PosInfos pos) 
+		public void AddPreparationProcess(Action func, PosInfos pos) 
 		{
-			_preparationHandlerList.add(func, pos);
+			_preparationDispatcher.add(func, pos);
 		}
 
-		public void AddRunHandler(Action func, PosInfos pos) 
+		public void AddStartProcess(Action func, PosInfos pos) 
 		{
-			_runDispatcher.add(func, pos);
+			_startDispatcher.add(func, pos);
 		}
 
-		public CancelKey AddDisposeProcess(Action func, PosInfos pos) 
+		public CancelKey AddEndProcess(Action func, PosInfos pos) 
 		{
 			if (!CheckPhaseBeforeDispose()) 
 			{
 				throw new Exception("既に消去処理が開始されているため、消去時のハンドラを登録できません" + _phase);
 			}
-			return _disposeProcessStack.add(func, pos);
+			return _endDispatcher.add(func, pos);
 		}
 
 		public void Initialize() 
@@ -190,12 +183,12 @@ namespace gipo.core
 			if (!CheckPhaseCreate()) return;
 
 			_phase = GearPhase.Preparation;
-			_preparationHandlerList.execute(new PosInfos());
+			_preparationDispatcher.execute(new PosInfos());
 
 			_phase = GearPhase.Middle;
 			// タスクが無くなったらrun実行
-			_runDispatcher.execute(new PosInfos());
-			_runDispatcher = null;
+			_startDispatcher.execute(new PosInfos());
+			_startDispatcher = null;
 
 			foreach (var childGear in _childGearList) 
 			{
@@ -228,8 +221,8 @@ namespace gipo.core
 						childGear.Dispose();
 					}
 
-					_disposeProcessStack.execute(new PosInfos());// 逆順で実行する
-					_disposeProcessStack = null;
+					_endDispatcher.execute(new PosInfos());// 逆順で実行する
+					_endDispatcher = null;
 
 					_childGearList.Clear();
 					_diffuser.Dispose();

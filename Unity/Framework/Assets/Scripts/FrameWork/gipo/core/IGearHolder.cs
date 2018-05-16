@@ -2,9 +2,9 @@
 {
 	public interface IGearHolder 
 	{
-		void GearInit();
+		void InitGear();
 		Gear GetGear();
-		void GearDispose();
+		void AllDisposeGear();
 		string GearDILog();
 	}
 }

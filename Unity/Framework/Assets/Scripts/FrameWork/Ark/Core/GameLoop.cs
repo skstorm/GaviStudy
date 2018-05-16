@@ -37,9 +37,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 子供にギアを拡散する
-		protected override void GearDiffuse()
+		protected override void DiffuseGearProcess()
 		{
-			base.GearDiffuse();
+			base.DiffuseGearProcess();
 			
 			_gear.Diffuse(_frameManager, typeof(FrameManager));
 			_gear.Diffuse(_gameLogic, typeof(GameLogic));
@@ -52,9 +52,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 			ArkLog.Debug("Game Loop Run");
 
 			// FrameManagerの時間初期化
@@ -63,9 +63,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 			ArkLog.Debug("Game Loop DisposeProcess");
 		}
 
