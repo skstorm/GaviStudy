@@ -16,7 +16,7 @@ namespace Example
 		{
 			base.StartGearProcess();
 
-			ArkLog.Debug("MenuSceneView Run");
+			ArkLog.Debug("MenuSceneView Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -25,7 +25,7 @@ namespace Example
 		{
 			base.EndGearProcess();
 
-			ArkLog.Debug("MenuSceneView DisposeProcess");
+			ArkLog.Debug("MenuSceneView End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

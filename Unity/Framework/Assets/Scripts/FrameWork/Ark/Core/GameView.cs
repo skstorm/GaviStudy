@@ -10,6 +10,9 @@ namespace Ark.Core
 		IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic);
 	}
 
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+	//! GameViewの基本クラス
+	// 必ずCreateSceneViewをオーバーライドする
 	abstract public class GameView : GearHolderBehavior, IGameViewOrder
 	{
 		private BaseSceneView _currentSceneView = null;
@@ -22,7 +25,16 @@ namespace Ark.Core
 			base.StartGearProcess();
 			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
 			
-			ArkLog.Debug("GameView Run");
+			ArkLog.Debug("GameView Start");
+		}
+
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+		//! 解除処理
+		protected override void EndGearProcess()
+		{
+			base.EndGearProcess();
+
+			ArkLog.Debug("GameView End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

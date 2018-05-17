@@ -55,7 +55,7 @@ namespace Ark.Core
 		protected override void StartGearProcess()
 		{
 			base.StartGearProcess();
-			ArkLog.Debug("Game Loop Run");
+			ArkLog.Debug("Game Loop Start");
 
 			// FrameManagerの時間初期化
 			_frameManager.RecordLastUpdateSeconds();
@@ -66,7 +66,7 @@ namespace Ark.Core
 		protected override void EndGearProcess()
 		{
 			base.EndGearProcess();
-			ArkLog.Debug("Game Loop DisposeProcess");
+			ArkLog.Debug("Game Loop End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

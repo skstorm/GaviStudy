@@ -30,7 +30,7 @@ namespace Ark.Core
 
 			_gameLogic = _gear.Absorb<GameLogic>(new PosInfos());
 
-			ArkLog.Debug("BaseSceneLogic Run");
+			ArkLog.Debug("BaseSceneLogic Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -57,7 +57,7 @@ namespace Ark.Core
 		protected override void EndGearProcess()
 		{
 			base.EndGearProcess();
-			ArkLog.Debug("BaseSceneLogic DisposeProcess");
+			ArkLog.Debug("BaseSceneLogic End");
 		}
 		
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

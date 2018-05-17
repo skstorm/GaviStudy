@@ -17,7 +17,7 @@ namespace Example
 		{
 			base.StartGearProcess();
 
-			ArkLog.Debug("MenuSceneLogic Run");
+			ArkLog.Debug("MenuSceneLogic Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -26,7 +26,7 @@ namespace Example
 		{
 			base.EndGearProcess();
 
-			ArkLog.Debug("MenuSceneLogic DisposeProcess");
+			ArkLog.Debug("MenuSceneLogic End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

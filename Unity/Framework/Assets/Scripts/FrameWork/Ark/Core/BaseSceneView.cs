@@ -25,7 +25,7 @@ namespace Ark.Core
 			base.StartGearProcess();
 			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
 
-			ArkLog.Debug("BaseSceneView Run");
+			ArkLog.Debug("BaseSceneView Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -34,7 +34,7 @@ namespace Ark.Core
 		{
 			base.EndGearProcess();
 
-			ArkLog.Debug("BaseSceneView DisposeProcess");
+			ArkLog.Debug("BaseSceneView End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
