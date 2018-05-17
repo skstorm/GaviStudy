@@ -1,6 +1,7 @@
 ﻿using gipo.core;
 using gipo.util;
 using UnityEngine;
+using System;
 
 namespace Ark.Core
 {
@@ -71,7 +72,8 @@ namespace Ark.Core
 		//! コマンド処理
 		public void CommandProcess(ICommand command)
 		{
-			if (command.GetType() == typeof(ButtonCommand))
+			Type commandType = command.GetType();
+			if (commandType == typeof(ButtonCommand))
 			{
 				ButtonCommand buttonCommand = (ButtonCommand)command;
 				ButtonCommandProcess(buttonCommand);
