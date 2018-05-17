@@ -69,7 +69,40 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! コマンド処理
-		public virtual void CommandProcess(ICommand command)
+		public void CommandProcess(ICommand command)
+		{
+			if (command.GetType() == typeof(ButtonCommand))
+			{
+				ButtonCommand buttonCommand = (ButtonCommand)command;
+				ButtonCommandProcess(buttonCommand);
+			}
+			else
+			{
+				ArkLog.Error("処理を定義してないコマンドが来た");
+			}
+		}
+
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+		//! ボタンのコマンド処理
+		protected void ButtonCommandProcess(ButtonCommand buttonCommand)
+		{
+			switch (buttonCommand.TouchKind)
+			{
+				case EButtonTouchKind.Tap: TapButtonCommandProcess(buttonCommand.Id);	break;
+				case EButtonTouchKind.LongHold: LongHoldButtonCommandProcess(buttonCommand.Id); break;
+			}
+		}
+
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+		//! ボタンのコマンド処理（Tap）
+		protected virtual void TapButtonCommandProcess(string commandId)
+		{
+
+		}
+
+		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+		//! ボタンのコマンド処理（LongHold）
+		protected virtual void LongHoldButtonCommandProcess(string commandId)
 		{
 
 		}
