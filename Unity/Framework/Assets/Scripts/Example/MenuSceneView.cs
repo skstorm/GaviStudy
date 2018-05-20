@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Ark.Core;
+﻿using Ark.Core;
 
 namespace Example
 {
