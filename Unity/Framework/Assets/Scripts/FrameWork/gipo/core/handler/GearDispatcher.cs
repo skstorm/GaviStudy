@@ -1,40 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using gipo.util;
 
 namespace gipo.core.handler
 {
 	/// Gear用Handlerを実行するDispatcher
 	/// 追加・削除・実行
-	class GearDispatcher {
+	class GearDispatcher
+	{
 		/// 実行してくれる本体
-		private GenericGearDispatcher<Action> genericGearDispatcher;
+		private GenericGearDispatcher<Action> GenericGearDispatcher;
 
 		/// 初期化
-		public GearDispatcher(AddBehavior.MethodType addBehavior, bool once, PosInfos pos) {
-			genericGearDispatcher = new GenericGearDispatcher<Action>(addBehavior, once, pos);
+		public GearDispatcher(AddBehavior.MethodType addBehavior, bool once, PosInfos pos)
+		{
+			GenericGearDispatcher = new GenericGearDispatcher<Action>(addBehavior, once, pos);
 		}
 
 		/// 追加（削除用のCancelKeyが返る）
-		public CancelKey add(Action func, PosInfos addPos) {
-			return genericGearDispatcher.add(func, addPos);
+		public CancelKey Add(Action func, PosInfos addPos)
+		{
+			return GenericGearDispatcher.Add(func, addPos);
 		}
 
 		/// 削除
-		public void remove(CancelKey key) {
-			genericGearDispatcher.remove(key);
+		public void Remove(CancelKey key)
+		{
+			GenericGearDispatcher.Remove(key);
 		}
 
 		/// 実行
-		public void execute(PosInfos executePos) {
-			genericGearDispatcher.execute(trat, executePos);
+		public void Execute(PosInfos executePos)
+		{
+			GenericGearDispatcher.Execute(Trat, executePos);
 		}
 
 		/// 実行本体
-		private void trat(GearDispatcherHandler<Action> handler)
+		private void Trat(GearDispatcherHandler<Action> handler)
 		{
-			handler.func();
+			handler._func();
 		}
 	}
 }

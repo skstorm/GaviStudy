@@ -8,7 +8,8 @@ namespace gipo.core.handler
 	public static class AddBehavior
 	{
 		/// メソッドタイプ
-		public enum MethodType {
+		public enum MethodType
+		{
 			lastOnly,
 			addTail,
 			addHead,
@@ -16,19 +17,21 @@ namespace gipo.core.handler
 		};
 
 		/// 追加メソッド（メソッドタイプを指定する）
-		public static void execute<T>(MethodType methodType, List<T> list, T newProcess) {
-			switch(methodType) {
+		public static void Execute<T>(MethodType methodType, List<T> list, T newProcess)
+		{
+			switch(methodType)
+			{
 			case MethodType.lastOnly:
-				lastOnly(list, newProcess);
+				LastOnly(list, newProcess);
 				break;
 			case MethodType.addTail:
-				addTail(list, newProcess);
+				AddTail(list, newProcess);
 				break;
 			case MethodType.addHead:
-				addHead(list, newProcess);
+				AddHead(list, newProcess);
 				break;
 			case MethodType.addError:
-				addError(list, newProcess);
+				AddError(list, newProcess);
 				break;
 			default:
 				throw new Exception("存在しないメソッドタイプです");
@@ -36,31 +39,37 @@ namespace gipo.core.handler
 		}
 
 		/// １つだけ
-		private static void lastOnly<T>(List<T> list, T newProcess) {
+		private static void LastOnly<T>(List<T> list, T newProcess)
+		{
 			int last = list.Count - 1;
 			list.RemoveAt(last);
 			list.Add(newProcess);
 		}
 
 		/// 末尾追加
-		private static void addTail<T>(List<T> list, T newProcess) {
+		private static void AddTail<T>(List<T> list, T newProcess)
+		{
 			list.Add(newProcess);
 		}
 
 		/// 先頭追加
-		private static void addHead<T>(List<T> list, T newProcess) {
+		private static void AddHead<T>(List<T> list, T newProcess)
+		{
 			list.Insert(0, newProcess);
 		}
 
 		/// 空なら追加？？？
-		private static void addError<T>(List<T> list, T newProcess) {
-			if (list.Count == 0) {
+		private static void AddError<T>(List<T> list, T newProcess)
+		{
+			if (list.Count == 0)
+			{
 				list.Add(newProcess);
-			} else {
+			}
+			else
+			{
 				throw new Exception("このタスクは複数登録出来ません");
 			}
 		}
 
 	}
-
 }

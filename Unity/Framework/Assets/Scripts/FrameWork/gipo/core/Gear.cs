@@ -161,12 +161,12 @@ namespace gipo.core
 		// ==== 以下、handlerへの追加処理 ====
 		public void AddPreparationProcess(Action func, PosInfos pos) 
 		{
-			_preparationDispatcher.add(func, pos);
+			_preparationDispatcher.Add(func, pos);
 		}
 
 		public void AddStartProcess(Action func, PosInfos pos) 
 		{
-			_startDispatcher.add(func, pos);
+			_startDispatcher.Add(func, pos);
 		}
 
 		public CancelKey AddEndProcess(Action func, PosInfos pos) 
@@ -175,7 +175,7 @@ namespace gipo.core
 			{
 				throw new Exception("既に消去処理が開始されているため、消去時のハンドラを登録できません" + _phase);
 			}
-			return _endDispatcher.add(func, pos);
+			return _endDispatcher.Add(func, pos);
 		}
 
 		public void Initialize() 
@@ -183,11 +183,11 @@ namespace gipo.core
 			if (!CheckPhaseCreate()) return;
 
 			_phase = GearPhase.Preparation;
-			_preparationDispatcher.execute(new PosInfos());
+			_preparationDispatcher.Execute(new PosInfos());
 
 			_phase = GearPhase.Run;
 			// タスクが無くなったらrun実行
-			_startDispatcher.execute(new PosInfos());
+			_startDispatcher.Execute(new PosInfos());
 			_startDispatcher = null;
 
 			foreach (var childGear in _childGearList) 
@@ -221,7 +221,7 @@ namespace gipo.core
 						childGear.Dispose();
 					}
 
-					_endDispatcher.execute(new PosInfos());// 逆順で実行する
+					_endDispatcher.Execute(new PosInfos());// 逆順で実行する
 					_endDispatcher = null;
 
 					_childGearList.Clear();
