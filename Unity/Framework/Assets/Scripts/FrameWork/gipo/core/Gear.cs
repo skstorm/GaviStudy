@@ -1,9 +1,9 @@
-﻿using gipo.core.handler;
-using gipo.util;
+﻿using Ark.Gear.Handler;
+using Ark.Util;
 using System;
 using System.Collections.Generic;
 
-namespace gipo.core
+namespace Ark.Gear
 {
 	public enum GearPhase 
 	{

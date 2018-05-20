@@ -1,6 +1,6 @@
-﻿using gipo.util;
+﻿using Ark.Util;
 
-namespace gipo.core
+namespace Ark.Gear
 {
 	/// diffuse, absorbを使うクラスの基底クラス
 	/// このクラスを継承しておくことで必要な処理は基本的に自動で行われる

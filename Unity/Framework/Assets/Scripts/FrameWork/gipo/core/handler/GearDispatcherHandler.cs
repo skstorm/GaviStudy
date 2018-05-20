@@ -1,6 +1,6 @@
-﻿using gipo.util;
+﻿using Ark.Util;
 
-namespace gipo.core.handler
+namespace Ark.Gear.Handler
 {
 	/// Gear用Handlerを保持するクラス
 	/// 追加された場所も保持

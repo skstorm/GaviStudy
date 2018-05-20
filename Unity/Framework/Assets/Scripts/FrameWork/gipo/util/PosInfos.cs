@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace gipo.util
+namespace Ark.Util
 {
 	public class PosInfos
 	{

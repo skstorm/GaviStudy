@@ -1,7 +1,7 @@
 ﻿using System;
-using gipo.util;
+using Ark.Util;
 
-namespace gipo.core.handler
+namespace Ark.Gear.Handler
 {
 	/// Gear用Handlerを実行するDispatcher
 	/// 追加・削除・実行

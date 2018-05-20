@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using gipo.core;
-using gipo.util;
+using Ark.Gear;
+using Ark.Util;
 
 namespace Ark.Core
 {

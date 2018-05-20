@@ -1,8 +1,8 @@
-﻿using gipo.util;
+﻿using Ark.Util;
 using System;
 using System.Collections.Generic;
 
-namespace gipo.core.handler
+namespace Ark.Gear.Handler
 {
 	/// TFuncは引数なし→戻り値なし。よってAction。
 	/// Gear用Handlerを実行するDispatcher本体

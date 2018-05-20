@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace gipo.core.handler
+namespace Ark.Gear.Handler
 {
 	/// Gear用Handlerをリストにどういう風に追加するかのクラス
 	/// 元はGearへのメソッド登録だったが、Genericが複雑になりすぎるのと、パターン数が多くないということでstaticに変更

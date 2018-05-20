@@ -1,4 +1,4 @@
-﻿namespace gipo.core
+﻿namespace Ark.Gear
 {
 	public interface IGearHolder 
 	{

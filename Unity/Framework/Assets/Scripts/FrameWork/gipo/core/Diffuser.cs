@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using gipo.util;
+using Ark.Util;
 
-namespace gipo.core
+namespace Ark.Gear
 {
 	/// diffuse, absorbのコア部分
 	/// メモリ管理があいまいになるとまずいのでIDisposableを持つ

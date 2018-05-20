@@ -1,5 +1,5 @@
-﻿using gipo.core;
-using gipo.util;
+﻿using Ark.Gear;
+using Ark.Util;
 using UnityEngine;
 
 namespace Ark.Core

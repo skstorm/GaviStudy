@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using gipo.util;
+using Ark.Util;
 
-namespace gipo.core
+namespace Ark.Gear
 {
 	/// <summary>
 	/// diffuse, absorbを使うクラスの基底クラスのMonoBehavior対応版

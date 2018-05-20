@@ -1,4 +1,4 @@
-﻿namespace gipo.core.handler
+﻿namespace Ark.Gear.Handler
 {
 	/// handler識別用のインターフェース
 	public interface CancelKey
