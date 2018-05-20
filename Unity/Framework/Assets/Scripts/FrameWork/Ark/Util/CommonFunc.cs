@@ -26,7 +26,7 @@ namespace Ark.Util
 		public static string GetPath(GameObject fromObj, GameObject toObj, bool isIncludeParent)
 		{
 			// toObjから逆上りながらパスを作る
-			StringBuilder sb = new StringBuilder(SystemText.EMPTY.Text());
+			StringBuilder sb = new StringBuilder(ESystemText.EMPTY.Text());
 			GameObject toParentObj = toObj.transform.parent.gameObject;
 			if (toParentObj == null)
 			{
@@ -37,7 +37,7 @@ namespace Ark.Util
 				if (isIncludeParent)
 				{
 					sb.Append(toParentObj.name);
-					sb.Append(SystemText.SLASH.Text());
+					sb.Append(ESystemText.SLASH.Text());
 				}
 				sb.Append(toObj.name);
 			}
@@ -45,7 +45,7 @@ namespace Ark.Util
 			{
 				string path = GetPath(fromObj, toParentObj, isIncludeParent); ;
 				sb.Append(path);
-				sb.Append(SystemText.SLASH.Text());
+				sb.Append(ESystemText.SLASH.Text());
 				sb.Append(toObj.name);
 			}
 

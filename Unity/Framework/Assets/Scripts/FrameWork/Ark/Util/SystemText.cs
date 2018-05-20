@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Ark.Util
 {
-	public enum SystemText
+	public enum ESystemText
 	{
 		EMPTY,
 		SLASH,
@@ -19,35 +17,28 @@ namespace Ark.Util
 		SPACE,
 		PIPE,
 	}
-
-	public static partial class SystemTextUtil
+	
+	public static class SystemTextUtil
 	{
-		static string[] StrSystemText =
+		private static readonly Dictionary<ESystemText, string> _dicStrSystemText = new Dictionary<ESystemText, string>
 		{
-			"",
-			"/",
-			"-",
-			"\r",
-			"\n",
-			"\r\n",
-			"//",
-			"+",
-			",",
-			"\t",
-			" ",
-			"|",
+			{ ESystemText.EMPTY, ""},
+			{ ESystemText.SLASH, "/"},
+			{ ESystemText.HYPHEN, "-"},
+			{ ESystemText.CR, "\r"},
+			{ ESystemText.LF, "\n"},
+			{ ESystemText.CRLF, "\r\n"},
+			{ ESystemText.DOUBLE_SLASH, "//"},
+			{ ESystemText.PLUS, "+"},
+			{ ESystemText.COMMA, ","},
+			{ ESystemText.TAB, "\t"},
+			{ ESystemText.SPACE, " "},
+			{ ESystemText.PIPE, "|"},
 		};
 
-		public static string Text(this SystemText value, params string[] args)
+		public static string Text(this ESystemText value)
 		{
-			if (args.Length > 0)
-			{
-				return string.Format(StrSystemText[(int)value], args);
-			}
-			else
-			{
-				return StrSystemText[(int)value];
-			}
+			return _dicStrSystemText[value];
 		}
 	}
 }
