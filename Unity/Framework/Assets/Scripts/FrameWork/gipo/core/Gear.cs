@@ -52,27 +52,27 @@ namespace gipo.core
 		public void AddChildGear(Gear gear) 
 		{
 			_childGearList.Add(gear); // 子Gearに追加
-			gear._diffuser.setParent(_diffuser); // 子のdiffuserの親を自分に
+			gear._diffuser.SetParent(_diffuser); // 子のdiffuserの親を自分に
 		}
 
 		// 子のDiffuserの親を空に設定したうえで、子Gearをリストからを削除
 		public void RemoveChildGear(Gear gear) 
 		{
-			gear._diffuser.setParent(null); // 子のdiffuserの親を空に
+			gear._diffuser.SetParent(null); // 子のdiffuserの親を空に
 			_childGearList.Remove(gear);
 		}
 
 		/// diffuse。Diffuserにインスタンスを登録
 		public void Diffuse(object diffuseInstance, Type clazz) 
 		{
-			_diffuser.add(diffuseInstance, clazz);
+			_diffuser.Add(diffuseInstance, clazz);
 		}
 
 		/// absorb。Diffuserから該当クラスのインスタンスを取得
 		public T Absorb<T>(PosInfos pos) 
 		{
 			if (_holder == null) return default(T);
-			return _diffuser.get<T>(pos);
+			return _diffuser.Get<T>(pos);
 		}
 
 		// for Debug
