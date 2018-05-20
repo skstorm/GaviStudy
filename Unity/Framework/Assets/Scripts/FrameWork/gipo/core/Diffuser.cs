@@ -81,10 +81,14 @@ namespace gipo.core
 		public string DILog()
 		{
 			string ret = "";
-			foreach (KeyValuePair<string, object> kv in _instanceClassDictionary)
+
+			var enumerator = _instanceClassDictionary.GetEnumerator();
+			while (enumerator.MoveNext())
 			{
+				KeyValuePair<string, object> kv = enumerator.Current;
 				ret += " - " + kv.Key + "\n";
 			}
+
 			ret += "\n";
 			return ret;
 		}

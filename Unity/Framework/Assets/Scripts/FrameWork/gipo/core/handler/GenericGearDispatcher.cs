@@ -50,8 +50,10 @@ namespace gipo.core.handler
 			}
 
 			GearDispatcherHandler<TFunc> rmhandler = null;
-			foreach(GearDispatcherHandler<TFunc> handler in _list)
+			var enumerator = _list.GetEnumerator();
+			while (enumerator.MoveNext())
 			{
+				GearDispatcherHandler<TFunc> handler = enumerator.Current;
 				if ((CancelKey)handler == key)
 				{
 					rmhandler = handler;

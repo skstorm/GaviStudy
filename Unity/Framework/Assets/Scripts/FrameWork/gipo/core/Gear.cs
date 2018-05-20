@@ -81,9 +81,13 @@ namespace gipo.core
 			if (_holder == null) return "";
 			string ret = "== " + _holder.GetType().FullName + "\n";
 			ret += _diffuser.DILog();
-			foreach (var childGear in _childGearList) {
-				ret += childGear.DILog() + "\n";
+
+			var enumerator = _childGearList.GetEnumerator();
+			while (enumerator.MoveNext())
+			{
+				ret += enumerator.Current.DILog() + "\n";
 			}
+
 			return ret;
 		}
 
@@ -190,9 +194,10 @@ namespace gipo.core
 			_startDispatcher.Execute(new PosInfos());
 			_startDispatcher = null;
 
-			foreach (var childGear in _childGearList) 
+			var enumerator = _childGearList.GetEnumerator();
+			while (enumerator.MoveNext())
 			{
-				childGear.Initialize();
+				enumerator.Current.Initialize();
 			}
 		}
 
@@ -216,9 +221,11 @@ namespace gipo.core
 				{
 					//
 					_holder = null;
-					foreach (var childGear in _childGearList) 
+
+					var enumerator = _childGearList.GetEnumerator();
+					while (enumerator.MoveNext())
 					{
-						childGear.Dispose();
+						enumerator.Current.Dispose();
 					}
 
 					_endDispatcher.Execute(new PosInfos());// 逆順で実行する
