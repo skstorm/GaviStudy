@@ -9,7 +9,7 @@ namespace gipo.core
 	{
 		Create,
 		Preparation,
-		Middle,
+		Run,
 		Dispose,
 	};
 
@@ -95,7 +95,7 @@ namespace gipo.core
 			case GearPhase.Create:
 				return true;
 			case GearPhase.Preparation:
-			case GearPhase.Middle:
+			case GearPhase.Run:
 			case GearPhase.Dispose:
 				return false;
 			}
@@ -109,7 +109,7 @@ namespace gipo.core
 			case GearPhase.Preparation:
 				return true;
 			case GearPhase.Create:
-			case GearPhase.Middle:
+			case GearPhase.Run:
 			case GearPhase.Dispose:
 				return false;
 			}
@@ -121,7 +121,7 @@ namespace gipo.core
 			switch (_phase) 
 			{
 			case GearPhase.Preparation:
-			case GearPhase.Middle:
+			case GearPhase.Run:
 				return true;
 			case GearPhase.Create:
 			case GearPhase.Dispose:
@@ -130,11 +130,11 @@ namespace gipo.core
 			throw new Exception("存在しないGearPhaseにいます");
 		}
 
-		public bool CheckPhaseCanMiddleTool() 
+		public bool CheckPhaseRun() 
 		{
 			switch (_phase) 
 			{
-			case GearPhase.Middle:
+			case GearPhase.Run:
 				return true;
 			case GearPhase.Create:
 			case GearPhase.Preparation:
@@ -150,7 +150,7 @@ namespace gipo.core
 			{
 			case GearPhase.Create:
 			case GearPhase.Preparation:
-			case GearPhase.Middle:
+			case GearPhase.Run:
 				return true;
 			case GearPhase.Dispose:
 				return false;
@@ -185,7 +185,7 @@ namespace gipo.core
 			_phase = GearPhase.Preparation;
 			_preparationDispatcher.execute(new PosInfos());
 
-			_phase = GearPhase.Middle;
+			_phase = GearPhase.Run;
 			// タスクが無くなったらrun実行
 			_startDispatcher.execute(new PosInfos());
 			_startDispatcher = null;
