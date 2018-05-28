@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 namespace Ark.Util
 {
@@ -50,6 +51,76 @@ namespace Ark.Util
 			}
 
 			return sb.ToString();
+		}
+
+		/// <summary>
+		/// assetbundleによりcustom shaderへの参照が異常になる事あり、その対応としてshaderを入れ直す
+		/// see: http://appleorbit.hatenablog.com/entry/2015/10/25/014422
+		/// </summary>
+		/// <param name="render">Render.</param>
+		public static void ReSetShaderForAssetBundle(Renderer render)
+		{
+			if (render == null || render.sharedMaterials == null)
+			{
+				return;
+			}
+
+			foreach (Material mate in render.sharedMaterials)
+			{
+				if (mate != null && mate.shader != null)
+				{
+					mate.shader = Shader.Find(mate.shader.name);
+				}
+			}
+		}
+
+		/// <summary>
+		/// assetbundleによりcustom shaderへの参照が異常になる事あり、その対応としてshaderを入れ直す
+		/// see: http://appleorbit.hatenablog.com/entry/2015/10/25/014422
+		/// </summary>
+		/// <param name="root">GameObjectのルート</param>
+		public static void ReSetShaderOfChildRenderer(Transform rootTrans)
+		{
+			Transform childTrans;
+			Renderer render;
+			for (int i = 0; i < rootTrans.childCount; i++)
+			{
+				childTrans = rootTrans.GetChild(i);
+				render = childTrans.GetComponent<Renderer>();
+
+				if (render != null)
+				{
+					ReSetShaderForAssetBundle(render);
+				}
+
+				if (0 < childTrans.childCount)
+				{
+					ReSetShaderOfChildRenderer(childTrans);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// assetbundleによりcustom shaderへの参照が異常になる事あり、その対応としてshaderを入れ直す
+		/// see: http://appleorbit.hatenablog.com/entry/2015/10/25/014422
+		/// </summary>
+		/// <param name="root">GameObjectのルート</param>
+		public static void ReSetShaderUIImage(Transform rootTrans)
+		{
+			Image[] images = rootTrans.GetComponentsInChildren<Image>();
+			Image image;
+
+			for (int i = 0; i < images.Length; i++)
+			{
+				image = images[i];
+				if (image.material == null)
+				{
+					continue;
+				}
+
+				image.material.shader = Shader.Find(image.material.shader.name);
+			}
 		}
 
 		/// <summary>
