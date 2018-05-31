@@ -13,40 +13,31 @@ namespace Example
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 
-			Debug.Log("MenuSceneLogic Run");
+			ArkLog.Debug("MenuSceneLogic Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 
-			Debug.Log("MenuSceneLogic DisposeProcess");
+			ArkLog.Debug("MenuSceneLogic End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! コマンド処理
-		public override void CommandProcess(ICommand command)
+		//! ボタンのコマンド処理（Tap）
+		protected override void TapButtonCommandProcess(string commandId)
 		{
-			base.CommandProcess(command);
+			base.TapButtonCommandProcess(commandId);
 
-			if(command.GetType() == typeof(ButtonCommand))
+			if (commandId == MenuSceneCommandDefine.GoToBattle)
 			{
-				ButtonCommand buttonCommand = (ButtonCommand)command;
-				switch(buttonCommand.TouchKind)
-				{
-					case EButtonTouchKind.Tap:
-						if (buttonCommand.Id == MenuSceneCommandDefine.GoToBattle)
-						{
-							_gameLogic.ChangeScene(new BattleSceneLogic());
-						}
-						break;
-				}
+				_gameLogic.ChangeScene(new BattleSceneLogic());
 			}
 		}
 	}

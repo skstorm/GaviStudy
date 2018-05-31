@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Ark.Core;
+﻿using Ark.Core;
 
 namespace Example
 {
@@ -12,20 +11,20 @@ namespace Example
 	{
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void Run()
+		protected override void StartGearProcess()
 		{
-			base.Run();
+			base.StartGearProcess();
 
-			Debug.Log("MenuSceneView Run");
+			ArkLog.Debug("MenuSceneView Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除処理
-		protected override void DisposeProcess()
+		protected override void EndGearProcess()
 		{
-			base.DisposeProcess();
+			base.EndGearProcess();
 
-			Debug.Log("MenuSceneView DisposeProcess");
+			ArkLog.Debug("MenuSceneView End");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
@@ -33,7 +32,7 @@ namespace Example
 		public override void Render(int deltaFrame)
 		{
 			base.Render(deltaFrame);
-			//Debug.Log("MenuScene Render");
+			//ArkLog.Debug("MenuScene Render");
 		}
 	}
 }
