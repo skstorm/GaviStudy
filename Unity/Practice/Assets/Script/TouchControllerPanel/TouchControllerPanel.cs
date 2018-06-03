@@ -55,9 +55,8 @@ namespace GaviPractice.TouchControllerPanel
 		}
 		[SerializeField]
 		private EMoveKind _moveKind = EMoveKind.Both;
-		// 動く力がこの力以下の力だったら、動きを止める
-		[SerializeField]
-		private float _stopForceCutLine = 0.0001f;
+		// スリップ力がこの力以下の力だったら、動きを止める
+		private float _stopSlipForceCutLine = 0.0001f;
 		// TouchControllerPanelの元のPos
 		private Vector3 _originPos = Vector3.zero;
 		// 状態
@@ -69,6 +68,22 @@ namespace GaviPractice.TouchControllerPanel
 			Fit,
 		}
 		private EState _state = EState.None;
+
+		[SerializeField]
+		private bool _isVerticalFit = false;
+		[SerializeField]
+		private float _verticalFitGap = 0.2f;
+		[SerializeField]
+		private bool _isHorizonalFit = false;
+		[SerializeField]
+		private float _horizonalFitGap = 0.2f;
+
+		[SerializeField]
+		private Vector3 _fitTargetPos = Vector3.zero;
+		// Fit時に使う係数　１だったら、瞬時にFitする。低いほどゆっくりFitする
+		private const float _fitCoeffcient = 0.05f;
+		// Fit力がこの力以下の力だったら、動きを止める
+		private float _stopFitForceCutLine = 0.0001f;
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
@@ -88,6 +103,7 @@ namespace GaviPractice.TouchControllerPanel
 		{
 			_originPos = transform.position;
 			_ctrlPos = _originPos;
+
 			_leftTopLimitPos = _leftTopLimitTrans.position;
 			_rightBottomLimitPos = _rightBottomLimitTrnas.position;
 		}
@@ -138,15 +154,56 @@ namespace GaviPractice.TouchControllerPanel
 			ProcessPos(_deltaPos);
 			// 動く力が一定以下だったら止める
 			float moveForce = _deltaPos.sqrMagnitude;
-			if (moveForce <= _stopForceCutLine)
+			if (moveForce <= _stopSlipForceCutLine)
 			{
-				_state = EState.None;
+				_state = EState.Fit;
+
+				// Fitする座標を計算する
+				_fitTargetPos = _ctrlPos;
+				if(_isHorizonalFit)
+				{
+					_fitTargetPos.x = CalcFitTargetValue(_ctrlPos.x, _horizonalFitGap);
+				}
+				if(_isVerticalFit)
+				{
+					_fitTargetPos.y = CalcFitTargetValue(_ctrlPos.y, _verticalFitGap);
+				}
 			}
 		}
 
-		void Fit()
+		float CalcFitTargetValue(float posValue,  float fitGap)
 		{
+			float result = 0.0f;
 
+			float modValue = posValue % fitGap;
+			float vv = posValue - modValue;
+			float halfFitGap = fitGap * 0.5f;
+
+			if (modValue > halfFitGap)
+			{
+				result = vv + fitGap;
+			}
+			else
+			{
+				result = vv;
+			}
+
+			return result;
+		}
+
+		void Fit()
+		{ 
+			_deltaPos = ((_fitTargetPos - _ctrlPos) * _fitCoeffcient);
+
+			ProcessPos(_deltaPos);
+			// Fit座標とコントロール座標がほぼ一致したら、
+			Vector3 gap = _ctrlPos - _fitTargetPos;
+			if(gap.sqrMagnitude <= _stopFitForceCutLine)
+			{
+				// 状態をNoneに変える
+				_ctrlPos = _fitTargetPos;
+				_state = EState.None;
+			}
 		}
 
 		// 座標関係作業の最後処理
@@ -155,23 +212,23 @@ namespace GaviPractice.TouchControllerPanel
 			// コントロール座標更新
 			_ctrlPos += deltaPos;
 			// コントロールを移動可能範囲内に収める
-			if (_ctrlPos.x <= _leftTopLimitPos.x)
+			if (_ctrlPos.x < _leftTopLimitPos.x)
 			{
 				_ctrlPos.x = _leftTopLimitPos.x;
 				Debug.Log("Left");
 			}
-			else if (_ctrlPos.x >= _rightBottomLimitPos.x)
+			else if (_ctrlPos.x > _rightBottomLimitPos.x)
 			{
 				_ctrlPos.x = _rightBottomLimitPos.x;
 				Debug.Log("Right");
 			}
 
-			if (_ctrlPos.y <= _rightBottomLimitPos.y)
+			if (_ctrlPos.y < _rightBottomLimitPos.y)
 			{
 				_ctrlPos.y = _rightBottomLimitPos.y;
 				Debug.Log("Bottom");
 			}
-			else if (_ctrlPos.y >= _leftTopLimitPos.y)
+			else if (_ctrlPos.y > _leftTopLimitPos.y)
 			{
 				_ctrlPos.y = _leftTopLimitPos.y;
 				Debug.Log("top");
