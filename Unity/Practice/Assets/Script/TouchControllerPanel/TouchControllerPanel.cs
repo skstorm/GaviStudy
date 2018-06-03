@@ -32,9 +32,6 @@ namespace GaviPractice.TouchControllerPanel
 		// 影響を受けるObject
 		[SerializeField]
 		private List<BaseTouchControlledObject> _ctrlObjList = null;
-		// 滑るのを判定するためのフラグ
-		[SerializeField]
-		private bool _isSlip = false;
 		// スリップ摩擦
 		[SerializeField]
 		private float _slipFriction = 0.8f;
@@ -58,27 +55,33 @@ namespace GaviPractice.TouchControllerPanel
 		}
 		[SerializeField]
 		private EMoveKind _moveKind = EMoveKind.Both;
-		// TouchControllerPanelが制御可能な状態なのか
-		private bool _isCanCtrl = false;
 		// 動く力がこの力以下の力だったら、動きを止める
 		[SerializeField]
 		private float _stopForceCutLine = 0.0001f;
 		// TouchControllerPanelの元のPos
 		private Vector3 _originPos = Vector3.zero;
+		// 状態
+		private enum EState
+		{
+			None = 0,
+			Move,
+			Slip,
+			Fit,
+		}
+		private EState _state = EState.None;
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			Debug.Log("Down");
 			Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _moveRate));
 			_prevPos = _curPos = pos;
-			_isSlip = false;
-			_isCanCtrl = true;
+			_state = EState.Move;
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			Debug.Log("Up");
-			_isSlip = true;
+			_state = EState.Slip;
 		}
 
 		void Start()
@@ -91,11 +94,17 @@ namespace GaviPractice.TouchControllerPanel
 
 		void Update()
 		{
-			if(!_isCanCtrl)
+			switch(_state)
 			{
-				return;
+				case EState.None: break;
+				case EState.Move: Move(); break;
+				case EState.Slip: Slip(); break;
+				case EState.Fit: Fit(); break;
 			}
+		}
 
+		void Move()
+		{
 			// タッチ中の処理
 			if (Input.GetMouseButton(0))
 			{
@@ -104,7 +113,7 @@ namespace GaviPractice.TouchControllerPanel
 				// 差分座標を計算
 				_deltaPos = Vector3.zero;
 				// 移動種類によって差分座標を更新する
-				switch(_moveKind)
+				switch (_moveKind)
 				{
 					case EMoveKind.Horizontal: _deltaPos.x = _curPos.x - _prevPos.x; break;
 					case EMoveKind.Vertical: _deltaPos.y = _curPos.y - _prevPos.y; break;
@@ -113,28 +122,31 @@ namespace GaviPractice.TouchControllerPanel
 							_deltaPos.x = _curPos.x - _prevPos.x;
 							_deltaPos.y = _curPos.y - _prevPos.y;
 						}
-						 break;
+						break;
 				}
 				_deltaPos.z = _curPos.z - _prevPos.z;
 
 				// 座標関係作業の最後処理
 				ProcessPos(_deltaPos);
 			}
+		}
 
-			// 滑る処理
-			if (_isSlip)
+		void Slip()
+		{
+			_deltaPos *= _slipFriction;
+			// 座標関係作業の最後処理
+			ProcessPos(_deltaPos);
+			// 動く力が一定以下だったら止める
+			float moveForce = _deltaPos.sqrMagnitude;
+			if (moveForce <= _stopForceCutLine)
 			{
-				_deltaPos *= _slipFriction;
-				// 座標関係作業の最後処理
-				ProcessPos(_deltaPos);
-				// 動く力が一定以下だったら止める
-				float moveForce = _deltaPos.sqrMagnitude;
-				if (moveForce <= _stopForceCutLine)
-				{
-					_isSlip = false;
-					_isCanCtrl = false;
-				}
+				_state = EState.None;
 			}
+		}
+
+		void Fit()
+		{
+
 		}
 
 		// 座標関係作業の最後処理
