@@ -66,15 +66,12 @@ namespace GaviPractice.TouchControllerPanel
 			Move,
 			Slip,
 			Fit,
+			Jump,
 		}
 		private EState _state = EState.None;
 
 		[SerializeField]
-		private bool _isVerticalFit = false;
-		[SerializeField]
 		private float _verticalFitGap = 0.2f;
-		[SerializeField]
-		private bool _isHorizonalFit = false;
 		[SerializeField]
 		private float _horizonalFitGap = 0.2f;
 
@@ -85,18 +82,31 @@ namespace GaviPractice.TouchControllerPanel
 		// Fit力がこの力以下の力だったら、動きを止める
 		private float _stopFitForceCutLine = 0.0001f;
 
+		private Vector3 _touchStartPos = Vector3.zero;
+
+		private Vector3 _forcusPos = Vector3.zero;
+
 		public void OnPointerDown(PointerEventData eventData)
 		{
 			Debug.Log("Down");
 			Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _moveRate));
-			_prevPos = _curPos = pos;
+			_prevPos = _curPos = _touchStartPos = pos;
 			_state = EState.Move;
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
 		{
 			Debug.Log("Up");
-			_state = EState.Slip;
+
+			Vector3 touchEndPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _moveRate));
+			if(_touchStartPos == touchEndPos)
+			{
+				_state = EState.Jump;
+			}
+			else
+			{
+				_state = EState.Slip;
+			}
 		}
 
 		void Start()
@@ -116,6 +126,7 @@ namespace GaviPractice.TouchControllerPanel
 				case EState.Move: Move(); break;
 				case EState.Slip: Slip(); break;
 				case EState.Fit: Fit(); break;
+				case EState.Jump: Jump(); break;
 			}
 		}
 
@@ -160,11 +171,11 @@ namespace GaviPractice.TouchControllerPanel
 
 				// Fitする座標を計算する
 				_fitTargetPos = _ctrlPos;
-				if(_isHorizonalFit)
+				if(_moveKind == EMoveKind.Horizontal)
 				{
 					_fitTargetPos.x = CalcFitTargetValue(_ctrlPos.x, _horizonalFitGap);
 				}
-				if(_isVerticalFit)
+				if(_moveKind == EMoveKind.Vertical)
 				{
 					_fitTargetPos.y = CalcFitTargetValue(_ctrlPos.y, _verticalFitGap);
 				}
@@ -193,9 +204,9 @@ namespace GaviPractice.TouchControllerPanel
 
 		void Fit()
 		{ 
-			_deltaPos = ((_fitTargetPos - _ctrlPos) * _fitCoeffcient);
+			Vector3 deltaPos = ((_fitTargetPos - _ctrlPos) * _fitCoeffcient);
 
-			ProcessPos(_deltaPos);
+			ProcessPos(deltaPos);
 			// Fit座標とコントロール座標がほぼ一致したら、
 			Vector3 gap = _ctrlPos - _fitTargetPos;
 			if(gap.sqrMagnitude <= _stopFitForceCutLine)
@@ -204,6 +215,27 @@ namespace GaviPractice.TouchControllerPanel
 				_ctrlPos = _fitTargetPos;
 				_state = EState.None;
 			}
+		}
+
+		void Jump()
+		{
+			Vector3 localStartPos = _touchStartPos - _originPos;
+
+			Vector3 deltaPos = _forcusPos - localStartPos;
+
+			if (_moveKind == EMoveKind.Horizontal)
+			{
+				deltaPos.y = 0;
+			}
+			if(_moveKind == EMoveKind.Vertical)
+			{
+				deltaPos.x = 0;
+			}
+			deltaPos.z = 0;
+
+			Debug.Log(deltaPos);
+			ProcessPos(deltaPos);
+			_state = EState.None;
 		}
 
 		// 座標関係作業の最後処理
