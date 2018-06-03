@@ -8,7 +8,7 @@ namespace GaviPractice.TouchControllerPanel
 {
 	public class BaseTouchControlledObject : MonoBehaviour
 	{
-		public virtual void SendDeltaPos(Vector3 deltaPos)
+		public virtual void SendLocalCtrlPos(Vector3 deltaPos)
 		{
 
 		}
@@ -18,14 +18,14 @@ namespace GaviPractice.TouchControllerPanel
 	public class TouchControllerPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 	{
 		// 現在座標
-		private Vector3 _curPos;
+		private Vector3 _curPos = Vector3.zero;
 		// 前の座標
-		private Vector3 _prevPos;
-		// 座標差分
-		private Vector3 _deltaPos;
+		private Vector3 _prevPos = Vector3.zero;
 		// 制御した座標の最終位置（累積されている）
 		[SerializeField]
 		private Vector3 _ctrlPos = Vector3.zero;
+		// 差分座標
+		private Vector3 _deltaPos = Vector3.zero;
 		// 移動の比率（高いほど早く動く）
 		[SerializeField]
 		private float _moveRate = 1;
@@ -38,6 +38,17 @@ namespace GaviPractice.TouchControllerPanel
 		// スリップ摩擦
 		[SerializeField]
 		private float _slipFriction = 0.8f;
+		// CtrlPosの可視化するためのObj（Debug用）
+		[SerializeField]
+		private GameObject _ctrlViewObj = null;
+		// CtrlPosが動ける領域（左上段）
+		[SerializeField]
+		private Transform _leftTopLimitTrans = null;
+		private Vector3 _leftTopLimitPos = Vector3.zero;
+		// CtrlPosが動ける領域（右下段）
+		[SerializeField]
+		private Transform _rightBottomLimitTrnas = null;
+		private Vector3 _rightBottomLimitPos = Vector3.zero;
 		// 移動タイプ
 		private enum EMoveKind
 		{
@@ -52,6 +63,8 @@ namespace GaviPractice.TouchControllerPanel
 		// 動く力がこの力以下の力だったら、動きを止める
 		[SerializeField]
 		private float _stopForceCutLine = 0.0001f;
+		// TouchControllerPanelの元のPos
+		private Vector3 _originPos = Vector3.zero;
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
@@ -66,6 +79,14 @@ namespace GaviPractice.TouchControllerPanel
 		{
 			Debug.Log("Up");
 			_isSlip = true;
+		}
+
+		void Start()
+		{
+			_originPos = transform.position;
+			_ctrlPos = _originPos;
+			_leftTopLimitPos = _leftTopLimitTrans.position;
+			_rightBottomLimitPos = _rightBottomLimitTrnas.position;
 		}
 
 		void Update()
@@ -95,6 +116,7 @@ namespace GaviPractice.TouchControllerPanel
 						 break;
 				}
 				_deltaPos.z = _curPos.z - _prevPos.z;
+
 				// 座標関係作業の最後処理
 				ProcessPos(_deltaPos);
 			}
@@ -118,11 +140,39 @@ namespace GaviPractice.TouchControllerPanel
 		// 座標関係作業の最後処理
 		void ProcessPos(Vector3 deltaPos)
 		{
+			// コントロール座標更新
 			_ctrlPos += deltaPos;
+			// コントロールを移動可能範囲内に収める
+			if (_ctrlPos.x <= _leftTopLimitPos.x)
+			{
+				_ctrlPos.x = _leftTopLimitPos.x;
+				Debug.Log("Left");
+			}
+			else if (_ctrlPos.x >= _rightBottomLimitPos.x)
+			{
+				_ctrlPos.x = _rightBottomLimitPos.x;
+				Debug.Log("Right");
+			}
+
+			if (_ctrlPos.y <= _rightBottomLimitPos.y)
+			{
+				_ctrlPos.y = _rightBottomLimitPos.y;
+				Debug.Log("Bottom");
+			}
+			else if (_ctrlPos.y >= _leftTopLimitPos.y)
+			{
+				_ctrlPos.y = _leftTopLimitPos.y;
+				Debug.Log("top");
+			}
+			// コントロール座標可視化（Debug用）
+			_ctrlViewObj.transform.position = _ctrlPos;
+			// 現在の座標を前の座標に格納
 			_prevPos = _curPos;
+			// ローカルコントロール座標を計算
+			Vector3 localCtrlPos = _ctrlPos - _originPos;
 			for (int i = 0; i < _ctrlObjList.Count; ++i)
 			{
-				_ctrlObjList[i].SendDeltaPos(_deltaPos);
+				_ctrlObjList[i].SendLocalCtrlPos(localCtrlPos);
 			}
 		}
 	}

@@ -6,15 +6,17 @@ namespace GaviPractice.TouchControllerPanel
 {
 	public class TestCtrlObj : BaseTouchControlledObject
 	{
-		public override void SendDeltaPos(Vector3 ctrlPos)
+		Vector3 _originPos = Vector3.zero;
+
+		public override void SendLocalCtrlPos(Vector3 ctrlPos)
 		{
-			transform.position += ctrlPos;
+			transform.position = _originPos + ctrlPos;
 		}
 
 		// Use this for initialization
 		void Start()
 		{
-
+			_originPos = transform.position;
 		}
 
 		// Update is called once per frame
