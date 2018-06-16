@@ -245,8 +245,6 @@ namespace Ark.LifeCycle
 
 		protected static StringBuilder s_stringBuilder = new StringBuilder();
 
-		protected const float PUSH_RANGE_ZERO = 0.0f;
-
 		public EntityLogic(int myCamp, float x, float y)
 		{
 			_radius = 35.0f;

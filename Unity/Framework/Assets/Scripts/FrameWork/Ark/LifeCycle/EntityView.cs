@@ -20,7 +20,7 @@ namespace Ark.LifeCycle
 		bool IsViewActive { get; }
 	}
 
-	abstract public class BattleObjectView : MonoBehaviour, IEntityView
+	abstract public class EntityView : MonoBehaviour, IEntityView
 	{
 		protected IEntityLogicPeek _entityLogic = null;
 
