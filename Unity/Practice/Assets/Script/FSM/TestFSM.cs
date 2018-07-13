@@ -1,68 +1,52 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class TestFSM : MonoBehaviour
+namespace GaviPractice.FSM
 {
-	public StateMachine<TestFSM, IState<TestFSM> > m_stateMachine;
+	/// <summary>
+	/// 状態マシンの基底Interface
+	/// </summary>
+	public interface ITestFSM_Base
+	{
 
-	// Use this for initialization
-	void Awake()
-	{
-		m_stateMachine = new StateMachine<TestFSM, IState<TestFSM>>(this, TestMoveState.GetInstance());
-		m_stateMachine.ChangeState(TestMoveState.GetInstance());
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		m_stateMachine.Update();
-	}
-}
 
-public class TestMoveState : State<TestFSM, TestMoveState>
-{
-	private int m_count;
-	
-	public override void Enter(TestFSM entity)
+	/// <summary>
+	/// 状態マシンのInterface（移動用）
+	/// </summary>
+	public interface ITestFSM_ForMove : ITestFSM_Base
 	{
-		m_count = 0;
-		Debug.Log("enter move");
+		void ChangeState(IState<TestFSM> newState);
 	}
-	public override void Update(TestFSM entity)
+
+	/// <summary>
+	/// 状態マシンのInterface（攻撃用）
+	/// </summary>
+	public interface ITestFSM_ForAttack : ITestFSM_Base
 	{
-		++m_count;
-		Debug.Log("update move "+m_count);
-		if (m_count > 10)
+		void ChangeState(IState<TestFSM> newState);
+	}
+
+	/// <summary>
+	/// テスト状態マシン
+	/// </summary>
+	public class TestFSM : MonoBehaviour, ITestFSM_ForMove, ITestFSM_ForAttack
+	{
+		public StateMachine<TestFSM, IState<TestFSM>> m_stateMachine;
+
+		void Awake()
 		{
-			entity.m_stateMachine.ChangeState(TestAttackState.GetInstance());
+			m_stateMachine = new StateMachine<TestFSM, IState<TestFSM>>(this, TestMoveState.GetInstance());
+			m_stateMachine.ChangeState(TestMoveState.GetInstance());
 		}
-	}
-	public override void Exit(TestFSM entity)
-	{
-		Debug.Log("enter move");
-	}
-}
 
-public class TestAttackState : State<TestFSM, TestAttackState>
-{
-	private int m_count;
-	
-	public override void Enter(TestFSM entity)
-	{
-		m_count = 0;
-		Debug.Log("enter attack");
-	}
-	public override void Update(TestFSM entity)
-	{
-		++m_count;
-		Debug.Log("update attack" + m_count);
-		if (m_count > 10)
+		public void ChangeState(IState<TestFSM> newState)
 		{
-			entity.m_stateMachine.ChangeState(TestMoveState.GetInstance());
+			m_stateMachine.ChangeState(newState);
 		}
-	}
-	public override void Exit(TestFSM entity)
-	{
-		Debug.Log("enter attack");
+
+		void Update()
+		{
+			m_stateMachine.Update();
+		}
 	}
 }

@@ -43,11 +43,11 @@ public class StateMachine<TOwner, TState> where TOwner : class where TState : IS
 	{
 		if (m_globalState != null)
 		{
-			m_globalState.Update(m_owner);
+			m_globalState.MainUpdate(m_owner);
 		}
 		if (m_currentState!=null)
 		{
-			m_currentState.Update(m_owner);
+			m_currentState.MainUpdate(m_owner);
 		}
 	}
 
@@ -55,11 +55,11 @@ public class StateMachine<TOwner, TState> where TOwner : class where TState : IS
 	{
 		m_previousState = m_currentState;
 
-		m_currentState.Exit(m_owner);
+		m_currentState.MainExit(m_owner);
 
 		m_currentState = newState;
 
-		m_currentState.Enter(m_owner);
+		m_currentState.MainEnter(m_owner);
 	}
 
 	public void RevertToPreviousState()
