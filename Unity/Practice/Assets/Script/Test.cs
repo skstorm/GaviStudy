@@ -1,16 +1,26 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using System.Collections;
 
-public class TestClassA
+public struct SA
 {
-	public int a = 0;
 }
+
+public class SB
+{
+	~SB()
+	{
+
+	}
+}
+
 
 public class Test : MonoBehaviour
 {
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		TestClassA ca = null;
 		Func(ref ca);
 		ca.a = 2;
@@ -21,10 +31,5 @@ public class Test : MonoBehaviour
 	{
 		
 	}
-
-	private void Func(ref TestClassA ca)
-	{
-		ca = new TestClassA();
-		ca.a = 1;
-	}
 }
+*/
