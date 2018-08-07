@@ -34,7 +34,20 @@ public class LoadAssetBundleExample : MonoBehaviour
 
 				GameObject obj = Instantiate(request.asset) as GameObject;
 				obj.transform.position = new Vector3(-10.0f + (i * 10), 0.0f, 0.0f);
+				obj.transform.rotation = Quaternion.identity;
 			}
+
+			/*
+			// フルロード
+			GameObject[] go = bundle.LoadAllAssets<GameObject>();
+			for(int i=0; i< go.Length; ++i)
+			{
+				GameObject obj = Instantiate(go[i]) as GameObject;
+				obj.transform.position = new Vector3(-10.0f + (i * 10), 0.0f, 0.0f);
+				obj.transform.rotation = Quaternion.identity;
+			}
+			*/
+
 			bundle.Unload(false);
 			www.Dispose();
 
