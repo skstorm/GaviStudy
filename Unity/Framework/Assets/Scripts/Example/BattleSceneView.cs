@@ -1,4 +1,5 @@
 ﻿using Ark.Core;
+using Ark.Util;
 using UnityEngine;
 
 namespace Example
@@ -8,6 +9,8 @@ namespace Example
 	}
 	public class BattleSceneView : BaseSceneView, IBattleSceneViewOrder
 	{
+		private DataLoadManager _dataLoadManager = null;
+
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
 		protected override void StartGearProcess()
@@ -15,6 +18,10 @@ namespace Example
 			base.StartGearProcess();
 
 			ArkLog.Debug("BattleSceneView Start");
+
+			_dataLoadManager = _gear.Absorb<DataLoadManager>(new PosInfos());
+
+			UnitViewPool.GetInstance().Init(_dataLoadManager);
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

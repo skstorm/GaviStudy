@@ -12,12 +12,13 @@ namespace Ark.Core
 		private LogicStateChanger _logicStateChanger = null;
 		private CommandRecorder _commandRecorder = null;
 		private CommandReplayer _commandReplayer = null;
+		private DataLoadManager _dataLoadManager = null;
 
 		private float _debugLastUpdateSeconds = 0;
 		private float _debugDeltaFrame = 0;
 		private int _debugCount = 0;
 
-		public GameLoop(ISetting setting, GameView gameView) : base(true)
+		public GameLoop(ISetting setting, GameView gameView, DataLoadManager dataLoadManager) : base(true)
 		{
 			_frameManager = new FrameManager(setting.Fps);
 			_gameLogic = new GameLogic(setting);
@@ -26,6 +27,7 @@ namespace Ark.Core
 			_logicStateChanger = new LogicStateChanger();
 			_commandRecorder = new CommandRecorder();
 			_commandReplayer = new CommandReplayer();
+			_dataLoadManager = dataLoadManager;
 
 			_gear.AddChildGear(_frameManager.GetGear());
 			_gear.AddChildGear(_gameLogic.GetGear());
@@ -47,6 +49,7 @@ namespace Ark.Core
 			_gear.Diffuse(_logicStateChanger, typeof(LogicStateChanger));
 			_gear.Diffuse(_commandRecorder, typeof(CommandRecorder));
 			_gear.Diffuse(_commandReplayer, typeof(CommandReplayer));
+			_gear.Diffuse(_dataLoadManager, typeof(DataLoadManager));
 		}
 
 

@@ -45,8 +45,8 @@ namespace Ark.LifeCycle
 			_random = new System.Random(randomSeed);
 		}
 
-		protected LifeCycleLogic(TEntityFieldLogic battleLogic, LifeCycleView lifeCycleView, ELifeCycleKind lifeCycleKind, int randomSeed, float leftWall, float topWall, float rightWall, float bottomWall) 
-		: this(battleLogic, lifeCycleView, lifeCycleKind, randomSeed)
+		protected LifeCycleLogic(TEntityFieldLogic entityLogic, LifeCycleView lifeCycleView, ELifeCycleKind lifeCycleKind, int randomSeed, float leftWall, float topWall, float rightWall, float bottomWall) 
+		: this(entityLogic, lifeCycleView, lifeCycleKind, randomSeed)
 		{
 			_leftWall = leftWall;
 			_topWall = topWall;

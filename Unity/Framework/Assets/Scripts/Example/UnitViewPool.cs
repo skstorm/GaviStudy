@@ -7,16 +7,11 @@ using Ark.LifeCycle;
 
 namespace Example
 {
-	public enum EUnitKind
-	{
-		Test = 0
-	}
-
 	public class UnitViewPool : BaseViewPool
 	{
 		private static UnitViewPool s_instance;
 
-		private const string PATH_TEST_UNIT_VIEW = "プレハブの名前";
+		private const string PATH_TEST_UNIT_VIEW = "TestUnit";
 
 		private EntityView _testUnitViewPrefab;
 		
@@ -38,22 +33,22 @@ namespace Example
 
 		public void Init(DataLoadManager dataloadManager)
 		{
-			_testUnitViewPrefab = dataloadManager.InstantiateAsset(PATH_TEST_UNIT_VIEW).GetComponent<EntityView>();
+			_testUnitViewPrefab = dataloadManager.GetAsset(PATH_TEST_UNIT_VIEW).GetComponent<EntityView>();
 			const int TEST_UNIT_NUM = 50;
 			AddView(_testUnitViewPrefab, _blackSplashViews, TEST_UNIT_NUM);
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! Viewを取得する （Viewの初期化も行う）
-		public IEntityView GetView(EUnitKind kind)
+		public IEntityView GetView(TestUnitLogic.EKind kind)
 		{
 			IEntityView view = null;
 			// View取得
 			switch (kind)
 			{
-				case EUnitKind.Test: view = GetView(_blackSplashViews, _testUnitViewPrefab); break;
+				case TestUnitLogic.EKind.NormalUnit: view = GetView(_blackSplashViews, _testUnitViewPrefab); break;
 				default:
-					throw new ArgumentOutOfRangeException("EUnitKind", kind, null);
+					throw new ArgumentOutOfRangeException("EKind", kind, null);
 			}
 			// Viewの初期化
 			ActiveView(view);

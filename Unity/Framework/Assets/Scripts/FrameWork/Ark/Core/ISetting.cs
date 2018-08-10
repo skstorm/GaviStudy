@@ -9,5 +9,7 @@ namespace Ark.Core
 		int Fps { get; }
 		// 表示するログレベル
 		uint DisplayLogLevel { get; }
+		// バンドルUrl
+		string BundleUrl { get; }
 	}
 }

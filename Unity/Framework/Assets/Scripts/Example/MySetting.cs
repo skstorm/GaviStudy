@@ -30,6 +30,15 @@ namespace Example
 			}
 		}
 
+		private readonly string _bundleUrl = "file:///D:/Work/Project/GaviStudy/Unity/Framework/Assets/AssetBundles/test_asset_bundle";
+		public string BundleUrl
+		{
+			get
+			{
+				return _bundleUrl;
+			}
+		}
+
 		public MySetting()
 		{
 			_startScene = new MenuSceneLogic();

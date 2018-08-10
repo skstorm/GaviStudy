@@ -7,46 +7,31 @@ namespace Ark.Core
 {
 	public class DataLoadManager : MonoBehaviour
 	{
-		private string _bundleUrl = "";
-
 		private WWW _www = null;
 
 		private int _version = 1;
 
 		private Dictionary<string, GameObject> _dicAssets = new Dictionary<string, GameObject>();
 
-		public void Init()
+		public void Init(string bundleUrl)
 		{
-			StartCoroutine(LoadAssetBundle());
+			StartCoroutine(LoadAssetBundle(bundleUrl));
 		}
 
-		private IEnumerator LoadAssetBundle()
+		private IEnumerator LoadAssetBundle(string bundleUrl)
 		{
 			while (!Caching.ready)
 			{
 				yield return null;
 			}
 
-			_www = WWW.LoadFromCacheOrDownload(_bundleUrl, _version);
+			_www = WWW.LoadFromCacheOrDownload(bundleUrl, _version);
 			yield return _www;
 
 			if (_www.error != null)
 			{
 				throw new Exception("WWW ダウンロードにエラーが発生しました。：" + _www.error);
 			}
-
-			AssetBundle bundle = _www.assetBundle;
-
-			for (int i = 0; i < 3; i++)
-			{
-				AssetBundleRequest request = bundle.LoadAssetAsync("TestAb" + (i + 1), typeof(GameObject));
-				yield return request;
-
-				GameObject obj = Instantiate(request.asset) as GameObject;
-				obj.transform.position = new Vector3(-10.0f + (i * 10), 0.0f, 0.0f);
-				obj.transform.rotation = Quaternion.identity;
-			}
-			bundle.Unload(false);
 		}
 
 		public void LoadAllAsset()
@@ -64,6 +49,11 @@ namespace Ark.Core
 		public GameObject InstantiateAsset(string name)
 		{
 			return Instantiate(_dicAssets[name]) as GameObject;
+		}
+
+		public GameObject GetAsset(string name)
+		{
+			return _dicAssets[name];
 		}
 
 		public void Release()

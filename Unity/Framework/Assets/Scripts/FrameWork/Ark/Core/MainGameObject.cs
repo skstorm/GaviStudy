@@ -13,7 +13,9 @@ namespace Ark.Core
 		private GameLoop _gameLoop = null;
 
 		[SerializeField]
-		protected GameView _gameView;
+		protected GameView _gameView = null;
+
+		protected DataLoadManager _dataLoadManager = null;
 
 		// Use this for initialization
 		abstract protected void Start();
@@ -21,7 +23,12 @@ namespace Ark.Core
 		protected void Initialize (ISetting setting) 
 		{
 			ArkLog.Init(setting);
-			_gameLoop = new GameLoop(setting, _gameView);
+
+			_dataLoadManager = gameObject.AddComponent<DataLoadManager>();
+			_dataLoadManager.Init(setting.BundleUrl);
+			_dataLoadManager.LoadAllAsset();
+
+			_gameLoop = new GameLoop(setting, _gameView, _dataLoadManager);
 			_gameLoop.InitGear();
 		}
 
@@ -33,6 +40,7 @@ namespace Ark.Core
 
 		void OnApplicationQuit()
 		{
+			_dataLoadManager.Release();
 			_gameLoop.AllDisposeGear();
 			ArkLog.Release();
 		}
