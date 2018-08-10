@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3635820358
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: dca7449acd43220ee90971f841e9049c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0fc3b291cec70cfd5fbe27a1b5800c6e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefab/TestUnit.prefab
+Dependencies: []
