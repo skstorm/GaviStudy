@@ -18,5 +18,11 @@ namespace Ark.Editor
 			 ***********************************************************************/
 			BuildPipeline.BuildAssetBundles("Assets/AssetBundles", BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
 		}
+
+		[MenuItem("Bundles/ClearCache")]
+		static void ClearCache()
+		{
+			Caching.ClearCache();
+		}
 	}
 }
