@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
+using Cysharp.Threading.Tasks.CompilerServices;
+using Cysharp.Threading.Tasks.Linq;
 
 public class TestCoroutineFSM : CoroutineFSM<TestCoroutineFSM.EState>
 {
@@ -14,7 +18,7 @@ public class TestCoroutineFSM : CoroutineFSM<TestCoroutineFSM.EState>
 	void Awake()
 	{
 		m_state = EState.Wait;
-		StartCoroutine(FSM());	
+		StartCoroutine(FSM());
 	}
 	
 	IEnumerator Wait()

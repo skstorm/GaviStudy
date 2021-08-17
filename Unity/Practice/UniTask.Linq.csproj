@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C4A7234B-DFE9-25BA-F8BA-CEB3692977F9}</ProjectGuid>
+    <ProjectGuid>{3B205470-64AB-35DD-5B6D-7F7588C962AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>UniTask.Linq</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -64,58 +64,78 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Async\TestAsync.cs" />
-    <Compile Include="Assets\Script\AsyncFsm\AsyncFsm.cs" />
-    <Compile Include="Assets\Script\AsyncFsm\TestAsyncFsm.cs" />
-    <Compile Include="Assets\Script\CoroutineFSM\CoroutineFSM.cs" />
-    <Compile Include="Assets\Script\CoroutineFSM\TestCoroutineFSM.cs" />
-    <Compile Include="Assets\Script\EtcMain\Covariance.cs" />
-    <Compile Include="Assets\Script\EtcMain\EtcMain.cs" />
-    <Compile Include="Assets\Script\FSM\State.cs" />
-    <Compile Include="Assets\Script\FSM\StateMachine.cs" />
-    <Compile Include="Assets\Script\FSM\TestFSM.cs" />
-    <Compile Include="Assets\Script\FSM\TestState.cs" />
-    <Compile Include="Assets\Script\NewFsm\Singleton.cs" />
-    <Compile Include="Assets\Script\NewFsm\State.cs" />
-    <Compile Include="Assets\Script\NewFsm\StateMachine.cs" />
-    <Compile Include="Assets\Script\NewFsm\TestFsm.cs" />
-    <Compile Include="Assets\Script\NewFsm\TestState.cs" />
-    <Compile Include="Assets\Script\NewFsm\TestTransition.cs" />
-    <Compile Include="Assets\Script\NewFsm\Transition.cs" />
-    <Compile Include="Assets\Script\SimpleFsm\SimpleFsm.cs" />
-    <Compile Include="Assets\Script\Singleton.cs" />
-    <Compile Include="Assets\Script\SingletonManager\TestSingletonManager.cs" />
-    <Compile Include="Assets\Script\SingletonManager\TreeNode.cs" />
-    <Compile Include="Assets\Script\Test.cs" />
-    <Compile Include="Assets\Script\TestAssetBundle\LoadAssetBundleExample.cs" />
-    <Compile Include="Assets\Script\TouchControllerPanel\TestCtrlObj.cs" />
-    <Compile Include="Assets\Script\TouchControllerPanel\TouchControllerPanel.cs" />
-    <None Include="Assets\Shader\VertexColor.shader" />
-    <None Include="Assets\Shader\Reflection.shader" />
-    <None Include="Assets\Shader\SimplaShader.shader" />
-    <None Include="Assets\Shader\CustomHolo.shader" />
-    <None Include="Assets\Shader\CustomRimLight.shader" />
-    <None Include="Assets\Shader\FireShader.shader" />
-    <None Include="Assets\Shader\Surface.shader" />
-    <None Include="Assets\Shader\Fire.shader" />
-    <None Include="Assets\Shader\NewSurfaceShader.shader" />
-    <None Include="Assets\Shader\Dissolve.shader" />
-    <None Include="Assets\Shader\CustomLambertLight.shader" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Aggregate.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\All.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Any.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\AppendPrepend.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\AsUniTaskAsyncEnumerable.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\AsyncEnumeratorBase.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Average.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Buffer.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Cast.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\CombineLatest.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Concat.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Contains.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Count.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Create.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\DefaultIfEmpty.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Distinct.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\DistinctUntilChanged.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Do.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ElementAt.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Empty.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Except.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\First.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ForEach.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\GroupBy.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\GroupJoin.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Intersect.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Join.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Last.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\LongCount.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Max.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Min.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\MinMax.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Never.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\OfType.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\OrderBy.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Pairwise.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Publish.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Queue.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Range.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Repeat.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Return.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Reverse.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Select.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SelectMany.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SequenceEqual.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Single.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Skip.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SkipLast.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SkipUntil.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SkipUntilCanceled.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\SkipWhile.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Subscribe.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Sum.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Take.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\TakeLast.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\TakeUntil.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\TakeUntilCanceled.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\TakeWhile.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Throw.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToArray.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToDictionary.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToHashSet.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToList.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToLookup.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToObservable.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\ToUniTaskAsyncEnumerable.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Union.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\UnityExtensions\EveryUpdate.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\UnityExtensions\EveryValueChanged.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\UnityExtensions\Timer.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Where.cs" />
+    <Compile Include="Assets\Plugins\UniTask\Runtime\Linq\Zip.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
@@ -299,6 +319,12 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
@@ -308,17 +334,59 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.GoogleAudioSpatializer">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GoogleAudioSpatializer">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.SpatialTracking">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/PackageCache/com.unity.analytics@3.2.3/Editor/Unity.Analytics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/PackageCache/com.unity.analytics@3.2.3/Editor/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>C:/Work/GaviStudy/GaviStudy/Unity/Practice/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity 2018.4.21f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -667,25 +735,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniTask.Addressables.csproj">
-      <Project>{A2F50404-1BA7-2E35-327A-7E770A403177}</Project>
-      <Name>UniTask.Addressables</Name>
-    </ProjectReference>
     <ProjectReference Include="UniTask.csproj">
       <Project>{C0D47D58-6AC8-3AA7-4E09-B7A703A4D6A0}</Project>
       <Name>UniTask</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniTask.DOTween.csproj">
-      <Project>{32AAAD0F-9E54-CC91-1BC6-2EABB21330E1}</Project>
-      <Name>UniTask.DOTween</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniTask.TextMeshPro.csproj">
-      <Project>{45EEC0B2-5B8E-62DA-0104-A749B51A5EA5}</Project>
-      <Name>UniTask.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniTask.Linq.csproj">
-      <Project>{3B205470-64AB-35DD-5B6D-7F7588C962AC}</Project>
-      <Name>UniTask.Linq</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
