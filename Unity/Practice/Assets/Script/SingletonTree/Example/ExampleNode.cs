@@ -6,6 +6,8 @@ namespace SingletonGroup
 {
     public class ExampleBaseClass : ISingletonField
     {
+        protected ISingletonTree<ExampleBaseClass> _tree;
+
         public virtual void Run()
         {
         }
@@ -15,9 +17,11 @@ namespace SingletonGroup
     {
         public override void Run()
         {
+            _tree = this.CreateSingletonTree();
             var tree = this.CreateSingletonTree();
-            
-            var dataA = tree.Get<ExampleDataA>();
+            _tree = tree;
+
+            var dataA = _tree.Get<ExampleDataA>();
             Debug.Log(dataA.DataA);
         }
     }
@@ -28,8 +32,8 @@ namespace SingletonGroup
         {
             var tree = this.CreateSingletonTree();
             
-            var dataA = tree.Get<ExampleDataA>();
-            Debug.Log(dataA.DataA);
+            var data = tree.Get<ExampleDataB>();
+            Debug.Log(data.DataB);
         }
     }
 }

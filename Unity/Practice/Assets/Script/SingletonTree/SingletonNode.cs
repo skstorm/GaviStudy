@@ -175,8 +175,8 @@ namespace SingletonGroup
                 if (_parent == null)
                 {
                     // 親なしなので見つからない
-                    //return default(T);
-                    throw new Exception(string.Format("指定されたクラス{0}は{1}Nodeに登録されていません。;", className, node));
+                    return default(T);
+                    //throw new Exception(string.Format("指定されたクラス{0}は{1}Nodeに登録されていません。;", className, node));
                 }
 
                 return _parent.getWithClassName<T>(className, node);

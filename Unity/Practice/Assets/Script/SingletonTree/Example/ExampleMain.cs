@@ -9,7 +9,7 @@ namespace SingletonGroup
     {
         public override void Run()
         {
-            SingletonTreeTreeFunc.InitSingletonTree();
+            SingletonTreeTreeInitializer.InitSingletonTree<Yggdrasil<ISingletonField>>();
             
             var nodeA = new ExampleClassA();
             nodeA.Run();

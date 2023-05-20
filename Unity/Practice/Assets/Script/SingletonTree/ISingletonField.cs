@@ -13,7 +13,7 @@ namespace SingletonGroup
     /// <summary>
     /// 初期化用（指定のタイミングでSingletonTreeを初期化したい場合使う）
     /// </summary>
-    public class SingletonTreeTreeInitialzer : ISingletonField
+    public class SingletonTreeTreeInitializer : ISingletonField
     {
         public static void InitSingletonTree()
         {

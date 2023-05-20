@@ -16,12 +16,22 @@ namespace SingletonGroup
 
         /// <summary> ノードの辞書 </summary>
         protected static Dictionary<string, SingletonNode> s_dicNode = null;
+        
+        /// <summary>
+        /// 解除処理
+        /// </summary>
+        public static void Clear()
+        {
+            s_rootNode = null;
+            s_dicNode = null;
+        }
     }
 
     /// <summary>
     /// SingletonTreeの基底クラス（通常変数や、機能実装用）
     /// </summary>
-    public abstract class SingletonTree<TOwnerClass> : BaseSingletonTree where TOwnerClass : ISingletonField
+    public abstract class SingletonTree<TOwnerClass> : BaseSingletonTree, ISingletonTree<TOwnerClass> 
+        where TOwnerClass : ISingletonField
     {
         /// <summary> 現在ノード（このノードから親へと検索していく） </summary>
         protected SingletonNode _currentNode = null;
@@ -178,15 +188,6 @@ namespace SingletonGroup
         public SingletonNode GetCurrentNode()
         {
             return _currentNode;
-        }
-
-        /// <summary>
-        /// 解除処理
-        /// </summary>
-        public static void Clear()
-        {
-            s_rootNode = null;
-            s_dicNode = null;
         }
 
         /// <summary>
