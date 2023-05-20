@@ -9,3 +9,5 @@ VisualStudio/**/.vs
 Unity/**/Library
 Unity/**/.vs
 Unity/**/Temp
+Unity/**/obj
+Unity/**/Logs
