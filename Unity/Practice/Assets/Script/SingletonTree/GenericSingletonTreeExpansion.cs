@@ -8,19 +8,21 @@ namespace SingletonGroup
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static Yggdrasil<T> CreateSingletonTree<T>(this T _current)
+        public static TTree CreateSingletonTree<T, TTree>(this T _current)
             where T : class, ISingletonField
+            where TTree : ISingletonTree<ISingletonField>, new()
         {
-            return SingletonTreeTreeInitializer.CreateSingletonTree<Yggdrasil<T>>();
+            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>();
         }
 
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static Yggdrasil<T> CreateSingletonTree<T>(this T _current, string _findStartNodeKey)
+        public static TTree CreateSingletonTree<T, TTree>(this T _current, string _findStartNodeKey)
             where T : class, ISingletonField
+            where TTree : ISingletonTree<ISingletonField>, new()
         {
-            return SingletonTreeTreeInitializer.CreateSingletonTree<Yggdrasil<T>>(_findStartNodeKey);
+            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>(_findStartNodeKey);
         }
     }
 }

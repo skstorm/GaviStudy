@@ -1,10 +1,9 @@
-namespace SingletonGroup
+namespace SingletonGroup.Example
 {
     /// <summary>
-    /// ユグドラシル
-    /// シングルトン管理クラス
+    /// シングルトン管理クラスExample
     /// </summary>
-    public class Yggdrasil<TOwnerClass> : SingletonTree<TOwnerClass>
+    public class ExampleSingletonTree<TOwnerClass> : SingletonTree<TOwnerClass>
         where TOwnerClass : ISingletonField
     {
         protected override void setupTree()
@@ -15,7 +14,7 @@ namespace SingletonGroup
                 var nodeA = new SingletonNode();
                 var dataA = new ExampleDataA();
                 nodeA.AddInstance(dataA);
-                // FkeFieldLogic
+                // 
                 var nodeB = new SingletonNode();
                 var dataB = new ExampleDataB();
                 nodeB.AddInstance(dataB);

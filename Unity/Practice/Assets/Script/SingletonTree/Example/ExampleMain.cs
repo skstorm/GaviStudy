@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using HanPractice;
-using UnityEngine;
 
-namespace SingletonGroup
+namespace SingletonGroup.Example
 {
     public class ExampleMain : BaseExampleClass
     {
         public override void Run()
         {
-            SingletonTreeTreeInitializer.InitSingletonTree<Yggdrasil<ISingletonField>>();
+            SingletonTreeTreeInitializer.InitSingletonTree<ExampleSingletonTree<ISingletonField>>();
             
             var nodeA = new ExampleClassA();
             nodeA.Run();

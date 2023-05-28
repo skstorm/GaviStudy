@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SingletonGroup
+namespace SingletonGroup.Example
 {
     public class ExampleBaseClass : ISingletonField
     {
@@ -17,7 +17,6 @@ namespace SingletonGroup
     {
         public override void Run()
         {
-            _tree = this.CreateSingletonTree();
             var tree = this.CreateSingletonTree();
             _tree = tree;
 
