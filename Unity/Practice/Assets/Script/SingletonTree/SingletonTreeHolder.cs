@@ -2,8 +2,11 @@ namespace SingletonContainer
 {
     public abstract class SingletonTreeHolder : ISingletonField
     {
-        protected ISingletonTree<SingletonTreeHolder> _tree;
+        protected readonly ISingletonTree<ISingletonField> _tree;
 
-        public abstract void Run();
+        protected SingletonTreeHolder(ISingletonTree<ISingletonField> tree)
+        {
+            _tree = tree;
+        }
     }
 }

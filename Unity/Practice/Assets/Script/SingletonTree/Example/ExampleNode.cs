@@ -2,25 +2,30 @@ using UnityEngine;
 
 namespace SingletonContainer.Example
 {
-    public class ExampleClassA : SingletonTreeHolder
+    public abstract class ExampleClassBase<T> : SingletonTreeHolder
+        where T : class, ISingletonField
+    {
+        protected ExampleClassBase() : base(SingletonTreeTreeInitializer.CreateSingletonTree<ExampleSingletonTree<T>>())
+        {
+        }
+        
+        public abstract void Run();
+    }
+
+    public class ExampleClassA : ExampleClassBase<ExampleClassA>
     {
         public override void Run()
         {
-            var tree = this.CreateSingletonTree();
-            _tree = tree;
-
             var dataA = _tree.Get<ExampleDataA>();
-            
             Debug.Log(dataA.DataA);
         }
     }
 
-    public class ExampleClassB : SingletonTreeHolder
+    public class ExampleClassB : ExampleClassBase<ExampleClassB>
     {
         public override void Run()
         {
             var tree = this.CreateSingletonTree();
-            
             var data = tree.Get<ExampleDataB>();
             Debug.Log(data.DataB);
         }
