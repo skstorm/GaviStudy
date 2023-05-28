@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SingletonGroup
+namespace SingletonContainer
 {
     /// <summary>
     /// SingletonTreeの基底クラス（Static変数宣言用）

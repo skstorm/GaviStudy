@@ -1,4 +1,4 @@
-namespace SingletonGroup
+namespace SingletonContainer
 {
     /// <summary>
     /// SingletonTreeを取得可能にするInterface

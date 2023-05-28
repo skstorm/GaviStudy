@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SingletonGroup.Example
+namespace SingletonContainer.Example
 {
     public class ExampleBaseClass : ISingletonField
     {

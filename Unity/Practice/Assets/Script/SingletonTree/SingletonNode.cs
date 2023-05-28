@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SingletonGroup
+namespace SingletonContainer
 {
     public class SingletonNode : ISingletonNodeForInstanceEditing
     {

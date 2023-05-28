@@ -1,6 +1,6 @@
 using System;
 
-namespace SingletonGroup
+namespace SingletonContainer
 {
     public interface ISingletonNodeForInstanceEditing
     {

@@ -1,4 +1,4 @@
-namespace SingletonGroup.Example
+namespace SingletonContainer.Example
 {
     public static class ExampleSingletonTreeExpansion
     {

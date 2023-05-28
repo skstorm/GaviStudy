@@ -1,6 +1,6 @@
 using HanPractice;
 
-namespace SingletonGroup.Example
+namespace SingletonContainer.Example
 {
     public class ExampleMain : BaseExampleClass
     {

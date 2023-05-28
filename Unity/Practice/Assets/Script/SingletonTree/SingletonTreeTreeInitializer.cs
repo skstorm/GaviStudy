@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SingletonGroup
+namespace SingletonContainer
 {
     /// <summary>
     /// 初期化用（指定のタイミングでSingletonTreeを初期化したい場合使う）

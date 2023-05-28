@@ -1,4 +1,4 @@
-namespace SingletonGroup
+namespace SingletonContainer
 {
     /// <summary>
     /// SingletonTreeの拡張クラス

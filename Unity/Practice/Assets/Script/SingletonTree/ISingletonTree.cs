@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SingletonGroup
+namespace SingletonContainer
 {
     public interface ISingletonTree<out TOwnerClass> where TOwnerClass : ISingletonField
     {

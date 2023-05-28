@@ -1,4 +1,4 @@
-namespace SingletonGroup.Example
+namespace SingletonContainer.Example
 {
     /// <summary>
     /// シングルトン管理クラスExample
