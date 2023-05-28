@@ -86,24 +86,24 @@ namespace SingletonGroup
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void AddInstance(object instance)
+        public void RegisterInstance(object instance)
         {
-            AddInstance(instance.GetType(), instance);
+            RegisterInstance(instance.GetType(), instance);
         }
 
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void AddInstance(Type type, object instance)
+        public void RegisterInstance(Type type, object instance)
         {
             string className = type.ToString();
-            AddInstance(className, instance);
+            RegisterInstance(className, instance);
         }
 
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void AddInstance(string className, object instance)
+        public void RegisterInstance(string className, object instance)
         {
             _dicInstance.Add(className, instance);
         }
@@ -111,24 +111,24 @@ namespace SingletonGroup
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void RemoveInstance(object instance)
+        public void UnregisterInstance(object instance)
         {
-            RemoveInstance(instance.GetType());
+            UnregisterInstance(instance.GetType());
         }
 
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void RemoveInstance(Type type)
+        public void UnregisterInstance(Type type)
         {
             string className = type.ToString();
-            RemoveInstance(className);
+            UnregisterInstance(className);
         }
 
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void RemoveInstance(string key)
+        public void UnregisterInstance(string key)
         {
             _dicInstance.Remove(key);
         }
@@ -136,7 +136,7 @@ namespace SingletonGroup
         /// <summary>
         /// 登録された全てのインスタンスを削除
         /// </summary>
-        public void AllRemoveInstance()
+        public void AllUnregisterInstance()
         {
             _dicInstance.Clear();
         }

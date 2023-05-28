@@ -13,11 +13,11 @@ namespace SingletonGroup.Example
                 // 
                 var nodeA = new SingletonNode();
                 var dataA = new ExampleDataA();
-                nodeA.AddInstance(dataA);
+                nodeA.RegisterInstance(dataA);
                 // 
                 var nodeB = new SingletonNode();
                 var dataB = new ExampleDataB();
-                nodeB.AddInstance(dataB);
+                nodeB.RegisterInstance(dataB);
                 // ノードを構成
                 addNode(s_rootNode, typeof(ExampleClassA), nodeA);
                 addNode(s_rootNode, typeof(ExampleClassB), nodeB);

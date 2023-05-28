@@ -5,20 +5,20 @@ namespace SingletonGroup
     public interface ISingletonNodeForInstanceEditing
     {
         /// <summary>インスタンス追加</summary>
-        void AddInstance(object instance);
+        void RegisterInstance(object instance);
         /// <summary>インスタンス追加</summary>
-        void AddInstance(Type type, object instance);
+        void RegisterInstance(Type type, object instance);
         /// <summary>インスタンス追加</summary>
-        void AddInstance(string className, object instance);
+        void RegisterInstance(string className, object instance);
 
         /// <summary>登録されたインスタンスを削除</summary>
-        void RemoveInstance(object instance);
+        void UnregisterInstance(object instance);
         /// <summary>登録されたインスタンスを削除</summary>
-        void RemoveInstance(Type type);
+        void UnregisterInstance(Type type);
         /// <summary>登録されたインスタンスを削除</summary>
-        void RemoveInstance(string key);
+        void UnregisterInstance(string key);
 
         /// <summary>登録された全てのインスタンスを削除</summary>
-        void AllRemoveInstance();
+        void AllUnregisterInstance();
     }   
 }
