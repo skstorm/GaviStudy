@@ -8,7 +8,11 @@ namespace SingletonContainer
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static TTree CreateSingletonTree<T, TTree>(this T _current)
+        /// <param name="current">この拡張関数を使うインスタンス</param>
+        /// <typeparam name="T">この拡張関数を使うインスタンスの型</typeparam>
+        /// <typeparam name="TTree">SingletonTreeのGeneric</typeparam>
+        /// <returns>SingletonTree</returns>
+        public static TTree CreateSingletonTree<T, TTree>(this T current)
             where T : class, ISingletonField
             where TTree : ISingletonTree<ISingletonField>, new()
         {
@@ -18,11 +22,16 @@ namespace SingletonContainer
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static TTree CreateSingletonTree<T, TTree>(this T _current, string _findStartNodeKey)
+        /// <param name="current">この拡張関数を使うインスタンス</param>
+        /// <param name="findStartNodeKey">検索を開始するノードのキー</param>
+        /// <typeparam name="T">この拡張関数を使うインスタンスの型</typeparam>
+        /// <typeparam name="TTree">SingletonTreeのGeneric</typeparam>
+        /// <returns>SingletonTree</returns>
+        public static TTree CreateSingletonTree<T, TTree>(this T current, string findStartNodeKey)
             where T : class, ISingletonField
             where TTree : ISingletonTree<ISingletonField>, new()
         {
-            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>(_findStartNodeKey);
+            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>(findStartNodeKey);
         }
     }
 }

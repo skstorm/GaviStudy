@@ -6,6 +6,9 @@ namespace SingletonContainer.Example
     public class ExampleSingletonTree<TOwnerClass> : SingletonTree<TOwnerClass>
         where TOwnerClass : ISingletonField
     {
+        /// <summary>
+        /// Treeの親子関係を作成
+        /// </summary>
         protected override void setupTree()
         {
             var nodeA = new SingletonNode();

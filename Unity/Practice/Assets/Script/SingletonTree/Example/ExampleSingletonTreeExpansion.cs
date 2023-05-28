@@ -5,10 +5,10 @@ namespace SingletonContainer.Example
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static ExampleSingletonTree<T> CreateSingletonTree<T>(this T _current)
+        public static ExampleSingletonTree<T> CreateSingletonTree<T>(this T current)
             where T : class, ISingletonField
         {
-            return _current.CreateSingletonTree<T, ExampleSingletonTree<T>>();
+            return current.CreateSingletonTree<T, ExampleSingletonTree<T>>();
         }
     }
 }
