@@ -1,19 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SingletonContainer.Example
 {
-    public class ExampleBaseClass : ISingletonField
-    {
-        protected ISingletonTree<ExampleBaseClass> _tree;
-
-        public virtual void Run()
-        {
-        }
-    }
-
-    public class ExampleClassA : ExampleBaseClass
+    public class ExampleClassA : SingletonTreeHolder
     {
         public override void Run()
         {
@@ -21,11 +10,12 @@ namespace SingletonContainer.Example
             _tree = tree;
 
             var dataA = _tree.Get<ExampleDataA>();
+            
             Debug.Log(dataA.DataA);
         }
     }
 
-    public class ExampleClassB : ExampleBaseClass
+    public class ExampleClassB : SingletonTreeHolder
     {
         public override void Run()
         {

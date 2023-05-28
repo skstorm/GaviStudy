@@ -10,7 +10,7 @@ namespace SingletonContainer.Example
             
             var nodeA = new ExampleClassA();
             nodeA.Run();
-            
+
             var nodeB = new ExampleClassB();
             nodeB.Run();
         }
