@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Script\Singleton.cs" />
      <Compile Include="Assets\Script\FSM\StateMachine.cs" />
+     <Compile Include="Assets\Script\SingletonTree\Example\TestExampleMain.cs" />
      <Compile Include="Assets\Script\CoroutineFSM\TestCoroutineFSM.cs" />
      <Compile Include="Assets\Script\TestAssetBundle\LoadAssetBundleExample.cs" />
      <Compile Include="Assets\Script\NewFsm\StateMachine.cs" />
@@ -57,11 +58,16 @@
      <Compile Include="Assets\Script\FSM\TestState.cs" />
      <Compile Include="Assets\Script\SingletonTree\Example\ExampleData.cs" />
      <Compile Include="Assets\Script\Test.cs" />
+     <Compile Include="Assets\Script\SingletonTree\SingletonTreeHolder.cs" />
      <Compile Include="Assets\Script\EtcMain\Covariance.cs" />
      <Compile Include="Assets\Script\Async\TestAsync.cs" />
+     <Compile Include="Assets\Script\SingletonTree\SingletonTreeTreeInitializer.cs" />
+     <Compile Include="Assets\Script\SingletonTree\Example\ExampleSingletonTreeExpansion.cs" />
      <Compile Include="Assets\Script\AsyncFsm\TestAsyncFsm.cs" />
+     <Compile Include="Assets\Script\SingletonTree\GenericSingletonTreeExpansion.cs" />
      <Compile Include="Assets\Script\SingletonTree\SingletonNode.cs" />
      <Compile Include="Assets\Script\NewFsm\TestTransition.cs" />
+     <Compile Include="Assets\Script\SingletonTree\ISingletonTree.cs" />
      <Compile Include="Assets\Script\NewFsm\TestState.cs" />
      <Compile Include="Assets\Script\FSM\State.cs" />
      <Compile Include="Assets\Script\NewFsm\Singleton.cs" />
@@ -75,10 +81,6 @@
      <Compile Include="Assets\Script\NewFsm\TestFsm.cs" />
      <Compile Include="Assets\Script\SingletonTree\Example\ExampleSingletonTree.cs" />
      <Compile Include="Assets\Script\SingletonTree\Example\ExampleMain.cs" />
-     <Compile Include="Assets\Script\SingletonTree\ISingletonTree.cs" />
-     <Compile Include="Assets\Script\SingletonTree\BaseSingletonTree.cs" />
-     <Compile Include="Assets\Script\SingletonTree\SingletonTreeTreeInitializer.cs" />
-     <Compile Include="Assets\Script\SingletonTree\GenericSingletonTreeExpansion.cs" />
      <None Include="Assets\Resources\BillingMode.json" />
      <None Include="Assets\Shader\CustomRimLight.shader" />
      <None Include="Assets\Shader\CustomLambertLight.shader" />
