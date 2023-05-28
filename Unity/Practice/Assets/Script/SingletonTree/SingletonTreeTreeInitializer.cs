@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace SingletonContainer
 {
     /// <summary>
@@ -16,16 +12,12 @@ namespace SingletonContainer
         /// </summary>
         public static void InitSingletonTree<TTree>() where TTree : SingletonTree<ISingletonField>, new()
         {
-            //var singletonTree = Yggdrasil<ISingletonField>.Create();
             var singletonTree = new TTree();
             singletonTree.OnceInit();
         }
 
         /// <summary>
         /// シングルトンツリー生成（クラスのフィールドで生成したい時）
-        /// ＊＊注意＊＊
-        /// １．通常メソッドの中では使わないこと
-        /// ２．TNodeTypeはこの関数を呼ぶクラスの型にすること
         /// </summary>
         public static TTree CreateSingletonTree<TTree>() where TTree : ISingletonTree<ISingletonField>, new()
         {
@@ -37,9 +29,6 @@ namespace SingletonContainer
         /// <summary>
         /// シングルトンツリー生成（クラスのフィールドで生成したい時）
         /// 検索開始のノードをKeyで指定可能
-        /// ＊＊注意＊＊
-        /// １．通常メソッドの中では使わないこと
-        /// ２．TNodeTypeはこの関数を呼ぶクラスの型にすること
         /// </summary>
         public static TTree CreateSingletonTree<TTree>(string _findStartNodeKey)  where TTree : ISingletonTree<ISingletonField>, new()
         {

@@ -8,20 +8,17 @@ namespace SingletonContainer.Example
     {
         protected override void setupTree()
         {
-            // クウカ飛ぶ
-            {
-                // 
-                var nodeA = new SingletonNode();
-                var dataA = new ExampleDataA();
-                nodeA.RegisterInstance(dataA);
-                // 
-                var nodeB = new SingletonNode();
-                var dataB = new ExampleDataB();
-                nodeB.RegisterInstance(dataB);
-                // ノードを構成
-                addNode(s_rootNode, typeof(ExampleClassA), nodeA);
-                addNode(s_rootNode, typeof(ExampleClassB), nodeB);
-            }
+            var nodeA = new SingletonNode();
+            var dataA = new ExampleDataA();
+            nodeA.RegisterInstance(dataA);
+
+            var nodeB = new SingletonNode();
+            var dataB = new ExampleDataB();
+            nodeB.RegisterInstance(dataB);
+
+            // ノードを構成
+            addNode(s_rootNode, typeof(ExampleClassA), nodeA);
+            addNode(s_rootNode, typeof(ExampleClassB), nodeB);
         }
     }
 }
