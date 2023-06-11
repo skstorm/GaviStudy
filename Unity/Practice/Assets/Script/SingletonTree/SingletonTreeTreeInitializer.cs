@@ -2,7 +2,6 @@ namespace SingletonContainer
 {
     /// <summary>
     /// 初期化用（指定のタイミングでSingletonTreeを初期化したい場合使う）
-    /// SingletonTreeTreeInitializer
     /// </summary>
     public abstract class SingletonTreeTreeInitializer
     {
@@ -10,7 +9,7 @@ namespace SingletonContainer
         /// 初期化
         /// シングルトンツリーを使う前に、必ず1回呼ばないといけない
         /// </summary>
-        public static void InitSingletonTree<TTree>() where TTree : SingletonTree<ISingletonField>, new()
+        public static void InitSingletonTree<TTree>() where TTree : ISingletonTree<ISingletonField>, new()
         {
             var singletonTree = new TTree();
             singletonTree.OnceInit();
