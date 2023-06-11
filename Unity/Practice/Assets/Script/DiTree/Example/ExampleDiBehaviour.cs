@@ -9,7 +9,7 @@ namespace DiTreeGroup.Example
             DiTreeInitializer.InitDiTree<ExampleDiTree<IDiField>>();
             
             var main = new ExampleDiMain();
-            main.Run();
+            main.Init();
         }
     }
 }

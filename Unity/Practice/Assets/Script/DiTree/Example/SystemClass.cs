@@ -14,8 +14,6 @@ namespace DiTreeGroup.Example
         {
             var currentNode = _tree.GetCurrentNode();
             _tree.AddNode(currentNode, typeof(BattleSystemChara));
-            currentNode.RegisterInstance(this);
-
             _characterList.Add(new BattleSystemChara(1));
             _characterList.Add(new BattleSystemChara(2));
             _characterList.Add(new BattleSystemChara(3));
@@ -23,12 +21,18 @@ namespace DiTreeGroup.Example
 
         public override void Run()
         {
-            var dataA = _tree.Get<ExampleDataA>();
-            Debug.Log(dataA.DataA);
+            //var dataA = _tree.Get<ExampleDataA>();
+            //Debug.Log(dataA.DataA);
 
             foreach (var chara in _characterList)
             {
                 chara.Run();
+            }
+            
+            var sceneManager = _tree.Get<BattleSceneManager>();
+            if (sceneManager == null)
+            {
+                Debug.Log($"SystemManagerからSceneManagerの取得失敗");
             }
         }
     }
