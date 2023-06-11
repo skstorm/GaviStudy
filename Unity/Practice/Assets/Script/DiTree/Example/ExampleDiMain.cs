@@ -8,25 +8,25 @@ namespace DiTreeGroup.Example
         {
             // 先にノードを追加してからInstanceを作る必要がある
             var currentNode = _tree.GetCurrentNode();
-            var sysMgrNode = _tree.AddNode(currentNode, typeof(BattleSystemManager));
-            var sceneMgrNode = _tree.AddNode(currentNode, typeof(BattleSceneManager));
+            var logicMgrNode = _tree.AddNode(currentNode, typeof(BattleManagerLogic));
+            var viewMgrNode = _tree.AddNode(currentNode, typeof(BattleManagerView));
             
             var treeHolderList = new List<DiTreeHolder>();
-            var systemManager = new BattleSystemManager(); 
-            var sceneManager = new BattleSceneManager();
-            treeHolderList.Add(systemManager);
-            treeHolderList.Add(sceneManager);
+            var logicManager = new BattleManagerLogic(); 
+            var viewManager = new BattleManagerView();
+            treeHolderList.Add(logicManager);
+            treeHolderList.Add(viewManager);
 
             foreach (var treeHolder in treeHolderList)
             {
                 treeHolder.SetupTree();
             }
             
-            sysMgrNode.RegisterInstance(systemManager);
-            sceneMgrNode.RegisterInstance(systemManager);
+            logicMgrNode.RegisterInstance(logicManager);
+            viewMgrNode.RegisterInstance(logicManager);
 
-            systemManager.Run();
-            sceneManager.Run();
+            logicManager.Run();
+            viewManager.Run();
         }
 
         public override void Run()

@@ -10,8 +10,8 @@ namespace DiTreeGroup.Example
             DiTreeInitializer.InitDiTree<ExampleDiTree<IDiField>>();
 
             var treeHolderList = new List<DiTreeHolder>();
-            var systemManager = new BattleSystemManager(); 
-            var sceneManager = new BattleSceneManager();
+            var systemManager = new BattleManagerLogic(); 
+            var sceneManager = new BattleManagerView();
             treeHolderList.Add(systemManager);
             treeHolderList.Add(sceneManager);
 
