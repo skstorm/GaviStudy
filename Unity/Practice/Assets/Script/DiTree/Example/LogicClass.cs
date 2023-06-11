@@ -6,7 +6,7 @@ namespace DiTreeGroup.Example
 {
     public class BattleManagerLogic : ExampleClassBase<BattleManagerLogic>
     {
-        public string Id => "BattleSystemManager";
+        public string Id => "BattleManagerLogic";
 
         private List<BattleCharaLogic> _characterList = new();
 
