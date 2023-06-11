@@ -2,17 +2,14 @@ using UnityEngine;
 
 namespace DiTreeGroup.Example
 {
-    public class TestExampleMain : MonoBehaviour
+    public class ExampleDiBehaviour : MonoBehaviour
     {
         private void OnEnable()
         {
             DiTreeInitializer.InitDiTree<ExampleDiTree<IDiField>>();
             
-            var nodeA = new ExampleClassA();
-            nodeA.Run();
-
-            var nodeB = new ExampleClassB();
-            nodeB.Run();
+            var main = new ExampleDiMain();
+            main.Run();
         }
     }
 }

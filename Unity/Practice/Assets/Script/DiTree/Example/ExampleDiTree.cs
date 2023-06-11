@@ -20,8 +20,8 @@ namespace DiTreeGroup.Example
             nodeB.RegisterInstance(dataB);
 
             // ノードを構成
-            addNode(SRootNode, typeof(ExampleClassA), nodeA);
-            addNode(SRootNode, typeof(ExampleClassB), nodeB);
+            addNode(SRootNode, typeof(BattleSystemManager), nodeA);
+            addNode(SRootNode, typeof(BattleSceneManager), nodeB);
         }
     }
 }

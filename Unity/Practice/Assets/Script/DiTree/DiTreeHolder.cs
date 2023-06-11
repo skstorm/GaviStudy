@@ -16,5 +16,10 @@ namespace DiTreeGroup
         {
             _tree = tree;
         }
+
+        public virtual void SetupTree()
+        {
+
+        }
     }
 }
