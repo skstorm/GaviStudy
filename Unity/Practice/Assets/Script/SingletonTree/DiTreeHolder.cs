@@ -6,13 +6,13 @@ namespace SingletonContainer
     public abstract class SingletonTreeHolder : ISingletonField
     {
         /// <summary>SingletonTreeのInterface</summary>
-        protected readonly ISingletonTree<ISingletonField> _tree;
+        protected readonly IDiTree<ISingletonField> _tree;
 
         /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="tree">SingletonTreeのInterface</param>
-        protected SingletonTreeHolder(ISingletonTree<ISingletonField> tree)
+        protected SingletonTreeHolder(IDiTree<ISingletonField> tree)
         {
             _tree = tree;
         }

@@ -1,8 +1,8 @@
 using System;
 
-namespace SingletonContainer
+namespace DiTreeGroup
 {
-    public interface ISingletonNodeForInstanceEditing
+    public interface IDiNodeForInstanceEditing
     {
         /// <summary>インスタンス追加</summary>
         void RegisterInstance(object instance);

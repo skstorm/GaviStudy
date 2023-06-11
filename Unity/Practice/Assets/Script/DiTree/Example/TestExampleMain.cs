@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace SingletonContainer.Example
+namespace DiTreeGroup.Example
 {
     public class TestExampleMain : MonoBehaviour
     {
         private void OnEnable()
         {
-            SingletonTreeTreeInitializer.InitSingletonTree<ExampleSingletonTree<ISingletonField>>();
+            DiTreeInitializer.InitDiTree<ExampleDiTree<IDiField>>();
             
             var nodeA = new ExampleClassA();
             nodeA.Run();

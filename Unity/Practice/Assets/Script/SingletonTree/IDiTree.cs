@@ -2,7 +2,7 @@ using System;
 
 namespace SingletonContainer
 {
-    public interface ISingletonTree<out TOwnerClass> where TOwnerClass : ISingletonField
+    public interface IDiTree<out TOwnerClass> where TOwnerClass : ISingletonField
     {
         /// <summary>
         /// 最初一回だけ行われる初期化処理

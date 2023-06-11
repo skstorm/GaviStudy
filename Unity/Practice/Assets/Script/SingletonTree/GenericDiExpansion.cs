@@ -13,10 +13,10 @@ namespace SingletonContainer
         /// <typeparam name="TTree">SingletonTreeのGeneric</typeparam>
         /// <returns>SingletonTree</returns>
         public static TTree CreateSingletonTree<T, TTree>(this T current)
-            where T : class, ISingletonField
-            where TTree : ISingletonTree<ISingletonField>, new()
+            where T : class, IDiField
+            where TTree : IDiTree<IDiField>, new()
         {
-            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>();
+            return DiTreeTreeInitializer.CreateDiTree<TTree>();
         }
 
         /// <summary>
@@ -28,10 +28,10 @@ namespace SingletonContainer
         /// <typeparam name="TTree">SingletonTreeのGeneric</typeparam>
         /// <returns>SingletonTree</returns>
         public static TTree CreateSingletonTree<T, TTree>(this T current, string findStartNodeKey)
-            where T : class, ISingletonField
-            where TTree : ISingletonTree<ISingletonField>, new()
+            where T : class, IDiField
+            where TTree : IDiTree<IDiField>, new()
         {
-            return SingletonTreeTreeInitializer.CreateSingletonTree<TTree>(findStartNodeKey);
+            return DiTreeTreeInitializer.CreateDiTree<TTree>(findStartNodeKey);
         }
     }
 }

@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace SingletonContainer
+namespace DiTreeGroup
 {
-    public class SingletonNode : ISingletonNodeForInstanceEditing
+    public class DiNode : IDiNodeForInstanceEditing
     {
         /// <summary> 親 </summary>
-        private SingletonNode _parent = null;
+        private DiNode _parent = null;
 
         /// <summary> 子供 </summary>
-        private Dictionary<string, SingletonNode> _dicChild = new();
+        private Dictionary<string, DiNode> _dicChild = new();
 
         /// <summary> 保持するインスタンスの辞書 </summary>
         private Dictionary<string, object> _dicInstance = new();
@@ -17,14 +17,14 @@ namespace SingletonContainer
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public SingletonNode()
+        public DiNode()
         {
         }
 
         /// <summary>
         /// 親ノードを設定
         /// </summary>
-        public void SetParent(SingletonNode parent)
+        public void SetParent(DiNode parent)
         {
             _parent = parent;
         }
@@ -32,7 +32,7 @@ namespace SingletonContainer
         /// <summary>
         /// 子供ノードを追加する
         /// </summary>
-        public void AddChild(string key, SingletonNode child)
+        public void AddChild(string key, DiNode child)
         {
             child.SetParent(this);
             _dicChild.Add(key, child);
@@ -49,7 +49,7 @@ namespace SingletonContainer
         /// <summary>
         /// 子供ノードからKeyのノードを検索する
         /// </summary>
-        public SingletonNode FindChild(string key)
+        public DiNode FindChild(string key)
         {
             // 子供がいなかったらNullを返す
             if (_dicChild.Count <= 0)
@@ -70,7 +70,7 @@ namespace SingletonContainer
 
                 while (e.MoveNext())
                 {
-                    SingletonNode node = e.Current.Value.FindChild(key);
+                    DiNode node = e.Current.Value.FindChild(key);
 
                     // nullでない子供が見つかったらそいつを返す
                     if (node != null)
@@ -162,7 +162,7 @@ namespace SingletonContainer
         /// <summary>
         /// クラス名で指定したインスタンスを取得（親にさかのぼりながら探索する）
         /// </summary>
-        private T getWithClassName<T>(string className, SingletonNode node)
+        private T getWithClassName<T>(string className, DiNode node)
         {
             if (_dicInstance.ContainsKey(className))
             {

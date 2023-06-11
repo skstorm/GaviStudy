@@ -1,9 +1,9 @@
-namespace SingletonContainer
+namespace DiTreeGroup
 {
     /// <summary>
     /// SingletonTreeを取得可能にするInterface
     /// </summary>
-    public interface ISingletonField
+    public interface IDiField
     {
     }
     /*

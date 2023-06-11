@@ -1,12 +1,12 @@
 using HanPractice;
 
-namespace SingletonContainer.Example
+namespace DiTreeGroup.Example
 {
     public class ExampleMain : BaseExampleClass
     {
         public override void Run()
         {
-            SingletonTreeTreeInitializer.InitSingletonTree<ExampleSingletonTree<ISingletonField>>();
+            DiTreeInitializer.InitDiTree<ExampleDiTree<IDiField>>();
             
             var nodeA = new ExampleClassA();
             nodeA.Run();
