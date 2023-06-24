@@ -69,7 +69,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 初期化
         /// </summary>
-        public void Init(string findStartNodeKey)
+        public void Init(in string findStartNodeKey)
         {
             // 現在ノードを取得
             string currentKey = typeof(TOwnerClass).ToString();
@@ -89,7 +89,7 @@ namespace DiTreeGroup
         /// <summary>
         /// ノードの追加
         /// </summary>
-        protected void addNode(DiNode parentNode, Type childKey, DiNode childNode)
+        protected void addNode(in DiNode parentNode, in Type childKey, in DiNode childNode)
         {
             string key = childKey.ToString();
             s_dicNode.Add(key, childNode);
@@ -101,7 +101,7 @@ namespace DiTreeGroup
         /// 動的にノードを追加するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        public DiNode AddNode(IDiNodeForInstanceEditing parentNodeEditing, Type childKey)
+        public DiNode AddNode(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey)
         {
             var childNode = new DiNode();
             var parentNode = (DiNode)parentNodeEditing;
@@ -114,7 +114,7 @@ namespace DiTreeGroup
         /// 動的にノードを追加するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        public DiNode AddNodeNotDic(IDiNodeForInstanceEditing parentNodeEditing, Type childKey)
+        public DiNode AddNodeNotDic(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey)
         {
             var childNode = new DiNode();
             var parentNode = (DiNode)parentNodeEditing;
@@ -128,7 +128,7 @@ namespace DiTreeGroup
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        public void RemoveNode(IDiNodeForInstanceEditing parentNodeEditing, string key)
+        public void RemoveNode(in IDiNodeForInstanceEditing parentNodeEditing, in string key)
         {
             s_dicNode.Remove(key);
             var parentNode = (DiNode)parentNodeEditing;
@@ -140,7 +140,7 @@ namespace DiTreeGroup
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        public void RemoveNode(IDiNodeForInstanceEditing parentNodeEditing, Type childKey)
+        public void RemoveNode(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey)
         {
             var key = childKey.ToString();
             RemoveNode(parentNodeEditing, key);
@@ -151,7 +151,7 @@ namespace DiTreeGroup
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        public void RemoveNodeNotDic(IDiNodeForInstanceEditing parentNodeEditing, Type childKey)
+        public void RemoveNodeNotDic(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey)
         {
             var key = childKey.ToString();
             var parentNode = (DiNode)parentNodeEditing;
@@ -169,7 +169,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 登録されたインスタンスを取得する
         /// </summary>
-        public T Get<T>(string key)
+        public T Get<T>(in string key)
         {
             return CurrentNode.Get<T>(key);
         }
@@ -193,7 +193,7 @@ namespace DiTreeGroup
         /// <summary>
         /// ノード取得
         /// </summary>
-        public IDiNodeForInstanceEditing GetNode(string key)
+        public IDiNodeForInstanceEditing GetNode(in string key)
         {
             return SRootNode.FindChild(key);
         }
@@ -201,7 +201,7 @@ namespace DiTreeGroup
         /// <summary>
         /// ノードの追加
         /// </summary>
-        public void AddNode(DiNode parent, string key, DiNode childNode)
+        public void AddNode(in DiNode parent, in string key, in DiNode childNode)
         {
             s_dicNode.Add(key, childNode);
             parent.AddChild(key, childNode);

@@ -29,7 +29,7 @@ namespace DiTreeGroup
         /// Diツリー生成（クラスのフィールドで生成したい時）
         /// 検索開始のノードをKeyで指定可能
         /// </summary>
-        public static TTree CreateDiTree<TTree>(string _findStartNodeKey)  where TTree : IDiTree<IDiField>, new()
+        public static TTree CreateDiTree<TTree>(in string _findStartNodeKey)  where TTree : IDiTree<IDiField>, new()
         {
             var diTree = new TTree();
             diTree.Init(_findStartNodeKey);

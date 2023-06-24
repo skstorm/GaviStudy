@@ -5,18 +5,18 @@ namespace DiTreeGroup
     public interface IDiNodeForInstanceEditing
     {
         /// <summary>インスタンス追加</summary>
-        void RegisterInstance(object instance);
+        void RegisterInstance(in object instance);
         /// <summary>インスタンス追加</summary>
-        void RegisterInstance(Type type, object instance);
+        void RegisterInstance(in Type type, in object instance);
         /// <summary>インスタンス追加</summary>
-        void RegisterInstance(string className, object instance);
+        void RegisterInstance(in string className, in object instance);
 
         /// <summary>登録されたインスタンスを削除</summary>
-        void UnregisterInstance(object instance);
+        void UnregisterInstance(in object instance);
         /// <summary>登録されたインスタンスを削除</summary>
-        void UnregisterInstance(Type type);
+        void UnregisterInstance(in Type type);
         /// <summary>登録されたインスタンスを削除</summary>
-        void UnregisterInstance(string key);
+        void UnregisterInstance(in string key);
 
         /// <summary>登録された全てのインスタンスを削除</summary>
         void AllUnregisterInstance();

@@ -17,42 +17,42 @@ namespace DiTreeGroup
         /// <summary>
         /// 初期化
         /// </summary>
-        void Init(string findStartNodeKey);
+        void Init(in string findStartNodeKey);
 
         /// <summary>
         /// ノードの追加 (外部公開用)
         /// 動的にノードを追加するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        DiNode AddNode(IDiNodeForInstanceEditing parentNodeEditing, Type childKey);
+        DiNode AddNode(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey);
 
         /// <summary>
         /// ノードの追加 (外部公開用)
         /// 動的にノードを追加するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        DiNode AddNodeNotDic(IDiNodeForInstanceEditing parentNodeEditing, Type childKey);
+        DiNode AddNodeNotDic(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey);
 
         /// <summary>
         /// ノードの削除 (外部公開用)
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        void RemoveNode(IDiNodeForInstanceEditing parentNodeEditing, string key);
+        void RemoveNode(in IDiNodeForInstanceEditing parentNodeEditing, in string key);
 
         /// <summary>
         /// ノードの削除 (外部公開用)
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        void RemoveNode(IDiNodeForInstanceEditing parentNodeEditing, Type childKey);
+        void RemoveNode(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey);
 
         /// <summary>
         /// ノードの削除 (外部公開用)
         /// 動的にノードを削除するときに使う
         /// AddNodeとRemoveNodeはセットで使おう
         /// </summary>
-        void RemoveNodeNotDic(IDiNodeForInstanceEditing parentNodeEditing, Type childKey);
+        void RemoveNodeNotDic(in IDiNodeForInstanceEditing parentNodeEditing, in Type childKey);
 
         /// <summary>
         /// 登録されたインスタンスを取得する
@@ -62,7 +62,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 登録されたインスタンスを取得する
         /// </summary>
-        T Get<T>(string key);
+        T Get<T>(in string key);
 
         /// <summary>
         /// 現在ノード取得（インスタンス編集用）
@@ -77,11 +77,11 @@ namespace DiTreeGroup
         /// <summary>
         /// ノード取得
         /// </summary>
-        IDiNodeForInstanceEditing GetNode(string key);
+        IDiNodeForInstanceEditing GetNode(in string key);
 
         /// <summary>
         /// ノードの追加
         /// </summary>
-        void AddNode(DiNode parent, string key, DiNode childNode);
+        void AddNode(in DiNode parent, in string key, in DiNode childNode);
     }
 }

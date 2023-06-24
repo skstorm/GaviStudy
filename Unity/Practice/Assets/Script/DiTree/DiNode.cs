@@ -24,7 +24,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 親ノードを設定
         /// </summary>
-        public void SetParent(DiNode parent)
+        public void SetParent(in DiNode parent)
         {
             _parent = parent;
         }
@@ -32,7 +32,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 子供ノードを追加する
         /// </summary>
-        public void AddChild(string key, DiNode child)
+        public void AddChild(in string key, in DiNode child)
         {
             child.SetParent(this);
             _dicChild.Add(key, child);
@@ -41,7 +41,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 子供ノードを削除する
         /// </summary>
-        public void RemoveChild(string key)
+        public void RemoveChild(in string key)
         {
             _dicChild.Remove(key);
         }
@@ -49,7 +49,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 子供ノードからKeyのノードを検索する
         /// </summary>
-        public DiNode FindChild(string key)
+        public DiNode FindChild(in string key)
         {
             // 子供がいなかったらNullを返す
             if (_dicChild.Count <= 0)
@@ -86,7 +86,7 @@ namespace DiTreeGroup
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void RegisterInstance(object instance)
+        public void RegisterInstance(in object instance)
         {
             RegisterInstance(instance.GetType(), instance);
         }
@@ -94,7 +94,7 @@ namespace DiTreeGroup
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void RegisterInstance(Type type, object instance)
+        public void RegisterInstance(in Type type, in object instance)
         {
             string className = type.ToString();
             RegisterInstance(className, instance);
@@ -103,7 +103,7 @@ namespace DiTreeGroup
         /// <summary>
         /// インスタンス追加
         /// </summary>
-        public void RegisterInstance(string className, object instance)
+        public void RegisterInstance(in string className, in object instance)
         {
             _dicInstance.Add(className, instance);
         }
@@ -111,7 +111,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void UnregisterInstance(object instance)
+        public void UnregisterInstance(in object instance)
         {
             UnregisterInstance(instance.GetType());
         }
@@ -119,7 +119,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void UnregisterInstance(Type type)
+        public void UnregisterInstance(in Type type)
         {
             string className = type.ToString();
             UnregisterInstance(className);
@@ -128,7 +128,7 @@ namespace DiTreeGroup
         /// <summary>
         /// 登録されたインスタンスを削除
         /// </summary>
-        public void UnregisterInstance(string key)
+        public void UnregisterInstance(in string key)
         {
             _dicInstance.Remove(key);
         }
@@ -154,7 +154,7 @@ namespace DiTreeGroup
         /// <summary>
         /// クラス名で指定したインスタンスを取得（初期ステップ）
         /// </summary>
-        public T Get<T>(string key)
+        public T Get<T>(in string key)
         {
             return getWithClassName<T>(key, this);
         }
@@ -162,7 +162,7 @@ namespace DiTreeGroup
         /// <summary>
         /// クラス名で指定したインスタンスを取得（親にさかのぼりながら探索する）
         /// </summary>
-        private T getWithClassName<T>(string className, DiNode node)
+        private T getWithClassName<T>(in string className, in DiNode node)
         {
             if (_dicInstance.ContainsKey(className))
             {
