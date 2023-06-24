@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace DiTreeGroup.Example
 {
     public abstract class ExampleClassBase<T> : DiTreeHolder

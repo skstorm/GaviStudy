@@ -34,6 +34,7 @@ namespace DiTreeGroup.Example
             // 各ノードにアクセスしたいInstanceを登録する
             logicMgrNode.RegisterInstance(logicManager);
             viewMgrNode.RegisterInstance(logicManager);
+            viewMgrNode.RegisterInstance(viewManager);
 
             // 実行
             logicManager.Run();

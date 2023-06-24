@@ -2,6 +2,9 @@ using System;
 
 namespace DiTreeGroup
 {
+    /// <summary>
+    /// DiNodeのInterface（Instance編集可能）
+    /// </summary>
     public interface IDiNodeForInstanceEditing
     {
         /// <summary>インスタンス追加</summary>

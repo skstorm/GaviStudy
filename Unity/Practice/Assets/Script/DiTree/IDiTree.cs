@@ -2,7 +2,11 @@ using System;
 
 namespace DiTreeGroup
 {
-    public interface IDiTree<out TOwnerClass> where TOwnerClass : IDiField
+    /// <summary>
+    /// DiTreeのInterface
+    /// </summary>
+    /// <typeparam name="TOwner">DiTreeを持つもの</typeparam>
+    public interface IDiTree<out TOwner> where TOwner : IDiField
     {
         /// <summary>
         /// 最初一回だけ行われる初期化処理

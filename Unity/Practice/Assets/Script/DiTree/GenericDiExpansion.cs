@@ -11,7 +11,7 @@ namespace DiTreeGroup
         /// <param name="current">この拡張関数を使うインスタンス</param>
         /// <typeparam name="T">この拡張関数を使うインスタンスの型</typeparam>
         /// <typeparam name="TTree">DiTreeのGeneric</typeparam>
-        /// <returns>SingletonTree</returns>
+        /// <returns>DiTree</returns>
         public static TTree CreateDiTree<T, TTree>(this T current)
             where T : class, IDiField
             where TTree : IDiTree<IDiField>, new()

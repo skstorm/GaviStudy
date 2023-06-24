@@ -9,10 +9,10 @@ namespace DiTreeGroup
         private DiNode _parent = null;
 
         /// <summary> 子供 </summary>
-        private Dictionary<string, DiNode> _dicChild = new();
+        private readonly Dictionary<string, DiNode> _dicChild = new();
 
         /// <summary> 保持するインスタンスの辞書 </summary>
-        private Dictionary<string, object> _dicInstance = new();
+        private readonly Dictionary<string, object> _dicInstance = new();
 
         /// <summary>
         /// コンストラクタ

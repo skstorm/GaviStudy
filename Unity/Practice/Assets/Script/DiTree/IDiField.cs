@@ -1,24 +1,24 @@
 namespace DiTreeGroup
 {
     /// <summary>
-    /// SingletonTreeを取得可能にするInterface
+    /// DiTreeを取得可能にするInterface
     /// </summary>
     public interface IDiField
     {
     }
     /*
-     * 以下のクラスはSingletonTreeを継承したクラスで実装する必要がある
-     * XXXXSingletonTree はSingletonTreeを継承したクラス
+     * 以下のクラスはDiTreeを継承したクラスで実装する必要がある
+     * XXXXDiTree はDiTreeを継承したクラス
      * 
-    public static class XXXXSingletonTreeExpansion
+    public static class XXXXDiTreeExpansion
     {
         /// <summary>
         /// SingletonTreeを生成する
         /// </summary>
-        public static XXXXSingletonTree<T> CreateSingletonTree<T>(this T _current)
+        public static XXXXDiTree<T> CreateDiTree<T>(this T _current)
             where T : class, ISingletonField
         {
-            return _current.CreateSingletonTree<T, XXXXSingletonTree<T>>();
+            return _current.CreateDiTree<T, XXXXDiTree<T>>();
         }
     }
     */
