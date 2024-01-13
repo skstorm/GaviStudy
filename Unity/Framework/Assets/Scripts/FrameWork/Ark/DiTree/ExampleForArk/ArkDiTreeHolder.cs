@@ -8,7 +8,7 @@ namespace Ark.DiTree
         where T : class, IDiField
     {
 
-        protected ArkDiTreeHolder() : base(DiTreeInitializer.CreateDiTree<ArkDiTree<T>>())
+        protected ArkDiTreeHolder(bool isDiTreeInit) : base(DiTreeInitializer.CreateDiTree<ArkDiTree<T>>(isDiTreeInit))
         {
         }
 

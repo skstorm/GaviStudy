@@ -62,7 +62,7 @@ namespace DiTreeGroup.Example
         /// <summary>
         /// コンストラクター
         /// </summary>
-        public BattleCharaLogic(int charaId)
+        public BattleCharaLogic(int charaId) : base()
         {
             CharaId = charaId;
         }

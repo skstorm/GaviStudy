@@ -16,7 +16,7 @@ namespace DiTreeGroup
             where T : class, IDiField
             where TTree : IDiTree<IDiField>, new()
         {
-            return DiTreeInitializer.CreateDiTree<TTree>();
+            return DiTreeInitializer.CreateDiTree<TTree>(true);
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace Ark.Core
         // 前のシーンLogic
         private IBaseSceneLogic _prevSceneLogic = null;
 
-        public GameLogic(ISetting setting) : base()
+        public GameLogic(ISetting setting) : base(true)
         {
             // 開始シーン設定
             _currentSceneLogic = setting.CreateStartScene();
@@ -41,8 +41,14 @@ namespace Ark.Core
             base.StartNodeProcess();
 
             _gameView = _tree.Get<MyGameView>();
+
+            _tree.AddNode(_currentNode, _currentSceneLogic.GetType());
+            _currentSceneLogic.InitDiTree();
+
             IBaseSceneViewOrder sceneView = _gameView.StartUpSceneView(_currentSceneLogic);
             _currentSceneLogic.SetSceneViewOrder(sceneView);
+
+            sceneView.InitDi(true);
 
             ArkLog.Debug("Game Logic Start");
         }
@@ -81,10 +87,10 @@ namespace Ark.Core
             _currentSceneLogic.SetSceneViewOrder(sceneView);
             // 新しいSceneLogicを子供として追加
             _tree.AddNode(_currentNode, _currentSceneLogic.GetType());
-            _currentSceneLogic.InitDi2();
+            _currentSceneLogic.InitDiTree();
             _currentSceneLogic.RunAllStartNodeProc();
 
-            sceneView.InitDi();
+            sceneView.InitDi(true);
             sceneView.RunAllStartNodeProc();
 
             // 現在のSceneLogicに入る時の処理

@@ -22,8 +22,8 @@ namespace Ark.DiTree
             var cmdRecorderNode = AddNode(mainNode, typeof(CommandRecorder));
             var cmdReplayerNode = AddNode(mainNode, typeof(CommandReplayer));
 
-            var menuSceneLogicNode = AddNode(gameLogicNode, typeof(MenuSceneLogic));
-            var menuSceneViewNode = AddNode(gameViewNode, typeof(MenuSceneView));
+            //var menuSceneLogicNode = AddNode(gameLogicNode, typeof(MenuSceneLogic));
+            //var menuSceneViewNode = AddNode(gameViewNode, typeof(MenuSceneView));
 
 
             /*

@@ -23,7 +23,7 @@ namespace Ark.Core
 		protected IGameLogic_ForSceneLogic _gameLogic = null;
 		protected TView _sceneView = default(TView);
 
-		public BaseSceneLogic() : base()
+		public BaseSceneLogic() : base(false)
 		{
 		}
 

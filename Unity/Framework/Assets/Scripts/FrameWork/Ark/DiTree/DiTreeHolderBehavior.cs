@@ -8,7 +8,7 @@ namespace DiTreeGroup
 {
     public interface IDiTreeHolderBehavior : IDiTreeHolder
     {
-        void InitDi();
+        void InitDi(bool isDiTreeInit);
     }
 
     public abstract class DiTreeHolderBehavior : MonoBehaviour, IDiTreeHolderBehavior
@@ -19,31 +19,20 @@ namespace DiTreeGroup
 
         public DiNode GetCurrentNode() => _currentNode;
 
-        public abstract void InitDi();
+        public abstract void InitDi(bool isDiTreeInit);
 
 
         protected void InitDi(in IDiTree<IDiField> tree)
         {
             _tree = tree;
             _currentNode = _tree.GetCurrentNode();
-
-            if (_currentNode != null)
-            {
-                _currentNode.SetStartNodeAction(StartNodeProcess);
-                _currentNode.SetEndNodeAction(EndNodeProcess);
-            }
-        }
-
-        public void InitDi2()
-        {
-            initDi();
-        }
-
-        protected void initDi()
-        {
-            _currentNode = _tree.GetCurrentNode();
             _currentNode.SetStartNodeAction(StartNodeProcess);
             _currentNode.SetEndNodeAction(EndNodeProcess);
+        }
+
+        public void InitDiTree()
+        {
+            InitDi(true);
         }
 
         /// <summary>

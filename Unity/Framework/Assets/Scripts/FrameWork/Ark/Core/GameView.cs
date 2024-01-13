@@ -63,7 +63,8 @@ namespace Ark.Core
         {
             // SceneView生成
             _currentSceneView = CreateSceneView(sceneLogic);
-            _currentSceneView.InitDi();
+            // ギアに追加
+            _tree.AddNode(_currentNode, _currentSceneView.GetType());
 
             return _currentSceneView;
         }

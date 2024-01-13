@@ -13,7 +13,7 @@ namespace Ark.Core
 	{
 		private IGameLogic_ForLogicStateChanger _gameLogic = null;
 
-		public LogicStateChanger() : base()
+		public LogicStateChanger() : base(true)
 		{
 		}
 

@@ -19,7 +19,7 @@ namespace DiTreeGroup
         /// </summary>
         void SetupTree();
 
-        void InitDi2();
+        void InitDiTree();
 
         void RunAllStartNodeProc();
 

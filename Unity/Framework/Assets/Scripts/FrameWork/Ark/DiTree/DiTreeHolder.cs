@@ -22,26 +22,20 @@ namespace DiTreeGroup
         protected DiTreeHolder(in IDiTree<IDiField> tree)
         {
             _tree = tree;
-            _currentNode = _tree.GetCurrentNode();
-
-            if (_currentNode!=null)
+            if(_tree.IsInit)
             {
+                _currentNode = _tree.GetCurrentNode();
                 _currentNode.SetStartNodeAction(StartNodeProcess);
                 _currentNode.SetEndNodeAction(EndNodeProcess);
             }
         }
 
-        protected void initDi()
+        public void InitDiTree()
         {
             _tree.Init();
             _currentNode = _tree.GetCurrentNode();
             _currentNode.SetStartNodeAction(StartNodeProcess);
             _currentNode.SetEndNodeAction(EndNodeProcess);
-        }
-
-        public void InitDi2()
-        {
-            initDi();
         }
 
         /// <summary>

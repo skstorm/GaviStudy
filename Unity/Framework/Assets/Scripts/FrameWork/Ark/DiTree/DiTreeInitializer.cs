@@ -18,10 +18,13 @@ namespace DiTreeGroup
         /// <summary>
         /// Diツリー生成（クラスのフィールドで生成したい時）
         /// </summary>
-        public static TTree CreateDiTree<TTree>() where TTree : IDiTree<IDiField>, new()
+        public static TTree CreateDiTree<TTree>(bool isDiTreeInit) where TTree : IDiTree<IDiField>, new()
         {
             var diTree = new TTree();
-            diTree.Init();
+            if(isDiTreeInit)
+            {
+                diTree.Init();
+            }
             return diTree;
         }
 

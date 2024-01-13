@@ -23,7 +23,7 @@ namespace DiTreeGroup
         /// </summary>
         void Init(in string findStartNodeKey);
 
-
+        bool IsInit { get; }
 
         /// <summary>
         /// ノードの追加 (外部公開用)

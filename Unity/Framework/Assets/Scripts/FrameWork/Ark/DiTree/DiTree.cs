@@ -36,6 +36,9 @@ namespace DiTreeGroup
         /// <summary> 現在ノード（このノードから親へと検索していく） </summary>
         protected DiNode CurrentNode = null;
 
+        private bool _isInit = false;
+        public bool IsInit => _isInit;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -64,6 +67,7 @@ namespace DiTreeGroup
             // 現在ノードを取得
             string currentKey = typeof(TOwnerClass).ToString();
             CurrentNode = SRootNode.FindChild(currentKey);
+            _isInit = true;
         }
 
         /// <summary>

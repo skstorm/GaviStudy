@@ -22,12 +22,12 @@ namespace Ark.Core
         private float _debugDeltaFrame = 0;
         private int _debugCount = 0;
 
-        public GameLoop(ISetting setting, GameView gameView, DataLoadManager dataLoadManager) : base()
+        public GameLoop(ISetting setting, GameView gameView, DataLoadManager dataLoadManager) : base(true)
         {
             _frameManager = new FrameManager(setting.Fps);
             _gameLogic = new GameLogic(setting);
             _gameView = gameView;
-            _gameView.InitDi();
+            _gameView.InitDi(true);
             _logicStateChanger = new LogicStateChanger();
             _commandRecorder = new CommandRecorder();
             _commandReplayer = new CommandReplayer();
