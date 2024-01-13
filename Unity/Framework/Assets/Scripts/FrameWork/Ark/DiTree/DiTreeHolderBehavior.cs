@@ -1,42 +1,37 @@
+using Ark.Gear;
+using DiTreeGroup;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace DiTreeGroup
 {
-    /// <summary>
-    /// DiTreeを持っているクラス
-    /// </summary>
-    public abstract class DiTreeHolder : IDiField, IDiTreeHolder
+    public interface IDiTreeHolderBehavior : IDiTreeHolder
     {
-        /// <summary>DiTreeのInterface</summary>
-        protected readonly IDiTree<IDiField> _tree;
+        void InitDi();
+    }
+
+    public abstract class DiTreeHolderBehavior : MonoBehaviour, IDiTreeHolderBehavior
+    {
+        protected IDiTree<IDiField> _tree;
 
         protected DiNode _currentNode;
 
-        /// <summary>
-        /// 現在ノード取得
-        /// </summary>
         public DiNode GetCurrentNode() => _currentNode;
 
-        /// <summary>
-        /// コンストラクター
-        /// </summary>
-        /// <param name="tree">DiTreeのInterface</param>
-        protected DiTreeHolder(in IDiTree<IDiField> tree)
+        public abstract void InitDi();
+
+
+        protected void InitDi(in IDiTree<IDiField> tree)
         {
             _tree = tree;
             _currentNode = _tree.GetCurrentNode();
 
-            if (_currentNode!=null)
+            if (_currentNode != null)
             {
                 _currentNode.SetStartNodeAction(StartNodeProcess);
                 _currentNode.SetEndNodeAction(EndNodeProcess);
             }
-        }
-
-        protected void initDi()
-        {
-            _tree.Init();
-            _currentNode = _tree.GetCurrentNode();
-            _currentNode.SetStartNodeAction(StartNodeProcess);
-            _currentNode.SetEndNodeAction(EndNodeProcess);
         }
 
         public void InitDi2()
@@ -44,8 +39,15 @@ namespace DiTreeGroup
             initDi();
         }
 
+        protected void initDi()
+        {
+            _currentNode = _tree.GetCurrentNode();
+            _currentNode.SetStartNodeAction(StartNodeProcess);
+            _currentNode.SetEndNodeAction(EndNodeProcess);
+        }
+
         /// <summary>
-        /// Treeセットアップ
+        /// Tree���ëȫ��ë�
         /// </summary>
         public virtual void SetupTree()
         {

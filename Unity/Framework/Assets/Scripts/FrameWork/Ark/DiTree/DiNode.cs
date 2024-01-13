@@ -29,6 +29,60 @@ namespace DiTreeGroup
             _parent = parent;
         }
 
+        private Action _startNodeAction;
+        private Action _endNodeAction;
+
+        public void SetStartNodeAction(Action action)
+        {
+            _startNodeAction = action;
+        }
+
+        public void SetEndNodeAction(Action action)
+        {
+            _endNodeAction = action;
+        }
+
+        private void StartNodeProcess()
+        {
+            _startNodeAction?.Invoke();
+        }
+
+        private void EndNodeProcess()
+        {
+            _endNodeAction?.Invoke();
+        }
+
+        private void RunChildrenStartNodeProc()
+        {
+            foreach (var pair in _dicChild)
+            {
+                pair.Value.StartNodeProcess();
+                pair.Value.RunChildrenStartNodeProc();
+            }
+        }
+
+        private void RunChildrenEndNodeProc()
+        {
+            foreach (var pair in _dicChild)
+            {
+                pair.Value.RunChildrenEndNodeProc();
+                pair.Value.EndNodeProcess();
+            }
+        }
+
+
+        public void RunAllStartNodeProc()
+        {
+            StartNodeProcess();
+            RunChildrenStartNodeProc();
+        }
+
+        public void RunAllEndNodeProc()
+        {
+            RunChildrenEndNodeProc();
+            EndNodeProcess();
+        }
+
         /// <summary>
         /// 子供ノードを追加する
         /// </summary>

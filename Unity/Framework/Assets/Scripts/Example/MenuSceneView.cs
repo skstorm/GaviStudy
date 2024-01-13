@@ -7,22 +7,22 @@ namespace Example
 	{
 	}
 
-	public class MenuSceneView : BaseSceneView, IMenuSceneViewOrder
+	public class MenuSceneView : BaseSceneView<MenuSceneView>, IMenuSceneViewOrder
 	{
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void StartGearProcess()
+		protected override void StartNodeProcess()
 		{
-			base.StartGearProcess();
+			base.StartNodeProcess();
 
 			ArkLog.Debug("MenuSceneView Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除処理
-		protected override void EndGearProcess()
+		protected override void EndNodeProcess()
 		{
-			base.EndGearProcess();
+			base.EndNodeProcess();
 
 			ArkLog.Debug("MenuSceneView End");
 		}

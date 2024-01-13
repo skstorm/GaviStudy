@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Ark.Core;
+using DiTreeGroup;
 
 namespace Example
 {
@@ -10,7 +11,7 @@ namespace Example
 		[SerializeField]
 		private BattleSceneView _battleSceneView = null;
 
-		protected override BaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic)
+		protected override IBaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic)
 		{
 			if (sceneLogic.GetType() == typeof(MenuSceneLogic))
 			{

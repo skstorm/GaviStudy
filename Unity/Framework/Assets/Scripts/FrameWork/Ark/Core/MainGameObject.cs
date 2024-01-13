@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using DiTreeGroup.Example;
+using DiTreeGroup;
+using UnityEngine;
+using Ark.DiTree;
 
 namespace Ark.Core
 {
@@ -24,13 +27,13 @@ namespace Ark.Core
 		{
 			ArkLog.Init(setting);
 
-			_dataLoadManager = gameObject.AddComponent<DataLoadManager>();
+            _dataLoadManager = gameObject.AddComponent<DataLoadManager>();
 			_dataLoadManager.Init(setting.BundleUrl);
 			_dataLoadManager.LoadAllAsset();
 
 			_gameLoop = new GameLoop(setting, _gameView, _dataLoadManager);
-			_gameLoop.InitGear();
-		}
+			_gameLoop.RunAllStartNodeProc();
+        }
 
 		// Update is called once per frame
 		void Update()
@@ -41,11 +44,11 @@ namespace Ark.Core
 		void OnApplicationQuit()
 		{
 			_dataLoadManager.Release();
-			_gameLoop.AllDisposeGear();
+			_gameLoop.RunAllEndNodeProc();
 			ArkLog.Release();
 		}
 		
-		public BaseSceneView GetCurrentSceneView()
+		public IBaseSceneView GetCurrentSceneView()
 		{
 			return _gameLoop.GetCurrentSceneView();
 		}

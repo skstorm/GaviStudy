@@ -7,28 +7,28 @@ namespace Example
 	public interface IBattleSceneViewOrder : IBaseSceneViewOrder
 	{
 	}
-	public class BattleSceneView : BaseSceneView, IBattleSceneViewOrder
+	public class BattleSceneView : BaseSceneView<BattleSceneView>, IBattleSceneViewOrder
 	{
 		private DataLoadManager _dataLoadManager = null;
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void StartGearProcess()
+		protected override void StartNodeProcess()
 		{
-			base.StartGearProcess();
+			base.StartNodeProcess();
 
 			ArkLog.Debug("BattleSceneView Start");
 
-			_dataLoadManager = _gear.Absorb<DataLoadManager>(new PosInfos());
+			_dataLoadManager = _tree.Get<DataLoadManager>();
 
-			UnitViewPool.GetInstance().Init(_dataLoadManager);
+			//UnitViewPool.GetInstance().Init(_dataLoadManager);
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除処理
-		protected override void EndGearProcess()
+		protected override void EndNodeProcess()
 		{
-			base.EndGearProcess();
+			base.EndNodeProcess();
 
 			ArkLog.Debug("BattleSceneView End");
 		}

@@ -11,5 +11,7 @@ namespace Ark.Core
 		uint DisplayLogLevel { get; }
 		// バンドルUrl
 		string BundleUrl { get; }
-	}
+
+		IBaseSceneLogic CreateStartScene();
+    }
 }

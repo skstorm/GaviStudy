@@ -1,4 +1,6 @@
 ﻿using Ark.Core;
+using Ark.DiTree;
+using DiTreeGroup;
 
 namespace Example
 {
@@ -7,7 +9,8 @@ namespace Example
 		// Use this for initialization
 		protected override void Start()
 		{
-			Initialize(new MySetting());
+            DiTreeInitializer.InitDiTree<ArkDiTree<IDiField>>();
+            Initialize(new MySetting("MenuSceneLogic"));
 		}
 	}
 }

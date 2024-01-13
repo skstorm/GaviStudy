@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Example
 {
-	public class MenuSceneLogic : BaseSceneLogic<IMenuSceneViewOrder>
+	public class MenuSceneLogic : BaseSceneLogic<MenuSceneLogic ,IMenuSceneViewOrder>
 	{
 
 		public override void Update()
@@ -13,18 +13,18 @@ namespace Example
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化
-		protected override void StartGearProcess()
+		protected override void StartNodeProcess()
 		{
-			base.StartGearProcess();
+			base.StartNodeProcess();
 
 			ArkLog.Debug("MenuSceneLogic Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void EndGearProcess()
+		protected override void EndNodeProcess()
 		{
-			base.EndGearProcess();
+			base.EndNodeProcess();
 
 			ArkLog.Debug("MenuSceneLogic End");
 		}
