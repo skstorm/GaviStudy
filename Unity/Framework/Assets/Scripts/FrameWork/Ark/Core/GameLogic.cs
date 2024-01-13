@@ -43,12 +43,12 @@ namespace Ark.Core
             _gameView = _tree.Get<MyGameView>();
 
             _tree.AddNode(_currentNode, _currentSceneLogic.GetType());
-            _currentSceneLogic.InitDiTree();
+            _currentSceneLogic.InitDi();
 
             IBaseSceneViewOrder sceneView = _gameView.StartUpSceneView(_currentSceneLogic);
             _currentSceneLogic.SetSceneViewOrder(sceneView);
 
-            sceneView.InitDi(true);
+            sceneView.InitDi();
 
             ArkLog.Debug("Game Logic Start");
         }
@@ -87,10 +87,10 @@ namespace Ark.Core
             _currentSceneLogic.SetSceneViewOrder(sceneView);
             // 新しいSceneLogicを子供として追加
             _tree.AddNode(_currentNode, _currentSceneLogic.GetType());
-            _currentSceneLogic.InitDiTree();
+            _currentSceneLogic.InitDi();
             _currentSceneLogic.RunAllStartNodeProc();
 
-            sceneView.InitDi(true);
+            sceneView.InitDi();
             sceneView.RunAllStartNodeProc();
 
             // 現在のSceneLogicに入る時の処理

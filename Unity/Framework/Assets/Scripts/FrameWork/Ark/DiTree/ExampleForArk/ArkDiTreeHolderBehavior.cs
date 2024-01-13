@@ -9,9 +9,9 @@ namespace Ark.DiTree
     public abstract class ArkDiTreeHolderBehavior<T> : DiTreeHolderBehavior, IDiField
         where T : class, IDiField
     {
-        public override void InitDi(bool isDiTreeInit)
+        public override void InitDi()
         {
-            InitDi(DiTreeInitializer.CreateDiTree<ArkDiTree<T>>(isDiTreeInit));
+            InitDi(DiTreeInitializer.CreateDiTree<ArkDiTree<T>>(true));
         }
     }
 }

@@ -1,3 +1,4 @@
+using Ark.DiTree;
 using Ark.Gear;
 using DiTreeGroup;
 using System.Collections;
@@ -8,7 +9,7 @@ namespace DiTreeGroup
 {
     public interface IDiTreeHolderBehavior : IDiTreeHolder
     {
-        void InitDi(bool isDiTreeInit);
+        //void InitDi(bool isDiTreeInit);
     }
 
     public abstract class DiTreeHolderBehavior : MonoBehaviour, IDiTreeHolderBehavior
@@ -19,8 +20,11 @@ namespace DiTreeGroup
 
         public DiNode GetCurrentNode() => _currentNode;
 
-        public abstract void InitDi(bool isDiTreeInit);
 
+        public virtual void InitDi()
+        {
+
+        }
 
         protected void InitDi(in IDiTree<IDiField> tree)
         {
@@ -28,11 +32,6 @@ namespace DiTreeGroup
             _currentNode = _tree.GetCurrentNode();
             _currentNode.SetStartNodeAction(StartNodeProcess);
             _currentNode.SetEndNodeAction(EndNodeProcess);
-        }
-
-        public void InitDiTree()
-        {
-            InitDi(true);
         }
 
         /// <summary>

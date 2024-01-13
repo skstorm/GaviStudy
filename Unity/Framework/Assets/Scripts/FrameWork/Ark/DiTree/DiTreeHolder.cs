@@ -30,7 +30,7 @@ namespace DiTreeGroup
             }
         }
 
-        public void InitDiTree()
+        public void InitDi()
         {
             _tree.Init();
             _currentNode = _tree.GetCurrentNode();

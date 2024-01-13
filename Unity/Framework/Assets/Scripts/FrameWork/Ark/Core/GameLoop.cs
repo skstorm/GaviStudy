@@ -27,7 +27,7 @@ namespace Ark.Core
             _frameManager = new FrameManager(setting.Fps);
             _gameLogic = new GameLogic(setting);
             _gameView = gameView;
-            _gameView.InitDi(true);
+            _gameView.InitDi();
             _logicStateChanger = new LogicStateChanger();
             _commandRecorder = new CommandRecorder();
             _commandReplayer = new CommandReplayer();
