@@ -14,6 +14,8 @@ namespace GameJam
         {
             SceneManager.LoadScene("InGameScene");
             Debug.Log($"{Localize.Get(ETextKind.InGameScene)} Start");
+            var obj = Resources.Load<Transform>("Prefabs/TestPrefab");
+            GameObject.Instantiate(obj);
         }
         protected override void updateState()
         {

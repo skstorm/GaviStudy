@@ -60,11 +60,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ELanguageKind.cs" />
     <Compile Include="Assets\Scripts\GameFsm.cs" />
+    <Compile Include="Assets\Scripts\BaseStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseState.cs" />
     <Compile Include="Assets\Scripts\BaseFsm.cs" />
     <Compile Include="Assets\Scripts\ETextKind.cs" />
     <Compile Include="Assets\Scripts\InGameSceneState.cs" />
     <Compile Include="Assets\Scripts\Localize.cs" />
+    <Compile Include="Assets\Scripts\BaseSceneState.cs" />
     <Compile Include="Assets\Scripts\TitleSceneState.cs" />
   </ItemGroup>
   <ItemGroup>
