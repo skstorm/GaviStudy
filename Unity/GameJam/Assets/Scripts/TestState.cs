@@ -1,58 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TestStateA : BaseState
+namespace GameJam
 {
-    private int count = 0;
-    public TestStateA(IBaseFsm fsm) : base(fsm)
+    public class TestStateA : BaseState
     {
-    }
-
-    protected override void enterState() 
-    {
-        Debug.Log("A Start");
-        SceneManager.LoadScene("TitleScene");
-    }
-    protected override void updateState() 
-    {
-        ++count;
-        Debug.Log("A Update" + count);
-        if (count > 10)
+        private int count = 0;
+        public TestStateA(IBaseFsm fsm) : base(fsm)
         {
-            _ownerFsm.ChangeState(new TestStateB(_ownerFsm));
+        }
+
+        protected override void enterState()
+        {
+            Debug.Log("A Start");
+            SceneManager.LoadScene("TitleScene");
+        }
+        protected override void updateState()
+        {
+            ++count;
+            Debug.Log("A Update" + count);
+            if (count > 10)
+            {
+                _ownerFsm.ChangeState(new TestStateB(_ownerFsm));
+            }
+        }
+        protected override void exitState()
+        {
+            Debug.Log("A End");
         }
     }
-    protected override void exitState() 
-    {
-        Debug.Log("A End");
-    }
-}
 
-public class TestStateB : BaseState
-{
-    private int count = 0;
-    public TestStateB(IBaseFsm fsm) : base(fsm)
+    public class TestStateB : BaseState
     {
-    }
-
-    protected override void enterState()
-    {
-        SceneManager.LoadScene("GameScene");
-        Debug.Log("B Start");
-    }
-    protected override void updateState()
-    {
-        ++count;
-        Debug.Log("B Update" + count);
-        if (count > 10)
+        private int count = 0;
+        public TestStateB(IBaseFsm fsm) : base(fsm)
         {
-            _ownerFsm.ChangeState(new TestStateA(_ownerFsm));
+        }
+
+        protected override void enterState()
+        {
+            SceneManager.LoadScene("InGameScene");
+            Debug.Log("B Start");
+        }
+        protected override void updateState()
+        {
+            ++count;
+            Debug.Log("B Update" + count);
+            if (count > 10)
+            {
+                _ownerFsm.ChangeState(new TestStateA(_ownerFsm));
+            }
+        }
+        protected override void exitState()
+        {
+            Debug.Log("B End");
         }
     }
-    protected override void exitState()
-    {
-        Debug.Log("B End");
-    }
+
 }

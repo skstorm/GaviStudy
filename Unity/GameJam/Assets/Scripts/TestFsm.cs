@@ -1,8 +1,11 @@
-public class TestFsm : BaseFsm
+namespace GameJam
 {
-    private async void Awake()
+    public class TestFsm : BaseFsm
     {
-        DontDestroyOnLoad(this);
-        await fsm(new TestStateA(this));
+        private async void Awake()
+        {
+            DontDestroyOnLoad(this);
+            await fsm(new TestStateA(this));
+        }
     }
 }

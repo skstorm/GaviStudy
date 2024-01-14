@@ -1,30 +1,32 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public abstract class BaseState
+namespace GameJam
 {
-    protected IBaseFsm _ownerFsm;
-
-    public BaseState(IBaseFsm fsm)
+    public abstract class BaseState
     {
-        _ownerFsm = fsm;
-    }
+        protected IBaseFsm _ownerFsm;
 
-    public async UniTask Run()
-    {
-        enterState();
-        do
+        public BaseState(IBaseFsm fsm)
         {
-            await UniTask.DelayFrame(1);
-            updateState();
+            _ownerFsm = fsm;
+        }
 
-        } while (!_ownerFsm.IsNewState);
-        exitState();
+        public async UniTask Run()
+        {
+            enterState();
+
+            do
+            {
+                await UniTask.DelayFrame(1);
+                updateState();
+
+            } while (!_ownerFsm.IsNewState);
+
+            exitState();
+        }
+
+        protected virtual void enterState() { }
+        protected virtual void updateState() { }
+        protected virtual void exitState() { }
     }
-
-    protected virtual void enterState() { }
-    protected virtual void updateState() { }
-    protected virtual void exitState() { }
 }
