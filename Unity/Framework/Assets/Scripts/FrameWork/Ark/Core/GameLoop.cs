@@ -69,8 +69,9 @@ namespace Ark.Core
 
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
         //! 初期化
-        protected void StartGearProcess()
+        protected override void StartNodeProcess()
         {
+            base.StartNodeProcess();
             ArkLog.Debug("Game Loop Start");
 
             // FrameManagerの時間初期化
@@ -79,8 +80,9 @@ namespace Ark.Core
 
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
         //! 解除
-        protected void EndGearProcess()
+        protected override void EndNodeProcess()
         {
+            base.EndNodeProcess();
             ArkLog.Debug("Game Loop End");
         }
 
