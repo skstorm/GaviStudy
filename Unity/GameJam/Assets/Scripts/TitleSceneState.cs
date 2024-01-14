@@ -12,8 +12,8 @@ namespace GameJam
 
         protected override void enterState()
         {
-            SceneManager.LoadScene("InGameScene");
-            Debug.Log("B Start");
+            SceneManager.LoadScene("TitleScene");
+            Debug.Log($"{Localize.Get(ETextKind.TitleScene)} Start");
         }
         protected override void updateState()
         {
