@@ -1,89 +1,89 @@
-﻿using Ark.Gear;
+﻿using Ark.DiTree;
+using Ark.Gear;
 using Ark.Util;
+using DiTreeGroup;
 using UnityEngine;
 
 namespace Ark.Core
 {
-	public interface IGameViewOrder
-	{
-		IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic);
-		IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic);
-	}
+    public interface IGameViewOrder
+    {
+        IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic);
+        IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic);
+    }
 
-	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-	//! GameViewの基本クラス
-	// 必ずCreateSceneViewをオーバーライドする
-	abstract public class GameView : GearHolderBehavior, IGameViewOrder
-	{
-		private BaseSceneView _currentSceneView = null;
-		private ILogicStateChnager_ForView _logicStateChanger = null;
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+    //! GameViewの基本クラス
+    // 必ずCreateSceneViewをオーバーライドする
+    abstract public class GameView : ArkDiTreeHolderBehavior<GameView>, IGameViewOrder
+    {
+        private IBaseSceneView _currentSceneView = null;
+        private ILogicStateChnager_ForView _logicStateChanger = null;
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 初期化関数
-		protected override void StartGearProcess()
-		{
-			base.StartGearProcess();
-			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
-			
-			ArkLog.Debug("GameView Start");
-		}
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! 初期化関数
+        protected override void StartNodeProcess()
+        {
+            base.StartNodeProcess();
+            _logicStateChanger = _tree.Get<LogicStateChanger>();
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 解除処理
-		protected override void EndGearProcess()
-		{
-			base.EndGearProcess();
+            ArkLog.Debug("GameView Start");
+        }
 
-			ArkLog.Debug("GameView End");
-		}
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! 解除処理
+        protected override void EndNodeProcess()
+        {
+            base.EndNodeProcess();
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 描画処理
-		public void Render(int deltaFrame)
-		{
-			_currentSceneView.Render(deltaFrame);
-		}
+            ArkLog.Debug("GameView End");
+        }
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 現在SceneView取得
-		public BaseSceneView GetCurrentSceneView()
-		{
-			return _currentSceneView;
-		}
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! 描画処理
+        public void Render(int deltaFrame)
+        {
+            _currentSceneView.Render(deltaFrame);
+        }
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! SceneView作成
-		abstract protected BaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic);
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! 現在SceneView取得
+        public IBaseSceneView GetCurrentSceneView()
+        {
+            return _currentSceneView;
+        }
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! SceneView設定
-		public IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic)
-		{
-			// SceneView生成
-			_currentSceneView = CreateSceneView(sceneLogic);
-			_currentSceneView.InitDI(false);
-			// ギアに追加
-			_gear.AddChildGear(_currentSceneView.GetGear());
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! SceneView作成
+        abstract protected IBaseSceneView CreateSceneView(IBaseSceneLogic sceneLogic);
 
-			return _currentSceneView;
-		}
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! SceneView設定
+        public IBaseSceneViewOrder StartUpSceneView(IBaseSceneLogic sceneLogic)
+        {
+            // SceneView生成
+            _currentSceneView = CreateSceneView(sceneLogic);
+            // ギアに追加
+            _tree.AddNode(_currentNode, _currentSceneView.GetType());
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! SceneView設定
-		public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
-		{
-			// シーンを親から外す
-			_currentSceneView.AllDisposeGear();
-			_gear.RemoveChildGear(_currentSceneView.GetGear());
-			Destroy(_currentSceneView.gameObject);
-			
-			// SceneView生成
-			_currentSceneView = CreateSceneView(sceneLogic);
-			_currentSceneView.InitDI(false);
-			// ギアに追加
-			_gear.AddChildGear(_currentSceneView.GetGear());
+            return _currentSceneView;
+        }
 
-			return _currentSceneView;
-		}
-	}
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! SceneView設定
+        public IBaseSceneViewOrder SetupSceneView(IBaseSceneLogic sceneLogic)
+        {
+            // シーンを親から外す
+            _currentSceneView.RunAllEndNodeProc();
+            _tree.RemoveNode(_currentNode, _currentSceneView.GetType());
+            Destroy(_currentSceneView.GameObject);
+
+            // SceneView生成
+            _currentSceneView = CreateSceneView(sceneLogic);
+            // ギアに追加
+            _tree.AddNode(_currentNode, _currentSceneView.GetType());
+
+            return _currentSceneView;
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Ark.Gear;
+﻿using Ark.DiTree;
+using Ark.Gear;
 using Ark.Util;
 
 namespace Ark.Core
@@ -8,19 +9,23 @@ namespace Ark.Core
 		void NotifyCommand(ICommand command);
 	}
 
-	public class LogicStateChanger : GearHolder, ILogicStateChnager_ForView
+	public class LogicStateChanger : ArkDiTreeHolder<LogicStateChanger>, ILogicStateChnager_ForView
 	{
 		private IGameLogic_ForLogicStateChanger _gameLogic = null;
 
-		public LogicStateChanger() : base(false)
+		public LogicStateChanger() : base(true)
 		{
 		}
 
-		protected override void StartGearProcess()
+		protected override void StartNodeProcess()
 		{
-			base.StartGearProcess();
+			base.StartNodeProcess();
 
-			_gameLogic = _gear.Absorb<GameLogic>(new PosInfos());
+			_gameLogic = _tree.Get<GameLogic>();
+		}
+
+		public override void Run()
+		{
 		}
 
 		public void Update()

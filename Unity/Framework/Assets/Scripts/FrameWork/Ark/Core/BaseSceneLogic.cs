@@ -2,10 +2,12 @@
 using Ark.Util;
 using UnityEngine;
 using System;
+using DiTreeGroup;
+using Ark.DiTree;
 
 namespace Ark.Core
 {
-	public interface IBaseSceneLogic : IGearHolder
+	public interface IBaseSceneLogic : IDiTreeHolder
 	{
 		void Enter();
 		void Exit();
@@ -14,8 +16,10 @@ namespace Ark.Core
 		void CommandProcess(ICommand command);
 	}
 
-	public class BaseSceneLogic<TView> : GearHolder, IBaseSceneLogic where TView : class, IBaseSceneViewOrder
-	{
+	public class BaseSceneLogic<TDiTreeHolder, TView> : ArkDiTreeHolder<TDiTreeHolder>, IBaseSceneLogic, IDiField
+		where TDiTreeHolder : class, IDiField
+        where TView : class, IBaseSceneViewOrder
+    {
 		protected IGameLogic_ForSceneLogic _gameLogic = null;
 		protected TView _sceneView = default(TView);
 
@@ -23,13 +27,17 @@ namespace Ark.Core
 		{
 		}
 
-		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
-		//! 初期化
-		protected override void StartGearProcess()
-		{
-			base.StartGearProcess();
+        public override void Run()
+        {
+        }
 
-			_gameLogic = _gear.Absorb<GameLogic>(new PosInfos());
+        // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
+        //! 初期化
+        protected override void StartNodeProcess()
+		{
+			base.StartNodeProcess();
+
+			_gameLogic = _tree.Get<GameLogic>();
 
 			ArkLog.Debug("BaseSceneLogic Start");
 		}
@@ -55,9 +63,9 @@ namespace Ark.Core
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除
-		protected override void EndGearProcess()
+		protected override void EndNodeProcess()
 		{
-			base.EndGearProcess();
+			base.EndNodeProcess();
 			ArkLog.Debug("BaseSceneLogic End");
 		}
 		

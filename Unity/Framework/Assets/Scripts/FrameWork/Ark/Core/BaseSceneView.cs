@@ -1,10 +1,12 @@
-﻿using Ark.Gear;
+﻿using Ark.DiTree;
+using Ark.Gear;
 using Ark.Util;
+using DiTreeGroup;
 using UnityEngine;
 
 namespace Ark.Core
 {
-	public interface IBaseSceneViewOrder : IGearHolder
+	public interface IBaseSceneViewOrder : IDiTreeHolderBehavior
 	{
 
 	}
@@ -14,25 +16,37 @@ namespace Ark.Core
 		void NotifyCommand(ICommand command);
 	}
 
-	public class BaseSceneView : GearHolderBehavior, IBaseSceneViewOrder, IBaseSceneView_ForUIEventRegister
-	{
+	public interface IBaseSceneView : IBaseSceneViewOrder, IBaseSceneView_ForUIEventRegister
+    {
+		void Render(int deltaFrame);
+
+		GameObject GameObject { get; }
+
+    }
+
+
+    public class BaseSceneView<TDiTreeHolder> : ArkDiTreeHolderBehavior<TDiTreeHolder>, IBaseSceneView
+        where TDiTreeHolder : class, IDiField
+    {
 		private ILogicStateChnager_ForView _logicStateChanger = null;
+
+		public GameObject GameObject => gameObject;
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 初期化関数
-		protected override void StartGearProcess()
+		protected override void StartNodeProcess()
 		{
-			base.StartGearProcess();
-			_logicStateChanger = _gear.Absorb<LogicStateChanger>(new PosInfos());
+			base.StartNodeProcess();
+			_logicStateChanger = _tree.Get<LogicStateChanger>();
 
 			ArkLog.Debug("BaseSceneView Start");
 		}
 
 		// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 		//! 解除処理
-		protected override void EndGearProcess()
+		protected override void EndNodeProcess()
 		{
-			base.EndGearProcess();
+			base.EndNodeProcess();
 
 			ArkLog.Debug("BaseSceneView End");
 		}
