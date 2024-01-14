@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestStateA : BaseState
 {
@@ -12,6 +13,7 @@ public class TestStateA : BaseState
     protected override void enterState() 
     {
         Debug.Log("A Start");
+        SceneManager.LoadScene("TitleScene");
     }
     protected override void updateState() 
     {
@@ -37,6 +39,7 @@ public class TestStateB : BaseState
 
     protected override void enterState()
     {
+        SceneManager.LoadScene("GameScene");
         Debug.Log("B Start");
     }
     protected override void updateState()
