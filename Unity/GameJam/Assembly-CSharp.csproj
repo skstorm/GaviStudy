@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Localize.cs" />
     <Compile Include="Assets\Scripts\FrameChecker.cs" />
     <Compile Include="Assets\Scripts\Const.cs" />
+    <Compile Include="Assets\Scripts\Ui\UiGoInGameButton.cs" />
     <Compile Include="Assets\Scripts\BaseSceneState.cs" />
     <Compile Include="Assets\Scripts\TitleSceneState.cs" />
   </ItemGroup>

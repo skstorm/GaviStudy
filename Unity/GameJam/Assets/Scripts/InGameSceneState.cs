@@ -10,20 +10,25 @@ namespace GameJam
         [SerializeField]
         private Text _text;
 
+        [SerializeField]
+        private Button _goTitleButton;
+
         protected override void enterState()
         {
             Debug.Log($"{Localize.Get(ETextKind.InGameScene)} Start");
+            _goTitleButton.onClick.RemoveAllListeners();
+            _goTitleButton.onClick.AddListener(goTitle);
+        }
+
+        private void goTitle()
+        {
+            var nextState = Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, _ownerFsm);
+            _ownerFsm.ChangeState(nextState);
         }
 
         protected override void updateState()
         {
-            ++count;
             Debug.Log("A Update" + count);
-            if (count > 10)
-            {
-                var nextState = Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, _ownerFsm);
-                _ownerFsm.ChangeState(nextState);
-            }
         }
 
         protected override void exitState()
