@@ -21,7 +21,7 @@ namespace GameJam
             Debug.Log("A Update" + count);
             if (count > 10)
             {
-                var nextState = Util.LoadScenePrefab<TitleSceneState>("Prefabs/TitleScene", _ownerFsm);
+                var nextState = Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, _ownerFsm);
                 _ownerFsm.ChangeState(nextState);
             }
         }

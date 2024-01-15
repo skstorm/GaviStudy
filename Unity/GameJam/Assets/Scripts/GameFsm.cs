@@ -6,7 +6,7 @@ namespace GameJam
         {
             DontDestroyOnLoad(this);
             Localize.LanguageKind = ELanguageKind.En;
-            var startState = Util.LoadScenePrefab<TitleSceneState>("Prefabs/TitleScene", this);
+            var startState = Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, this);
             await fsm(startState);
         }
     }

@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\ETextKind.cs" />
     <Compile Include="Assets\Scripts\InGameSceneState.cs" />
     <Compile Include="Assets\Scripts\Localize.cs" />
+    <Compile Include="Assets\Scripts\Const.cs" />
     <Compile Include="Assets\Scripts\BaseSceneState.cs" />
     <Compile Include="Assets\Scripts\TitleSceneState.cs" />
   </ItemGroup>
