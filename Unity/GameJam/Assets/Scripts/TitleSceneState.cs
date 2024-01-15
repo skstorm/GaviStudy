@@ -21,7 +21,7 @@ namespace GameJam
             Debug.Log("B Update" + count);
             if (count > 10)
             {
-                var nextState = BaseStateBehaviour.Load<InGameSceneState>("Prefabs/InGameScene", _ownerFsm);
+                var nextState = Util.LoadScenePrefab<InGameSceneState>("Prefabs/InGameScene", _ownerFsm);
                 _ownerFsm.ChangeState(nextState);
             }
         }

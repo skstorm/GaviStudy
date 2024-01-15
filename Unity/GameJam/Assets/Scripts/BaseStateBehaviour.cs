@@ -9,13 +9,7 @@ namespace GameJam
     {
         protected IBaseFsm _ownerFsm;
 
-        public static T Load<T>(string path, IBaseFsm fsm) where T : BaseStateBehaviour
-        {
-            var origin = Resources.Load<T>(path);
-            var obj = Instantiate<T>(origin);
-            obj.Init(fsm);
-            return obj;
-        }
+        
 
         public void Init(IBaseFsm fsm)
         {
