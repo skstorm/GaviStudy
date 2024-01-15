@@ -6,17 +6,17 @@ namespace GameJam
     public interface IBaseFsm
     {
         bool IsNewState { get; }
-        void ChangeState(BaseState state);
+        void ChangeState(IBaseState state);
     }
 
     public class BaseFsm : MonoBehaviour, IBaseFsm
     {
-        protected BaseState _state;
+        protected IBaseState _state;
 
         protected bool _isNewState = false;
         public bool IsNewState => _isNewState;
 
-        protected async UniTask fsm(BaseState startState)
+        protected async UniTask fsm(IBaseState startState)
         {
             _state = startState;
 
@@ -27,7 +27,7 @@ namespace GameJam
             }
         }
 
-        public void ChangeState(BaseState state)
+        public void ChangeState(IBaseState state)
         {
             _isNewState = true;
             _state = state;

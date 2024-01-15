@@ -1,32 +1,35 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace GameJam
 {
-    public class TitleSceneState : BaseState
+    public class TitleSceneState : BaseStateBehaviour
     {
         private int count = 0;
-        public TitleSceneState(IBaseFsm fsm) : base(fsm)
-        {
-        }
+
+        [SerializeField]
+        private Text _text;
 
         protected override void enterState()
         {
-            SceneManager.LoadScene("TitleScene");
             Debug.Log($"{Localize.Get(ETextKind.TitleScene)} Start");
         }
+
         protected override void updateState()
         {
             ++count;
             Debug.Log("B Update" + count);
             if (count > 10)
             {
-                _ownerFsm.ChangeState(new InGameSceneState(_ownerFsm));
+                var nextState = BaseStateBehaviour.Load<InGameSceneState>("Prefabs/InGameScene", _ownerFsm);
+                _ownerFsm.ChangeState(nextState);
             }
         }
+
         protected override void exitState()
         {
             Debug.Log("B End");
+            Destroy(gameObject);
         }
     }
 }

@@ -2,7 +2,13 @@ using Cysharp.Threading.Tasks;
 
 namespace GameJam
 {
-    public abstract class BaseState
+    public interface IBaseState
+    {
+        UniTask Run();
+    }
+
+
+    public abstract class BaseState : IBaseState
     {
         protected IBaseFsm _ownerFsm;
 
