@@ -5,14 +5,15 @@ namespace GameJam
     public interface IBaseState
     {
         UniTask Run();
+        void Release();
     }
 
 
     public abstract class BaseState : IBaseState
     {
-        protected IBaseFsm _ownerFsm;
+        protected IFsm _ownerFsm;
 
-        public BaseState(IBaseFsm fsm)
+        public BaseState(IFsm fsm)
         {
             _ownerFsm = fsm;
         }
@@ -34,5 +35,7 @@ namespace GameJam
         protected virtual void enterState() { }
         protected virtual void updateState() { }
         protected virtual void exitState() { }
+
+        public virtual void Release() { }
     }
 }

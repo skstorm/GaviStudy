@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ELanguageKind.cs" />
-    <Compile Include="Assets\Scripts\GameFsm.cs" />
+    <Compile Include="Assets\Scripts\MainGameObject.cs" />
     <Compile Include="Assets\Scripts\BaseStateBehaviour.cs" />
     <Compile Include="Assets\Scripts\BaseState.cs" />
     <Compile Include="Assets\Scripts\BaseFsm.cs" />

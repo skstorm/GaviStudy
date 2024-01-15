@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace GameJam
 {
-    public interface IBaseFsm
+    public interface IFsm
     {
         bool IsNewState { get; }
         void ChangeState(IBaseState state);
     }
 
-    public class BaseFsm : MonoBehaviour, IBaseFsm
+    public class BaseFsm : IFsm
     {
         protected IBaseState _state;
 
         protected bool _isNewState = false;
         public bool IsNewState => _isNewState;
 
-        protected async UniTask fsm(IBaseState startState)
+        public async UniTask RunAsync(IBaseState startState)
         {
             _state = startState;
 
@@ -31,6 +31,11 @@ namespace GameJam
         {
             _isNewState = true;
             _state = state;
+        }
+
+        public void Release()
+        {
+            _state.Release();
         }
     }
 }

@@ -7,11 +7,11 @@ namespace GameJam
 {
     public class BaseStateBehaviour : MonoBehaviour, IBaseState
     {
-        protected IBaseFsm _ownerFsm;
+        protected IFsm _ownerFsm;
 
         
 
-        public void Init(IBaseFsm fsm)
+        public void Init(IFsm fsm)
         {
             _ownerFsm = fsm;
         }
@@ -33,5 +33,10 @@ namespace GameJam
         protected virtual void enterState() { }
         protected virtual void updateState() { }
         protected virtual void exitState() { }
+
+        public virtual void Release() 
+        {
+            Destroy(this);
+        }
     }
 }
