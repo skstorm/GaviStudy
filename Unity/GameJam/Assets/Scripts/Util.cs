@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace GameJam
@@ -12,6 +11,14 @@ namespace GameJam
             var obj = GameObject.Instantiate<T>(origin);
             obj.Init(fsm);
             return obj;
+        }
+
+        [Conditional("GAME_JAM_DEBUG")]
+        public static void DebugLog(string log)
+        {
+#if GAME_JAM_DEBUG
+            UnityEngine.Debug.Log(log);
+#endif // GAME_JAM_DEBUG
         }
     }
 }

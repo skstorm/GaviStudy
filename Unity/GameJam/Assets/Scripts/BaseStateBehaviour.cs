@@ -24,11 +24,11 @@ namespace GameJam
             var startState = LoadScenePrefab();
             DontDestroyOnLoad(startState.gameObject);
 
-            var origin = Resources.Load<MainGameObject>("Prefabs/MainGameObject");
+            var origin = Resources.Load<MainGameObject>(Const.PathMainGameObjectPrefab);
             var mainGameObj = GameObject.Instantiate<MainGameObject>(origin);
             mainGameObj.Run(gameStateMachine, startState).Forget();
 
-            SceneManager.LoadScene("BootScene");
+            SceneManager.LoadScene(Const.MainSceneName);
         }
 
         public void Init(IStateMachine stateMachine)

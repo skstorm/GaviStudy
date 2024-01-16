@@ -20,7 +20,7 @@ namespace GameJam
 
         protected override void enterState()
         {
-            Debug.Log($"{Localize.Get(ETextKind.InGameScene)} Start");
+            Util.DebugLog($"{Localize.Get(ETextKind.InGameScene)} Start");
             _goTitleButton.onClick.RemoveAllListeners();
             _goTitleButton.onClick.AddListener(goTitle);
         }
@@ -33,12 +33,12 @@ namespace GameJam
 
         protected override void updateState()
         {
-            Debug.Log("A Update" + count);
+            Util.DebugLog("A Update" + count);
         }
 
         protected override void exitState()
         {
-            Debug.Log("A End");
+            Util.DebugLog("A End");
             Destroy(gameObject);
         }
     }
