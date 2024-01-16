@@ -5,8 +5,6 @@ namespace GameJam
 {
     public class TitleSceneState : BaseStateBehaviour
     {
-        private int count = 0;
-
         [SerializeField]
         private Text _text;
 
@@ -33,7 +31,7 @@ namespace GameJam
 
         protected override void updateState()
         {
-            Util.DebugLog("B Update" + count);
+            //il.DebugLog("B Update" + count);
         }
 
         protected override void exitState()
