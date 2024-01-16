@@ -13,6 +13,11 @@ namespace GameJam
         [SerializeField]
         private Button _goInGameButton;
 
+        protected override BaseStateBehaviour LoadScenePrefab()
+        {
+            return Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, _owner);
+        }
+
         protected override void enterState()
         {
             Debug.Log($"{Localize.Get(ETextKind.TitleScene)} Start");
@@ -22,8 +27,8 @@ namespace GameJam
 
         private void goInGame()
         {
-            var nextState = Util.LoadScenePrefab<InGameSceneState>(Const.PathInGameScenePrefab, _ownerFsm);
-            _ownerFsm.ChangeState(nextState);
+            var nextState = Util.LoadScenePrefab<InGameSceneState>(Const.PathInGameScenePrefab, _owner);
+            _owner.ChangeState(nextState);
         }
 
         protected override void updateState()

@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace GameJam
 {
-    public interface IFsm
+    public interface IStateMachine
     {
         bool IsNewState { get; }
         void ChangeState(IBaseState state);
     }
 
-    public class BaseFsm : IFsm
+    public class StateMachine : IStateMachine
     {
         protected IBaseState _state;
 

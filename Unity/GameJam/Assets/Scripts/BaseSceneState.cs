@@ -5,9 +5,9 @@ namespace GameJam
 {
     public class BaseSceneState : MonoBehaviour
     {
-        protected IFsm _ownerFsm;
+        protected IStateMachine _ownerFsm;
 
-        public void Init(IFsm fsm)
+        public void Init(IStateMachine fsm)
         {
             _ownerFsm = fsm;
         }

@@ -11,9 +11,9 @@ namespace GameJam
 
     public abstract class BaseState : IBaseState
     {
-        protected IFsm _ownerFsm;
+        protected IStateMachine _ownerFsm;
 
-        public BaseState(IFsm fsm)
+        public BaseState(IStateMachine fsm)
         {
             _ownerFsm = fsm;
         }

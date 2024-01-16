@@ -1,21 +1,19 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace GameJam
 {
     public class MainGameObject : MonoBehaviour
     {
-        private async void Awake()
+        public async UniTask Run(StateMachine stateMachine, BaseStateBehaviour startState)
         {
             Localize.LanguageKind = ELanguageKind.En;
             Application.targetFrameRate = 60;
 
             DontDestroyOnLoad(this);
 
-            var gameFsm = new BaseFsm();
-
-            var startState = Util.LoadScenePrefab<TitleSceneState>(Const.PathTitleScenePrefab, gameFsm);
-            await gameFsm.RunAsync(startState);
-            gameFsm.Release();
+            await stateMachine.RunAsync(startState);
+            stateMachine.Release();
         }
     }
 }

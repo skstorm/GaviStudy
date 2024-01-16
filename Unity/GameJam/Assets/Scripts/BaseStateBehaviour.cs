@@ -1,19 +1,39 @@
 using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameJam
 {
-    public class BaseStateBehaviour : MonoBehaviour, IBaseState
+    public abstract class BaseStateBehaviour : MonoBehaviour, IBaseState
     {
-        protected IFsm _ownerFsm;
+        protected IStateMachine _owner;
 
-        
+        private static bool _staticInit = false;
 
-        public void Init(IFsm fsm)
+        private void Awake()
         {
-            _ownerFsm = fsm;
+            if (_staticInit)
+            {
+                return;
+            }
+            _staticInit = true;
+
+            var gameStateMachine = new StateMachine();
+            Init(gameStateMachine);
+
+            var startState = LoadScenePrefab();
+            DontDestroyOnLoad(startState.gameObject);
+
+            var origin = Resources.Load<MainGameObject>("Prefabs/MainGameObject");
+            var mainGameObj = GameObject.Instantiate<MainGameObject>(origin);
+            mainGameObj.Run(gameStateMachine, startState).Forget();
+
+            SceneManager.LoadScene("BootScene");
+        }
+
+        public void Init(IStateMachine stateMachine)
+        {
+            _owner = stateMachine;
         }
 
         public async UniTask Run()
@@ -25,10 +45,12 @@ namespace GameJam
                 await UniTask.DelayFrame(1);
                 updateState();
 
-            } while (!_ownerFsm.IsNewState);
+            } while (!_owner.IsNewState);
 
             exitState();
         }
+
+        protected abstract BaseStateBehaviour LoadScenePrefab();
 
         protected virtual void enterState() { }
         protected virtual void updateState() { }
