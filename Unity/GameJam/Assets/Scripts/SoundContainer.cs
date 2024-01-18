@@ -3,22 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundContainer : MonoBehaviour
+namespace GameJam
 {
-    private static SoundContainer s_instance;
-    public static SoundContainer Instance => s_instance;
-
-    [field: SerializeField]
-    public AudioClip Bgm { get; private set; }
-
-    [field: SerializeField]
-    public AudioClip Se1 { get; private set; }
-
-    [field: SerializeField]
-    public AudioClip Se2 { get; private set; }
-
-    private void Awake()
+    public class SoundContainer : MonoBehaviour
     {
-        s_instance = this;
+        private static SoundContainer s_instance;
+        public static SoundContainer Instance => s_instance;
+
+        [field: SerializeField]
+        public AudioClip Bgm { get; private set; }
+
+        [field: SerializeField]
+        public AudioClip Se1 { get; private set; }
+
+        [field: SerializeField]
+        public AudioClip Se2 { get; private set; }
+
+        private void Awake()
+        {
+            s_instance = this;
+        }
     }
 }
