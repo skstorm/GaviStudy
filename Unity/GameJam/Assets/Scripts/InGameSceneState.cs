@@ -33,7 +33,7 @@ namespace GameJam
 
         protected override void updateState()
         {
-            Util.DebugLog("A Update" + count);
+            //Util.DebugLog("A Update" + count);
         }
 
         protected override void exitState()
