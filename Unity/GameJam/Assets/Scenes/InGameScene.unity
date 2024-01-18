@@ -175,14 +175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameScene
       objectReference: {fileID: 0}
-    - target: {fileID: 3248391913535059318, guid: 3988422609b9d574b8a18bc90e360df2, type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3248391913535059318, guid: 3988422609b9d574b8a18bc90e360df2, type: 3}
-      propertyPath: m_TagString
-      value: Respawn
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
