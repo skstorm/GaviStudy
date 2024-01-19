@@ -6,7 +6,7 @@ using static UnityEngine.UI.Image;
 namespace GameJam
 {
     public abstract class BaseObjectPool<TObj> : MonoBehaviour
-        where TObj : PoolObject, IEntity
+        where TObj : Entity, IEntity
     {
         private static BaseObjectPool<TObj> s_instance;
         public static BaseObjectPool<TObj> Instance => s_instance;

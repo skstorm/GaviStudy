@@ -4,15 +4,9 @@ using UnityEngine;
 using UnityEngine.Pool;
 using GameJam;
 
-public class TestBall : PoolObject, IEntity
+public class TestBall : Entity
 {
     int count;
-
-    public Vector2 Pos => Vector2.zero;
-
-    public float Radius => 0;
-
-    public bool IsWillRemove => false;
 
     public override void Init()
     {
@@ -21,7 +15,7 @@ public class TestBall : PoolObject, IEntity
         transform.localPosition = Vector3.zero;
     }
 
-    private void Update()
+    public override void UpdateEntity()
     {
         if(_isUpdateOk == false)
         {

@@ -7,6 +7,7 @@ namespace GameJam
     public class LifeCycle
     {
         private List<IUpdatable> _allUpdatable = new();
+
         private List<IEntity> _willRemoveList = new();
         private TestBallQue _testQue = new();
         private TestBallPool _testBallPool;
@@ -26,13 +27,13 @@ namespace GameJam
 
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
         //! ライフサイクルにObject追加
-        public void AddEntityToLifeCycle(IEntity logic)
+        public void AddEntityToLifeCycle(IEntity entity)
         {
-            logic.Init();
+            entity.Init();
 
-            AddEntityToAllList(logic);
+            AddEntityToAllList(entity);
 
-            logic.Show();
+            entity.Show();
         }
 
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //

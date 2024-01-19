@@ -2,27 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-public interface IEntityLogic : IEntityLogicPeek
+namespace GameJam
 {
-    void Init(IEntityFieldLogic_ForLifeCycle entityFieldLogic, IEntityViewOrder view, ELifeCycleKind lifeCycleKind);
-    void Start();
-    void Stop();
-    void Release();
-    void ChangeView(IEntityViewOrder view);
-}
-*/
-public class Entity : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+    public abstract class Entity : MonoBehaviour, IEntity, IUpdatable
     {
-        
+        // Start is called before the first frame update
+        public bool IsActive { get; private set; }
+
+        public Vector2 Pos => Vector2.zero;
+
+        public float Radius => 0;
+
+        public bool IsWillRemove => false;
+
+        protected bool _isUpdateOk = false;
+
+        public virtual void Show()
+        {
+            gameObject.SetActive(true);
+            IsActive = true;
+        }
+
+        public virtual void Hide()
+        {
+            gameObject.SetActive(false);
+            IsActive = false;
+            _isUpdateOk = false;
+        }
+
+        public virtual void Init()
+        {
+            _isUpdateOk = true;
+        }
+
+        public virtual void Release()
+        {
+            _isUpdateOk = false;
+        }
+
+        public abstract void UpdateEntity();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
