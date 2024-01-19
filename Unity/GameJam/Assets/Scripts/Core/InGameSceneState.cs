@@ -14,6 +14,8 @@ namespace GameJam
         [SerializeField]
         private TestBallPool _testBallPool;
 
+        private LifeCycle _lifeCycle;
+
         protected override BaseStateBehaviour LoadScenePrefab()
         {
             return Util.LoadScenePrefab<InGameSceneState>(Const.PathInGameScenePrefab, _owner);
@@ -24,6 +26,12 @@ namespace GameJam
             Util.DebugLog($"{Localize.Get(ETextKind.InGameScene)} Start");
             _goTitleButton.onClick.RemoveAllListeners();
             _goTitleButton.onClick.AddListener(goTitle);
+
+            SingletonContainer.TestBallQue = new();
+            SingletonContainer.TestBallQue.ListInit();
+
+            _lifeCycle = new LifeCycle();
+            _lifeCycle.Init(_testBallPool);
 
             _testBallPool.Init(2);
         }
@@ -37,10 +45,13 @@ namespace GameJam
         protected override void updateState()
         {
             //Util.DebugLog("A Update" + count);
+            _lifeCycle.UpdateLifeCycle();
         }
 
         protected override void exitState()
         {
+            SingletonContainer.TestBallQue.ListRelease();
+            _lifeCycle.Release();
             _testBallPool.Release();
 
             Util.DebugLog("A End");
@@ -51,9 +62,12 @@ namespace GameJam
         {
             if(Input.GetKeyDown(KeyCode.Q))
             {
+                SingletonContainer.TestBallQue.Book(1);
+                /*
                 var obj = _testBallPool.Get();
                 obj.Init();
                 obj.transform.localPosition = Vector3.zero;
+                */
             }
             else if(Input.GetKeyDown(KeyCode.W))
             {

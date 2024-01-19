@@ -18,6 +18,7 @@ public class TestBall : PoolObject, IEntity
     {
         base.Init();
         count = 0;
+        transform.localPosition = Vector3.zero;
     }
 
     private void Update()

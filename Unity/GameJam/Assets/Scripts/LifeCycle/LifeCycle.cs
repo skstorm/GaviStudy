@@ -13,6 +13,7 @@ namespace GameJam
 
         public void Init(TestBallPool testBallPool)
         {
+            _testQue = SingletonContainer.TestBallQue;
             _testBallPool = testBallPool;
         }
 
@@ -71,7 +72,7 @@ namespace GameJam
             }
         }
 
-        public void UpdateEntity()
+        private void UpdateEntity()
         {
             // 毎フレ更新処理
             IUpdatable updatable = null;
