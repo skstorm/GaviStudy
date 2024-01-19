@@ -23,14 +23,14 @@ namespace GameJam
         {
             s_instance = this;
 
-            _bgmSource = addSorce(_bgmSorceRoot);
-            _seSourceList.Add(addSorce(_seSorceRoot));
-            _seSourceList.Add(addSorce(_seSorceRoot));
+            _bgmSource = addSorceComponent(_bgmSorceRoot);
+            _seSourceList.Add(addSorceComponent(_seSorceRoot));
+            _seSourceList.Add(addSorceComponent(_seSorceRoot));
         }
 
-        private static AudioSource addSorce(GameObject obj)
+        private static AudioSource addSorceComponent(GameObject rootObj)
         {
-            var source = obj.AddComponent<AudioSource>();
+            var source = rootObj.AddComponent<AudioSource>();
             source.playOnAwake = false;
             source.loop = false;
             return source;
@@ -58,7 +58,7 @@ namespace GameJam
             if(canPlaySource == null)
             {
                 Util.DebugLog("no source");
-                canPlaySource = addSorce(_seSorceRoot);
+                canPlaySource = addSorceComponent(_seSorceRoot);
                 _seSourceList.Add(canPlaySource);
             }
             canPlaySource.clip = audioClip;

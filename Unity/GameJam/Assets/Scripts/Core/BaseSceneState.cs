@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameJam
 {
-    public class BaseSceneState : MonoBehaviour
+    public abstract class BaseSceneState : MonoBehaviour
     {
         protected IStateMachine _ownerFsm;
 
