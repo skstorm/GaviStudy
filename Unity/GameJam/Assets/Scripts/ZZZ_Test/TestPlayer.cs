@@ -14,6 +14,9 @@ public class TestPlayer : MonoBehaviour
     [SerializeField]
     private float _jumpPower;
 
+    [SerializeField]
+    private Vector2 _kickPower;
+
     // Update is called once per frame
     void Update()
     {
@@ -41,12 +44,19 @@ public class TestPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Util.DebugLog("trigger enter");
+        if (collision.tag == "Ball")
+        {
+            Util.DebugLog("trigger enter");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Util.DebugLog("collision enter");
+        if (collision.collider.tag == "Ball")
+        {
+            collision.rigidbody.AddForce(_kickPower, ForceMode2D.Impulse);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

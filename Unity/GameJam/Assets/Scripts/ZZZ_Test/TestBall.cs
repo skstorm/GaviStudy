@@ -8,6 +8,9 @@ public class TestBall : Entity
 {
     int count;
 
+    [SerializeField]
+    private int _life;
+
     public override void Init()
     {
         base.Init();
@@ -23,9 +26,25 @@ public class TestBall : Entity
         }
 
         count++;
-        if(count > 60)
+        if(count > _life)
         {
-            Hide();
+            IsWillRemove = true;
+            //Release();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            Util.DebugLog("ball trigger enter");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            Util.DebugLog("ball collision enter");
         }
     }
 }

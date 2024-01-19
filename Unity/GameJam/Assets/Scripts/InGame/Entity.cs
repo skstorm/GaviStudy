@@ -13,7 +13,7 @@ namespace GameJam
 
         public float Radius => 0;
 
-        public bool IsWillRemove => false;
+        public bool IsWillRemove { get; protected set; }
 
         protected bool _isUpdateOk = false;
 
@@ -33,6 +33,7 @@ namespace GameJam
         public virtual void Init()
         {
             _isUpdateOk = true;
+            IsWillRemove = false;
         }
 
         public virtual void Release()

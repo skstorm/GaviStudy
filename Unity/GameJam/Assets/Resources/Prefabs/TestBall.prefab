@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4514707238694811469}
   m_Layer: 0
   m_Name: TestBall
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed72a33efaf0884da28d4ea32bf4f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _life: 200
 --- !u!50 &2119086133772982485
 Rigidbody2D:
   serializedVersion: 4
@@ -115,7 +116,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 100
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2d102392761deff42951a29012075b6d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
