@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(node --version:*)",
+      "Bash(npm:*)",
+      "Bash(powershell -Command \"cd ''E:\\\\Study\\\\GaviStudy\\\\AiPractice''; npm --version\")",
+      "Bash(ls -la \"e:\\\\Study\\\\GaviStudy\\\\simple-shooter-game\\\\js\"\" && echo \"---\" && ls -la \"e:StudyGaviStudysimple-shooter-game \")",
+      "Bash(python3:*)",
+      "Bash(pip install:*)"
+    ],
+    "additionalDirectories": [
+      "e:\\Study\\GaviStudy\\simple-shooter-game",
+      "e:\\Study\\GaviStudy\\simple-shooter-game2\\js"
+    ]
+  }
+}

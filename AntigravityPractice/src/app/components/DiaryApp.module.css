@@ -1,0 +1,73 @@
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.questionTitle {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    color: #f1f5f9;
+}
+
+.optionsGrid {
+    display: grid;
+    gap: 1rem;
+}
+
+.optionBtn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    text-align: left;
+    font-size: 1rem;
+    padding: 1.2rem;
+    border-radius: 16px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.optionBtn:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: #6366f1;
+    color: white;
+    transform: translateX(8px);
+}
+
+.diaryResult {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.diaryTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #6366f1;
+}
+
+.diaryText {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border-left: 4px solid #6366f1;
+}
+
+.loading {
+    text-align: center;
+    font-style: italic;
+    color: #6366f1;
+    padding: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,23 @@
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.emptyText {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #64748b;
+  margin: 0 0 0.5rem 0;
+}
+
+.emptySubtext {
+  font-size: 0.975rem;
+  color: #94a3b8;
+  margin: 0;
+}

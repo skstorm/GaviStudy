@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//e/Study/GaviStudy/**)",
+      "Read(//e/Study/GaviStudy/Unity/**)"
+    ]
+  }
+}

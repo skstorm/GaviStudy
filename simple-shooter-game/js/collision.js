@@ -1,0 +1,10 @@
+// 충돌 감지 함수 (AABB - Axis-Aligned Bounding Box)
+function checkCollision(rectA, rectB) {
+  // AABB 충돌 공식
+  return (
+    rectA.x < rectB.x + rectB.width &&
+    rectA.x + rectA.width > rectB.x &&
+    rectA.y < rectB.y + rectB.height &&
+    rectA.y + rectA.height > rectB.y
+  );
+}

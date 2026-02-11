@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    border: 3px solid #00d4ff;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    cursor: crosshair;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 900px) {
+    canvas {
+        width: 100%;
+        height: auto;
+        border: 2px solid #00d4ff;
+    }
+}
