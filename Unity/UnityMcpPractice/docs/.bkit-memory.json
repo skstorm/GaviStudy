@@ -1,0 +1,12 @@
+{
+  "sessionCount": 9,
+  "lastSession": {
+    "startedAt": "2026-02-21T14:54:20.626Z",
+    "platform": "claude",
+    "level": "Starter"
+  },
+  "currentFeature": "unity-tetris",
+  "phase": "do",
+  "planPath": "docs/01-plan/features/unity-tetris.plan.md",
+  "designPath": "docs/02-design/features/unity-tetris.design.md"
+}

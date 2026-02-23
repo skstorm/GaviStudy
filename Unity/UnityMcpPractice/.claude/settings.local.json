@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(ss -tlnp:*)",
+      "Bash(SESSION_ID=\"444277386ffe480babbb53101463ef58\")",
+      "Bash(__NEW_LINE_785a33acfa9917f6__ curl -s -X POST http://localhost:8080/mcp -H \"Content-Type: application/json\" -H \"Accept: application/json, text/event-stream\" -H \"mcp-session-id: $SESSION_ID\" -d '{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"resources/read\"\",\"\"params\"\":{\"\"uri\"\":\"\"mcpforunity://editor/state\"\"},\"\"id\"\":5}')",
+      "Bash(python3 -c \"import sys,json; data=sys.stdin.read\\(\\); start=data.find\\(''\"\"text\"\":\"\"''\\)+8; end=data.rfind\\(''\"\"''\\); print\\(json.loads\\(''\"\"''+data[start:end]+''\"\"''\\)\\)\")",
+      "Bash(__NEW_LINE_f6b32ef7e69c9dcd__ curl -s -X POST http://localhost:8080/mcp -H \"Content-Type: application/json\" -H \"Accept: application/json, text/event-stream\" -H \"mcp-session-id: $SESSION_ID\" -d '{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"resources/read\"\",\"\"params\"\":{\"\"uri\"\":\"\"mcpforunity://project/info\"\"},\"\"id\"\":6}')",
+      "Bash(SESSION_ID=\"44756e3be33242d086e2d4d2e5f39844\")",
+      "Bash(__NEW_LINE_ff1fc2502f17d914__ curl -s -X POST http://localhost:8080/mcp -H \"Content-Type: application/json\" -H \"Accept: application/json, text/event-stream\" -H \"mcp-session-id: $SESSION_ID\" -d '{\"\"jsonrpc\"\":\"\"2.0\"\",\"\"method\"\":\"\"tools/list\"\",\"\"params\"\":{},\"\"id\"\":5}')",
+      "Bash(python3:*)",
+      "Bash(claude mcp:*)",
+      "Bash(echo Raw response needed:*)",
+      "Bash(head:*)",
+      "Skill(bkit:pdca)",
+      "Bash(sleep 2:*)",
+      "Bash(sleep 4:*)"
+    ]
+  }
+}
