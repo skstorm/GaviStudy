@@ -1,5 +1,4 @@
-﻿using Ark.Gear;
-using Ark.Util;
+﻿using Ark.Util;
 using UnityEngine;
 using System;
 using DiTreeGroup;

@@ -1,10 +1,8 @@
-﻿using Ark.Gear;
-
-namespace Ark.Core
+﻿namespace Ark.Core
 {
-	public class ButtonLogic : GearHolder
+	public class ButtonLogic
 	{
-		public ButtonLogic() : base(false)
+		public ButtonLogic()
 		{
 
 		}

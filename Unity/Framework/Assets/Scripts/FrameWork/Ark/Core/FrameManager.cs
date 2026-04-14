@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using Ark.Gear;
 
 namespace Ark.Core
 {
-	public class FrameManager : GearHolder
+	public class FrameManager
 	{
 		// 時間倍率
 		private float _speedRate = 1.0f;
@@ -16,7 +15,7 @@ namespace Ark.Core
 		// 経過時間を蓄積する変数
 		private float _elapsedSeconds = 0.0f;
 
-		public FrameManager(int fps) : base(false)
+		public FrameManager(int fps)
 		{
 			FPS = fps;
 			SPF = 1.0f / FPS;

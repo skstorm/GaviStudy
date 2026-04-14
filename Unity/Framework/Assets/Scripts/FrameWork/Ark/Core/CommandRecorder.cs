@@ -1,10 +1,8 @@
-﻿using Ark.Gear;
-
-namespace Ark.Core
+﻿namespace Ark.Core
 {
-	public class CommandRecorder : GearHolder
+	public class CommandRecorder
 	{
-		public CommandRecorder() : base(false)
+		public CommandRecorder()
 		{
 
 		}

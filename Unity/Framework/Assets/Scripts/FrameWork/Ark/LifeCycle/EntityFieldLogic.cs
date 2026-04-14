@@ -1,6 +1,4 @@
-﻿using Ark.Gear;
-
-namespace Ark.LifeCycle
+﻿namespace Ark.LifeCycle
 {
 	public interface IEntityFieldLogic_ForEntityLogic
 	{
@@ -12,9 +10,9 @@ namespace Ark.LifeCycle
 
 	}
 
-	public class EntityFieldLogic : GearHolder, IEntityFieldLogic_ForLifeCycle, IEntityFieldLogic_ForEntityLogic
+	public class EntityFieldLogic : IEntityFieldLogic_ForLifeCycle, IEntityFieldLogic_ForEntityLogic
 	{
-		public EntityFieldLogic(): base(false)
+		public EntityFieldLogic()
 		{
 
 		}

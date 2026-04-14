@@ -1,6 +1,4 @@
 ﻿
-using Ark.Gear;
-
 namespace Ark.LifeCycle
 {
 	public interface IEntityFieldView_ForEntityView
@@ -8,7 +6,7 @@ namespace Ark.LifeCycle
 
 	}
 
-	public class EntityFieldView : GearHolderBehavior, IEntityFieldView_ForEntityView
+	public class EntityFieldView : IEntityFieldView_ForEntityView
 	{
 	}
 }

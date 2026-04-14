@@ -1,10 +1,8 @@
-﻿using Ark.Gear;
-
-namespace Ark.Core
+﻿namespace Ark.Core
 {
-	public class CommandReplayer : GearHolder
+	public class CommandReplayer
 	{
-		public CommandReplayer() : base(false)
+		public CommandReplayer()
 		{
 
 		}
